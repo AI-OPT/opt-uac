@@ -9,6 +9,8 @@ public class GnAccount {
 
     private String accountName;
 
+    private String nickName;
+
     private String phone;
 
     private String email;
@@ -43,8 +45,6 @@ public class GnAccount {
 
     private String token;
 
-    private String nickName;
-
     public Long getAccountId() {
         return accountId;
     }
@@ -67,6 +67,14 @@ public class GnAccount {
 
     public void setAccountName(String accountName) {
         this.accountName = accountName == null ? null : accountName.trim();
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName == null ? null : nickName.trim();
     }
 
     public String getPhone() {
@@ -203,13 +211,5 @@ public class GnAccount {
 
     public void setToken(String token) {
         this.token = token == null ? null : token.trim();
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName == null ? null : nickName.trim();
     }
 }

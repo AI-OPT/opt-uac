@@ -263,6 +263,76 @@ public class GnIndustryCriteria {
             addCriterion("industry_name not between", value1, value2, "industryName");
             return (Criteria) this;
         }
+
+        public Criteria andIndustryDescIsNull() {
+            addCriterion("industry_desc is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescIsNotNull() {
+            addCriterion("industry_desc is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescEqualTo(String value) {
+            addCriterion("industry_desc =", value, "industryDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescNotEqualTo(String value) {
+            addCriterion("industry_desc <>", value, "industryDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescGreaterThan(String value) {
+            addCriterion("industry_desc >", value, "industryDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescGreaterThanOrEqualTo(String value) {
+            addCriterion("industry_desc >=", value, "industryDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescLessThan(String value) {
+            addCriterion("industry_desc <", value, "industryDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescLessThanOrEqualTo(String value) {
+            addCriterion("industry_desc <=", value, "industryDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescLike(String value) {
+            addCriterion("industry_desc like", value, "industryDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescNotLike(String value) {
+            addCriterion("industry_desc not like", value, "industryDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescIn(List<String> values) {
+            addCriterion("industry_desc in", values, "industryDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescNotIn(List<String> values) {
+            addCriterion("industry_desc not in", values, "industryDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescBetween(String value1, String value2) {
+            addCriterion("industry_desc between", value1, value2, "industryDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryDescNotBetween(String value1, String value2) {
+            addCriterion("industry_desc not between", value1, value2, "industryDesc");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

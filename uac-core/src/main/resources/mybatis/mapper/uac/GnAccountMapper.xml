@@ -5,6 +5,7 @@
     <id column="account_id" property="accountId" jdbcType="BIGINT" />
     <result column="tenant_id" property="tenantId" jdbcType="VARCHAR" />
     <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
@@ -22,7 +23,6 @@
     <result column="qq" property="qq" jdbcType="VARCHAR" />
     <result column="last_update_pwd_time" property="lastUpdatePwdTime" jdbcType="TIMESTAMP" />
     <result column="token" property="token" jdbcType="VARCHAR" />
-    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -83,9 +83,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    account_id, tenant_id, account_name, phone, email, password, account_type, account_level, 
-    state, active_time, inactive_time, create_time, update_time, create_account_id, update_accountr_id, 
-    weixin, weibo, qq, last_update_pwd_time, token, nick_name
+    account_id, tenant_id, account_name, nick_name, phone, email, password, account_type, 
+    account_level, state, active_time, inactive_time, create_time, update_time, create_account_id, 
+    update_accountr_id, weixin, weibo, qq, last_update_pwd_time, token
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.opt.uac.dao.mapper.bo.GnAccountCriteria" >
     select
@@ -123,20 +123,20 @@
   </delete>
   <insert id="insert" parameterType="com.ai.opt.uac.dao.mapper.bo.GnAccount" >
     insert into gn_account (account_id, tenant_id, account_name, 
-      phone, email, password, 
-      account_type, account_level, state, 
-      active_time, inactive_time, create_time, 
-      update_time, create_account_id, update_accountr_id, 
-      weixin, weibo, qq, 
-      last_update_pwd_time, token, nick_name
+      nick_name, phone, email, 
+      password, account_type, account_level, 
+      state, active_time, inactive_time, 
+      create_time, update_time, create_account_id, 
+      update_accountr_id, weixin, weibo, 
+      qq, last_update_pwd_time, token
       )
     values (#{accountId,jdbcType=BIGINT}, #{tenantId,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{accountType,jdbcType=VARCHAR}, #{accountLevel,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
-      #{activeTime,jdbcType=TIMESTAMP}, #{inactiveTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{createAccountId,jdbcType=BIGINT}, #{updateAccountrId,jdbcType=BIGINT}, 
-      #{weixin,jdbcType=VARCHAR}, #{weibo,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
-      #{lastUpdatePwdTime,jdbcType=TIMESTAMP}, #{token,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}
+      #{nickName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{accountType,jdbcType=VARCHAR}, #{accountLevel,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{activeTime,jdbcType=TIMESTAMP}, #{inactiveTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createAccountId,jdbcType=BIGINT}, 
+      #{updateAccountrId,jdbcType=BIGINT}, #{weixin,jdbcType=VARCHAR}, #{weibo,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{lastUpdatePwdTime,jdbcType=TIMESTAMP}, #{token,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ai.opt.uac.dao.mapper.bo.GnAccount" >
@@ -150,6 +150,9 @@
       </if>
       <if test="accountName != null" >
         account_name,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
       </if>
       <if test="phone != null" >
         phone,
@@ -202,9 +205,6 @@
       <if test="token != null" >
         token,
       </if>
-      <if test="nickName != null" >
-        nick_name,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="accountId != null" >
@@ -215,6 +215,9 @@
       </if>
       <if test="accountName != null" >
         #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
@@ -267,9 +270,6 @@
       <if test="token != null" >
         #{token,jdbcType=VARCHAR},
       </if>
-      <if test="nickName != null" >
-        #{nickName,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.ai.opt.uac.dao.mapper.bo.GnAccountCriteria" resultType="java.lang.Integer" >
@@ -289,6 +289,9 @@
       </if>
       <if test="record.accountName != null" >
         account_name = #{record.accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickName != null" >
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
       </if>
       <if test="record.phone != null" >
         phone = #{record.phone,jdbcType=VARCHAR},
@@ -341,9 +344,6 @@
       <if test="record.token != null" >
         token = #{record.token,jdbcType=VARCHAR},
       </if>
-      <if test="record.nickName != null" >
-        nick_name = #{record.nickName,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -354,6 +354,7 @@
     set account_id = #{record.accountId,jdbcType=BIGINT},
       tenant_id = #{record.tenantId,jdbcType=VARCHAR},
       account_name = #{record.accountName,jdbcType=VARCHAR},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
@@ -370,8 +371,7 @@
       weibo = #{record.weibo,jdbcType=VARCHAR},
       qq = #{record.qq,jdbcType=VARCHAR},
       last_update_pwd_time = #{record.lastUpdatePwdTime,jdbcType=TIMESTAMP},
-      token = #{record.token,jdbcType=VARCHAR},
-      nick_name = #{record.nickName,jdbcType=VARCHAR}
+      token = #{record.token,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -384,6 +384,9 @@
       </if>
       <if test="accountName != null" >
         account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
@@ -436,9 +439,6 @@
       <if test="token != null" >
         token = #{token,jdbcType=VARCHAR},
       </if>
-      <if test="nickName != null" >
-        nick_name = #{nickName,jdbcType=VARCHAR},
-      </if>
     </set>
     where account_id = #{accountId,jdbcType=BIGINT}
   </update>
@@ -446,6 +446,7 @@
     update gn_account
     set tenant_id = #{tenantId,jdbcType=VARCHAR},
       account_name = #{accountName,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -462,8 +463,7 @@
       weibo = #{weibo,jdbcType=VARCHAR},
       qq = #{qq,jdbcType=VARCHAR},
       last_update_pwd_time = #{lastUpdatePwdTime,jdbcType=TIMESTAMP},
-      token = #{token,jdbcType=VARCHAR},
-      nick_name = #{nickName,jdbcType=VARCHAR}
+      token = #{token,jdbcType=VARCHAR}
     where account_id = #{accountId,jdbcType=BIGINT}
   </update>
 </mapper>

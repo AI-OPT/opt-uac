@@ -5,6 +5,8 @@ public class GnIndustry {
 
     private String industryName;
 
+    private String industryDesc;
+
     public String getIndustryCode() {
         return industryCode;
     }
@@ -19,5 +21,13 @@ public class GnIndustry {
 
     public void setIndustryName(String industryName) {
         this.industryName = industryName == null ? null : industryName.trim();
+    }
+
+    public String getIndustryDesc() {
+        return industryDesc;
+    }
+
+    public void setIndustryDesc(String industryDesc) {
+        this.industryDesc = industryDesc == null ? null : industryDesc.trim();
     }
 }

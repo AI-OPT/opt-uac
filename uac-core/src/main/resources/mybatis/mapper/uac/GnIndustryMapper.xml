@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.ai.opt.uac.dao.mapper.bo.GnIndustry" >
     <id column="industry_code" property="industryCode" jdbcType="VARCHAR" />
     <result column="industry_name" property="industryName" jdbcType="VARCHAR" />
+    <result column="industry_desc" property="industryDesc" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    industry_code, industry_name
+    industry_code, industry_name, industry_desc
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.opt.uac.dao.mapper.bo.GnIndustryCriteria" >
     select
@@ -101,8 +102,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.ai.opt.uac.dao.mapper.bo.GnIndustry" >
-    insert into gn_industry (industry_code, industry_name)
-    values (#{industryCode,jdbcType=VARCHAR}, #{industryName,jdbcType=VARCHAR})
+    insert into gn_industry (industry_code, industry_name, industry_desc
+      )
+    values (#{industryCode,jdbcType=VARCHAR}, #{industryName,jdbcType=VARCHAR}, #{industryDesc,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ai.opt.uac.dao.mapper.bo.GnIndustry" >
     insert into gn_industry
@@ -113,6 +116,9 @@
       <if test="industryName != null" >
         industry_name,
       </if>
+      <if test="industryDesc != null" >
+        industry_desc,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="industryCode != null" >
@@ -120,6 +126,9 @@
       </if>
       <if test="industryName != null" >
         #{industryName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryDesc != null" >
+        #{industryDesc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -138,6 +147,9 @@
       <if test="record.industryName != null" >
         industry_name = #{record.industryName,jdbcType=VARCHAR},
       </if>
+      <if test="record.industryDesc != null" >
+        industry_desc = #{record.industryDesc,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -146,7 +158,8 @@
   <update id="updateByExample" parameterType="map" >
     update gn_industry
     set industry_code = #{record.industryCode,jdbcType=VARCHAR},
-      industry_name = #{record.industryName,jdbcType=VARCHAR}
+      industry_name = #{record.industryName,jdbcType=VARCHAR},
+      industry_desc = #{record.industryDesc,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -157,12 +170,16 @@
       <if test="industryName != null" >
         industry_name = #{industryName,jdbcType=VARCHAR},
       </if>
+      <if test="industryDesc != null" >
+        industry_desc = #{industryDesc,jdbcType=VARCHAR},
+      </if>
     </set>
     where industry_code = #{industryCode,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ai.opt.uac.dao.mapper.bo.GnIndustry" >
     update gn_industry
-    set industry_name = #{industryName,jdbcType=VARCHAR}
+    set industry_name = #{industryName,jdbcType=VARCHAR},
+      industry_desc = #{industryDesc,jdbcType=VARCHAR}
     where industry_code = #{industryCode,jdbcType=VARCHAR}
   </update>
 </mapper>
