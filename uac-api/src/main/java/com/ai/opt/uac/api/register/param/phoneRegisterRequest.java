@@ -23,12 +23,12 @@ public class phoneRegisterRequest implements Serializable {
     private String password;
 
     /**
-     * 手机验证码
+     * 手机验证码，必填
      */
     private String phoneVerifyCode;
 
     /**
-     * 图片验证码
+     * 图片验证码，必填
      */
     private String pictureVerifyCode;
 
