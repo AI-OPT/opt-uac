@@ -7,17 +7,17 @@ public class AccountTenantModifyRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * 账号ID(必填)
+	 * 璐﹀彿ID(蹇呭～)
 	 */
 	private Long accountId;
 
 	/**
-	 * 租户ID(必填)
+	 * 绉熸埛ID(蹇呭～)
 	 */
     private String tenantId;
     
     /**
-     * 修改人ID(必填)
+     * 淇敼浜篒D(蹇呭～)
      */
     private Long updateAccountId;
 

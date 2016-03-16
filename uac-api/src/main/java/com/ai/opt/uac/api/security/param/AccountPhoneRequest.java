@@ -7,12 +7,12 @@ public class AccountPhoneRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * ÕËºÅID£¨±ØÌî£©
+	 * è´¦å·IDï¼ˆå¿…å¡«ï¼‰
 	 */
 	private Long accountId;
 
 	/**
-	 * ÓÊÏä£¨±ØÌî£©
+	 * é‚®ç®±ï¼ˆå¿…å¡«ï¼‰
 	 */
 	private String email;
 

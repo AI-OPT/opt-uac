@@ -10,7 +10,7 @@ import com.ai.opt.uac.api.account.param.TenantQueryResponse;
 public interface ITenantManageSV {
 	
 	/**
-	 * 查询租户信息
+	 * 鏌ヨ绉熸埛淇℃伅
 	 * @param tenantReaponse
 	 * @return
 	 * @throws BusinessException
@@ -22,7 +22,7 @@ public interface ITenantManageSV {
 	TenantQueryResponse queryTenantInfo(BaseInfo tenantRequest) throws BusinessException,SystemException;
 	
 	/**
-	 * 设置租户信息(新增)
+	 * 璁剧疆绉熸埛淇℃伅(鏂板)
 	 * @param tenantInfoRequest
 	 * @return
 	 * @throws BusinessException

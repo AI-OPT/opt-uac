@@ -7,12 +7,12 @@ public class AccountEmailRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * 账号ID（必填）
+	 * 璐﹀彿ID锛堝繀濉級
 	 */
 	private Long accountId;
 
 	/**
-	 * 手机号码（必填）
+	 * 鎵嬫満鍙风爜锛堝繀濉級
 	 */
 	private String phone;
 

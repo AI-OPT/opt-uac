@@ -7,17 +7,17 @@ public class TenantInfoRequest extends BaseInfo {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * 公司名称(必填)
+	 * 鍏徃鍚嶇О(蹇呭～)
 	 */
 	private String tenantName;
 	
 	/**
-	 * 公司类型(必填)
+	 * 鍏徃绫诲瀷(蹇呭～)
 	 */
 	private String industryCode;
 	
 	/**
-	 * 创建人ID(必填)
+	 * 鍒涘缓浜篒D(蹇呭～)
 	 */
 	private Long createAccountId;
 	

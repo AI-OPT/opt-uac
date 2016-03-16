@@ -7,7 +7,7 @@ public class AccountQueryRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * ÕËºÅID(±ØÌî)
+	 * è´¦å·ID(å¿…å¡«)
 	 */
 	private Long accountId;
 

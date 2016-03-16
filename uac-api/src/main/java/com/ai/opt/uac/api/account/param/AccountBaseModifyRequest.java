@@ -7,17 +7,17 @@ public class AccountBaseModifyRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * 账号ID(必填)
+	 * 璐﹀彿ID(蹇呭～)
 	 */
 	private Long accountId;
 
 	/**
-	 * 昵称(必填)
+	 * 鏄电О(蹇呭～)
 	 */
     private String nickName;
     
     /**
-     * 修改人ID(必填)
+     * 淇敼浜篒D(蹇呭～)
      */
     private Long updateAccountId;
 

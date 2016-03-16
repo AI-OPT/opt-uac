@@ -7,12 +7,12 @@ public class AccountPasswordRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * ÕËºÅID£¨±ØÌî£©
+	 * è´¦å·IDï¼ˆå¿…å¡«ï¼‰
 	 */
 	private Long accountId;
 
 	/**
-	 * ÃÜÂë£¨±ØÌî£©
+	 * å¯†ç ï¼ˆå¿…å¡«ï¼‰
 	 */
 	private String password;
 

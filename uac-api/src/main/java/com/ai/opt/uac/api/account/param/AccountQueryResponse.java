@@ -7,27 +7,27 @@ public class AccountQueryResponse extends BaseResponse {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * 账号ID
+	 * 璐﹀彿ID
 	 */
 	private Long accountId;
 
 	/**
-	 * 租户ID
+	 * 绉熸埛ID
 	 */
     private String tenantId;
 
     /**
-     * 昵称
+     * 鏄电О
      */
     private String nickName;
 
     /**
-     * 手机号码
+     * 鎵嬫満鍙风爜
      */
     private String phone;
     
     /**
-     * 邮箱
+     * 閭
      */
     private String email;
 

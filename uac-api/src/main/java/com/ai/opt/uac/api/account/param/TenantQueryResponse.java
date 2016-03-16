@@ -7,17 +7,17 @@ public class TenantQueryResponse extends BaseResponse {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * 租户ID
+	 * 绉熸埛ID
 	 */
 	private String tenantId;
 
 	/**
-	 * 公司名称
+	 * 鍏徃鍚嶇О
 	 */
 	private String tenantName;
 	
 	/**
-	 * 公司类型
+	 * 鍏徃绫诲瀷
 	 */
 	private String industryCode;
 

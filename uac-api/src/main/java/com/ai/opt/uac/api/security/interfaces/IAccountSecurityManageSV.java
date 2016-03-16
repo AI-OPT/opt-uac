@@ -10,7 +10,7 @@ import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
 public interface IAccountSecurityManageSV {
 	
 	/**
-	 * ÉèÖÃÓÊÏä
+	 * è®¾ç½®é‚®ç®±
 	 * @param emailModifyRequest
 	 * @return
 	 * @throws BusinessException
@@ -22,7 +22,7 @@ public interface IAccountSecurityManageSV {
 	BaseResponse setEmailData(AccountEmailRequest emailModifyRequest) throws BusinessException,SystemException;
 	
 	/**
-	 * ÉèÖÃÃÜÂë
+	 * è®¾ç½®å¯†ç 
 	 * @param emailModifyRequest
 	 * @return
 	 * @throws BusinessException
@@ -34,7 +34,7 @@ public interface IAccountSecurityManageSV {
 	BaseResponse setPasswordData(AccountPasswordRequest passwordModifyRequest) throws BusinessException,SystemException;
 	
 	/**
-	 * ÉèÖÃÊÖ»úºÅ
+	 * è®¾ç½®æ‰‹æœºå·
 	 * @param phoneModifyRequest
 	 * @return
 	 * @throws BusinessException
