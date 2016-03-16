@@ -25,20 +25,7 @@ public interface ILoginSV {
      * @ApiCode UAC_0002
      * 
      */
-    userLoginResponse findAccountByUserName(userLoginRequest request)
-            throws BusinessException, SystemException;
-
-    /**
-     * 登录验证
-     * 
-     * @param request
-     * @return
-     * @throws BusinessException
-     * @throws SystemException
-     * @author zhanglh
-     * @ApiCode UAC_0003
-     */
-    BaseResponse checkLoginByUserName(userLoginRequest request)
+    userLoginResponse queryAccountByUserName(userLoginRequest request)
             throws BusinessException, SystemException;
 
 }
