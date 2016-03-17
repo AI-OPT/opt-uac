@@ -21,8 +21,8 @@ public class TenantBusiSVImpl implements ITenantBusiSV {
 	IAccountAtomSV iAccountAtomSV;
 
 	@Override
-	public GnTenant queryTenantById(String tenantId) throws SystemException {
-		return itenantAtomSV.queryById(tenantId);
+	public GnTenant queryByTenantId(String tenantId) throws SystemException {
+		return itenantAtomSV.queryByTenantId(tenantId);
 	}
 
 	@Override

@@ -35,7 +35,7 @@ public class TenantManageSVImpl implements ITenantManageSV {
 		VoValidateUtils.validateQueryTenantInfo(tenantRequest);
 		// 查询数据
 		String tenantId = tenantRequest.getTenantId();
-		GnTenant gnTenant = itenantBusiSV.queryTenantById(tenantId);
+		GnTenant gnTenant = itenantBusiSV.queryByTenantId(tenantId);
 		// 整理返回对象
 		TenantQueryResponse tenantQueryResponse = new TenantQueryResponse();
 		BeanUtils.copyProperties(tenantQueryResponse, gnTenant);

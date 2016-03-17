@@ -51,7 +51,6 @@ public class AccountManageSVImpl implements IAccountManageSV {
 		gnAccount.setUpdateTime(DateUtil.getSysDate());
 		int updateCount = iAccountBusiSV.updateByAccountId(gnAccount);
 		//整理返回对象
-		BaseResponse baseResponse = new BaseResponse();
 		ResponseHeader responseHeader = new ResponseHeader();
 		if(updateCount > 0){
 			responseHeader.setIsSuccess(true);
@@ -61,6 +60,7 @@ public class AccountManageSVImpl implements IAccountManageSV {
 			responseHeader.setResultCode(ResultCode.FAIL_CODE);
 			responseHeader.setResultMessage("数据库查询失败");
 		}
+		BaseResponse baseResponse = new BaseResponse();
 		baseResponse.setResponseHeader(responseHeader);
 		return baseResponse;
 	}

@@ -55,7 +55,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 	}
 
 	/**
-	 * 根据账号ID更细账户信息
+	 * 根据账号ID更新账户信息
 	 * 
 	 * @param gnAccount
 	 * @return

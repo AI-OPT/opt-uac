@@ -5,7 +5,7 @@ import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.dao.mapper.bo.GnTenant;
 
 public interface ITenantBusiSV {
-	GnTenant queryTenantById(String tenantId) throws SystemException;
+	GnTenant queryByTenantId(String tenantId) throws SystemException;
 	
 	boolean insertTenantAndSyncAccount(GnTenant gnTenant,GnAccount gnAccount) throws SystemException;
 }
