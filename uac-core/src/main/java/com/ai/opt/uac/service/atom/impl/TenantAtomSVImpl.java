@@ -1,9 +1,9 @@
-package com.ai.opt.uac.serivce.atom.impl;
+package com.ai.opt.uac.service.atom.impl;
 
 import com.ai.opt.uac.dao.mapper.bo.GnTenant;
 import com.ai.opt.uac.dao.mapper.factory.MapperFactory;
 import com.ai.opt.uac.dao.mapper.interfaces.GnTenantMapper;
-import com.ai.opt.uac.serivce.atom.interfaces.ITenantAtomService;
+import com.ai.opt.uac.service.atom.interfaces.ITenantAtomService;
 
 public class TenantAtomSVImpl implements ITenantAtomService {
 

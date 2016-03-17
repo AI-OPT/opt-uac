@@ -1,4 +1,4 @@
-package com.ai.opt.uac.serivce.atom.interfaces;
+package com.ai.opt.uac.service.atom.interfaces;
 
 import com.ai.opt.uac.dao.mapper.bo.GnTenant;
 
