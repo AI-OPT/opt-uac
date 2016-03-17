@@ -9,6 +9,7 @@ import com.ai.opt.uac.api.security.interfaces.IAccountSecurityManageSV;
 import com.ai.opt.uac.api.security.param.AccountEmailRequest;
 import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
 import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
+import com.ai.opt.uac.util.VoValidateUtils;
 import com.alibaba.dubbo.config.annotation.Service;
 
 @Service
@@ -18,6 +19,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 	@Override
 	public BaseResponse setEmailData(AccountEmailRequest emailModifyRequest)
 			throws BusinessException, SystemException {
+		VoValidateUtils.validateSetAccountEmail(emailModifyRequest);
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -26,6 +28,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 	public BaseResponse setPasswordData(
 			AccountPasswordRequest passwordModifyRequest)
 			throws BusinessException, SystemException {
+		VoValidateUtils.validateSetAccountPwd(passwordModifyRequest);
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -33,6 +36,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 	@Override
 	public BaseResponse setPhoneData(AccountPhoneRequest phoneModifyRequest)
 			throws BusinessException, SystemException {
+		VoValidateUtils.validateSetPhoneTenant(phoneModifyRequest);
 		// TODO Auto-generated method stub
 		return null;
 	}

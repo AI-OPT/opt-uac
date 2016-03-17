@@ -3,9 +3,9 @@ package com.ai.opt.uac.api.security.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.uac.api.security.param.AccountEmailRequest;
-import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
 import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
+import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
+import com.ai.opt.uac.api.security.param.AccountEmailRequest;
 
 public interface IAccountSecurityManageSV {
 	

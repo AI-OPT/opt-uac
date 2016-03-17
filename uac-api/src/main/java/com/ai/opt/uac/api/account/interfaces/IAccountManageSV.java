@@ -34,15 +34,15 @@ public interface IAccountManageSV {
 	 */
 	BaseResponse updateBaseInfo(AccountBaseModifyRequest accountModifyRequest) throws BusinessException,SystemException;
 	
-	/**
-	 * 修改账户租户信息
-	 * @param AccountBaseModifyRequest
-	 * @return
-	 * @throws BusinessException
-	 * @throws SystemException
-	 * @author jiaxs
-     * @ApiDocMethod
-     * @ApiCode UAC_0005
-	 */
-	BaseResponse updateTenantData(AccountTenantModifyRequest accountModifyRequest) throws BusinessException,SystemException;
+	// /**
+	// * 修改账户租户信息
+	// * @param AccountBaseModifyRequest
+	// * @return
+	// * @throws BusinessException
+	// * @throws SystemException
+	// * @author jiaxs
+	// * @ApiDocMethod
+	// * @ApiCode UAC_0005
+	// */
+	// BaseResponse setTenantData(AccountTenantModifyRequest accountModifyRequest) throws BusinessException,SystemException;
 }

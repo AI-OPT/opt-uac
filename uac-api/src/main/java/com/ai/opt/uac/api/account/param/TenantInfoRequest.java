@@ -17,9 +17,9 @@ public class TenantInfoRequest extends BaseInfo {
 	private String industryCode;
 	
 	/**
-	 * 创建人ID(必填)
+	 * 账户ID(必填)
 	 */
-	private Long createAccountId;
+	private Long accountId;
 	
 	public String getTenantName() {
 		return tenantName;
@@ -41,11 +41,11 @@ public class TenantInfoRequest extends BaseInfo {
 		return serialVersionUID;
 	}
 
-	public Long getCreateAccountId() {
-		return createAccountId;
+	public Long getAccountId() {
+		return accountId;
 	}
 
-	public void setCreateAccountId(Long createAccountId) {
-		this.createAccountId = createAccountId;
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 }

@@ -3,8 +3,8 @@ package com.ai.opt.uac.api.account.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.uac.api.account.param.TenantInfoRequest;
+import com.ai.opt.uac.api.account.param.TenantInsertResponse;
 import com.ai.opt.uac.api.account.param.TenantQueryResponse;
 
 public interface ITenantManageSV {
@@ -31,5 +31,5 @@ public interface ITenantManageSV {
      * @ApiDocMethod
      * @ApiCode UAC_0007
 	 */
-	BaseResponse insertTenantInfo(TenantInfoRequest tenantInfoRequest) throws BusinessException,SystemException;
+	TenantInsertResponse insertTenantInfo(TenantInfoRequest tenantInfoRequest) throws BusinessException,SystemException;
 }

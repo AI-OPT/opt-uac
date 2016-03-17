@@ -2,9 +2,9 @@ package com.ai.opt.uac.service.atom.interfaces;
 
 import com.ai.opt.uac.dao.mapper.bo.GnTenant;
 
-public interface ITenantAtomService {
+public interface ITenantAtomSV {
 	
-	String insert(GnTenant gnTenant);
+	int insert(GnTenant gnTenant);
 	
 	GnTenant queryById(String tenantId);
 }

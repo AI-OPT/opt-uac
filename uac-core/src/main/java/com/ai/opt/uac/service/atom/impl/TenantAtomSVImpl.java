@@ -1,18 +1,19 @@
 package com.ai.opt.uac.service.atom.impl;
 
+import org.springframework.stereotype.Component;
+
 import com.ai.opt.uac.dao.mapper.bo.GnTenant;
 import com.ai.opt.uac.dao.mapper.factory.MapperFactory;
 import com.ai.opt.uac.dao.mapper.interfaces.GnTenantMapper;
-import com.ai.opt.uac.service.atom.interfaces.ITenantAtomService;
+import com.ai.opt.uac.service.atom.interfaces.ITenantAtomSV;
 
-public class TenantAtomSVImpl implements ITenantAtomService {
+@Component
+public class TenantAtomSVImpl implements ITenantAtomSV {
 
 	@Override
-	public String insert(GnTenant gnTenant) {
-		String tenantId = "";
+	public int insert(GnTenant gnTenant) {
 		GnTenantMapper tenantMapper = MapperFactory.getGnTenantMapper();
-		int count = tenantMapper.insertSelective(gnTenant);
-		return count > 0 ? tenantId : null;
+		return tenantMapper.insertSelective(gnTenant);
 	}
 
 	@Override
