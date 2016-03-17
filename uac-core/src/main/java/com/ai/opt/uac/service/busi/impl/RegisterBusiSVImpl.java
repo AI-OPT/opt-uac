@@ -8,7 +8,6 @@ import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.atom.interfaces.IRegisterAtomSV;
 import com.ai.opt.uac.service.busi.interfaces.IRegisterBusiSV;
 import com.ai.opt.uac.util.AccountSeqUtil;
-import com.ai.opt.uac.util.Md5Util;
 
 @Service
 @Transactional
@@ -22,7 +21,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
         long accountId = AccountSeqUtil.createAccountId();
         account.setAccountId(accountId);
         // 对密码加密
-        account.setPassword(Md5Util.stringMD5(account.getPassword()));
+        // account.setPassword(Md5Util.stringMD5(account.getPassword()));
         iRegisterAtomSV.registerByPhone(account);
         return accountId;
     }
