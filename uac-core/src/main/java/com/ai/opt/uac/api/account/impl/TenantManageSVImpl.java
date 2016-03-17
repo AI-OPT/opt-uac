@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
