@@ -3,6 +3,8 @@ package com.ai.opt.uac.api.sso.param;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.ai.opt.base.vo.BaseResponse;
+
 /**
  * 登录返回参数 <br>
  * Date: 2016年3月16日 <br>
@@ -10,7 +12,7 @@ import java.sql.Timestamp;
  * 
  * @author zhanglh
  */
-public class userLoginResponse implements Serializable {
+public class userLoginResponse extends BaseResponse {
     private static final long serialVersionUID = 1L;
 
     /**
