@@ -4,6 +4,5 @@ import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 
 public interface ILoginAtomSV {
     GnAccount queryByUserName(GnAccount account);
-    
-    GnAccount judgeUser(GnAccount account);
+
 }
