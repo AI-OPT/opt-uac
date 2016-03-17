@@ -15,13 +15,13 @@ public class phoneRegisterResponse extends BaseResponse {
     /**
      * 账号ID
      */
-    private int accountId;
+    private long accountId;
 
-    public int getAccountId() {
+    public long getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(int accountId) {
+    public void setAccountId(long accountId) {
         this.accountId = accountId;
     }
 
