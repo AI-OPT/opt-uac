@@ -11,7 +11,15 @@ public final class AccountConstants {
     private AccountConstants() {
 
     }
-
+    
+    public final static class ResultCode{
+    	private ResultCode(){}
+    	
+    	public static final String SUCCESS_CODE = "000000";
+    	
+    	public static final String FAIL_CODE = "000001";
+    }
+    
     public final static class SEQ {
         private SEQ() {
         }
@@ -39,6 +47,19 @@ public final class AccountConstants {
         /** 初始租户ID值 */
         public static final String INIT_TENANT_ID = "0";
 
+    }
+    
+    public final static class Tenant {
+    	private Tenant(){}
+    	
+    	/** * 状态：未签约*/
+    	public static final String STATE_NOTSIGNED = "0";
+    	/** * 状态：已签约*/
+    	public static final String STATE_SIGNED = "1";
+    	/** * 状态：到期*/
+    	public static final String STATE_EXPIRE = "2";
+    	/** * 状态：中断*/
+    	public static final String STATE_INTERRUPT = "3";
     }
 
 }

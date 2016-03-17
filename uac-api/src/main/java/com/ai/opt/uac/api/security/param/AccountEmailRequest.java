@@ -12,9 +12,9 @@ public class AccountEmailRequest implements Serializable{
 	private Long accountId;
 
 	/**
-	 * 手机号码（必填）
+	 * 邮箱（必填）
 	 */
-	private String phone;
+	private String email;
 
 	public Long getAccountId() {
 		return accountId;
@@ -24,12 +24,12 @@ public class AccountEmailRequest implements Serializable{
 		this.accountId = accountId;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
