@@ -1,9 +1,7 @@
 package com.ai.opt.uac.service.busi.interfaces;
 
-import com.ai.opt.base.exception.SystemException;
-import com.ai.opt.uac.api.register.param.phoneRegisterRequest;
-import com.ai.opt.uac.api.register.param.phoneRegisterResponse;
+import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 
 public interface IRegisterBusiSV {
-    phoneRegisterResponse  registerByPhone(phoneRegisterRequest registerVo) throws SystemException;
+    long  registerByPhone(GnAccount account);
 }
