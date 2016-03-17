@@ -17,7 +17,7 @@ public interface IAccountSecurityManageSV {
 	 * @throws SystemException
 	 * @author jiaxs
      * @ApiDocMethod
-     * @ApiCode UAC_0008
+     * @ApiCode UAC_0007
 	 */
 	BaseResponse setEmailData(AccountEmailRequest emailModifyRequest) throws BusinessException,SystemException;
 	
@@ -29,7 +29,7 @@ public interface IAccountSecurityManageSV {
 	 * @throws SystemException
 	 * @author jiaxs
      * @ApiDocMethod
-     * @ApiCode UAC_0009
+     * @ApiCode UAC_0008
 	 */
 	BaseResponse setPasswordData(AccountPasswordRequest passwordModifyRequest) throws BusinessException,SystemException;
 	
@@ -41,7 +41,7 @@ public interface IAccountSecurityManageSV {
 	 * @throws SystemException
 	 * @author jiaxs
      * @ApiDocMethod
-     * @ApiCode UAC_
+     * @ApiCode UAC_0009
 	 */
 	BaseResponse setPhoneData(AccountPhoneRequest phoneModifyRequest) throws BusinessException,SystemException;
 }

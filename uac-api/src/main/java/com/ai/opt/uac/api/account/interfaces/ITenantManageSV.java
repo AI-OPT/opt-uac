@@ -17,7 +17,7 @@ public interface ITenantManageSV {
 	 * @throws SystemException
 	 * @author jiaxs
      * @ApiDocMethod
-     * @ApiCode UAC_0006
+     * @ApiCode UAC_0005
 	 */
 	TenantQueryResponse queryTenantInfo(BaseInfo tenantRequest) throws BusinessException,SystemException;
 	
@@ -29,7 +29,7 @@ public interface ITenantManageSV {
 	 * @throws SystemException
 	 * @author jiaxs
      * @ApiDocMethod
-     * @ApiCode UAC_0007
+     * @ApiCode UAC_0006
 	 */
 	TenantInsertResponse insertTenantInfo(TenantInfoRequest tenantInfoRequest) throws BusinessException,SystemException;
 }
