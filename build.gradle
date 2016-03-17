@@ -18,7 +18,7 @@ allprojects {
     sourceCompatibility = 1.7
 
     configurations.all { resolutionStrategy.cacheChangingModulesFor 0, 'seconds' }
-    group="com.ai"
+    group="com.ai.opt.uac"
 }
 
 subprojects {

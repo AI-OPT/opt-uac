@@ -75,7 +75,7 @@ for(Map<String,String> apiMap:apiList){
         belong='opt-uac'
         ownerType='opt-center'
         owner = 'opt-uac-center'
-        groupId = 'com.ai'
+        groupId = 'com.ai.opt.uac'
         artifactId = apiArtifactId
         version = apiVersion
     }
