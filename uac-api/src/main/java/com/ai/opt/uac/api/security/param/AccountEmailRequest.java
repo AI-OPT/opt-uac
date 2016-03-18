@@ -15,6 +15,11 @@ public class AccountEmailRequest implements Serializable{
 	 * 邮箱（必填）
 	 */
 	private String email;
+	
+	/**
+	 * 更新人ID
+	 */
+	private Long updateAccountId;
 
 	public Long getAccountId() {
 		return accountId;
@@ -30,6 +35,14 @@ public class AccountEmailRequest implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Long getUpdateAccountId() {
+		return updateAccountId;
+	}
+
+	public void setUpdateAccountId(Long updateAccountId) {
+		this.updateAccountId = updateAccountId;
 	}
 
 }

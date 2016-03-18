@@ -115,6 +115,12 @@ public class IConfigCenterClientTest {
         sb.append("			\"jdbcUrl\":\"jdbc:mysql://10.1.235.245:31306/dev_baas_uacdb1?useUnicode=true&characterEncoding=UTF-8\",   ");
         sb.append("			\"username\":\"uacusr01\",                                                                         ");
         sb.append("			\"password\":\"uacusr01_123\",                                                                         ");
+
+//        sb.append("			\"jdbcUrl\":\"jdbc:mysql://127.0.0.1:3306/system?useUnicode=true&characterEncoding=UTF-8\",   ");
+//        sb.append("			\"username\":\"root\",                                                                         ");
+//        sb.append("			\"password\":\"123456\",                                                                         ");
+
+        
         sb.append("			\"autoCommit\":\"true\",                                                                                ");
         sb.append("			\"connectionTimeout\":\"30000\",                                                                        ");
         sb.append("			\"idleTimeout\":\"600000\",                                                                             ");

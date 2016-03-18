@@ -69,10 +69,11 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 		if (updateCount > 0) {
 			responseHeader.setIsSuccess(true);
 			responseHeader.setResultCode(ResultCode.SUCCESS_CODE);
+			responseHeader.setResultMessage("数据库更新成功");
 		} else {
 			responseHeader.setIsSuccess(false);
 			responseHeader.setResultCode(ResultCode.FAIL_CODE);
-			responseHeader.setResultMessage("数据库查询失败");
+			responseHeader.setResultMessage("数据库更新失败");
 		}
 		baseResponse.setResponseHeader(responseHeader);
 		return baseResponse;

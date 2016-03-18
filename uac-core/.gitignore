@@ -12,3 +12,4 @@ gradle-app.setting
 .settings/
 /bin/
 
+/logs/

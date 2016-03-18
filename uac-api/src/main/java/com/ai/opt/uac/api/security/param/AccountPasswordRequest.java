@@ -15,6 +15,11 @@ public class AccountPasswordRequest implements Serializable{
 	 * 密码（必填）
 	 */
 	private String password;
+	
+	/**
+	 * 更新人ID
+	 */
+	private Long updateAccountId;
 
 	public Long getAccountId() {
 		return accountId;
@@ -30,5 +35,13 @@ public class AccountPasswordRequest implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Long getUpdateAccountId() {
+		return updateAccountId;
+	}
+
+	public void setUpdateAccountId(Long updateAccountId) {
+		this.updateAccountId = updateAccountId;
 	}
 }

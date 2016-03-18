@@ -27,14 +27,16 @@ public class AccountManageSVImpl implements IAccountManageSV {
 
 	@Override
 	public AccountQueryResponse queryBaseInfo(AccountQueryRequest accountQueryRequest) throws RPCSystemException {
-		//入参检查
+		// 入参检查
 		VoValidateUtils.validateQueryAccountBaseInfo(accountQueryRequest);
-		//查询数据
+		// 查询数据
 		Long accountId = accountQueryRequest.getAccountId();
 		GnAccount gnAccount = iAccountBusiSV.queryByAccountId(accountId);
-		//整理返回对象
+		// 整理返回对象
 		AccountQueryResponse accountQueryResponse = new AccountQueryResponse();
-		BeanUtils.copyProperties(accountQueryResponse, gnAccount);
+		if (gnAccount != null) {
+			BeanUtils.copyProperties(accountQueryResponse, gnAccount);
+		}
 		ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, null);
 		accountQueryResponse.setResponseHeader(responseHeader);
 		return accountQueryResponse;
@@ -42,19 +44,20 @@ public class AccountManageSVImpl implements IAccountManageSV {
 
 	@Override
 	public BaseResponse updateBaseInfo(AccountBaseModifyRequest accountModifyRequest) throws RPCSystemException {
-		//入参检查
+		// 入参检查
 		VoValidateUtils.validateUpdateAccountInfo(accountModifyRequest);
-		//数据库操作
+		// 数据库操作
 		GnAccount gnAccount = new GnAccount();
 		BeanUtils.copyProperties(gnAccount, accountModifyRequest);
 		gnAccount.setUpdateTime(DateUtil.getSysDate());
 		int updateCount = iAccountBusiSV.updateByAccountId(gnAccount);
-		//整理返回对象
+		// 整理返回对象
 		ResponseHeader responseHeader = new ResponseHeader();
-		if(updateCount > 0){
+		if (updateCount > 0) {
 			responseHeader.setIsSuccess(true);
 			responseHeader.setResultCode(ResultCode.SUCCESS_CODE);
-		}else{
+			responseHeader.setResultMessage("数据更新成功");
+		} else {
 			responseHeader.setIsSuccess(false);
 			responseHeader.setResultCode(ResultCode.FAIL_CODE);
 			responseHeader.setResultMessage("数据库查询失败");

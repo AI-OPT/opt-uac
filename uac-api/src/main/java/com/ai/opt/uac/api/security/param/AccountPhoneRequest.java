@@ -15,6 +15,11 @@ public class AccountPhoneRequest implements Serializable{
 	 * 手机号码（必填）
 	 */
 	private String phone;
+	
+	/**
+	 * 更新人ID
+	 */
+	private Long updateAccountId;
 
 	public Long getAccountId() {
 		return accountId;
@@ -30,6 +35,14 @@ public class AccountPhoneRequest implements Serializable{
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Long getUpdateAccountId() {
+		return updateAccountId;
+	}
+
+	public void setUpdateAccountId(Long updateAccountId) {
+		this.updateAccountId = updateAccountId;
 	}
 
 }
