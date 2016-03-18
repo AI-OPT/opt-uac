@@ -35,7 +35,7 @@ public class TestSSOManageSV {
     public void testSSO() throws RPCSystemException{
         UserLoginRequest request = new UserLoginRequest();
         request.setAccountPassword("123");
-        request.setUsername("18690983776");
+        request.setUsername("13489878889");
         UserLoginResponse info = iLoginSV.queryAccountByUserName(request);
         System.out.println("result="+JSON.toJSONString(info));
     }
