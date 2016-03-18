@@ -57,7 +57,7 @@ public class TenantManageSVImpl implements ITenantManageSV {
 		gnTenant.setCreateTime(DateUtil.getSysDate());
 		GnAccount gnAccount = new GnAccount();
 		gnAccount.setTenantId(tenantId);
-		gnAccount.setUpdateAccountrId(tenantInfoRequest.getAccountId());
+		gnAccount.setUpdateAccountId(tenantInfoRequest.getAccountId());
 		// 设置返回对象
 		boolean isSuccess = itenantBusiSV.insertTenantAndSyncAccount(gnTenant, gnAccount);
 		ResponseHeader responseHeader = new ResponseHeader();

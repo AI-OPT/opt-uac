@@ -26,7 +26,7 @@ public final class VoValidateUtils {
         if (StringUtil.isBlank(query.getPhone())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "手机号码不能为空");
         }
-        if (StringUtil.isBlank(query.getPassword())) {
+        if (StringUtil.isBlank(query.getAccountPassword())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码不能为空");
         }
     }
@@ -38,7 +38,7 @@ public final class VoValidateUtils {
         if (StringUtil.isBlank(query.getUsername())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "用户名不能为空");
         }
-        if (StringUtil.isBlank(query.getPassword())) {
+        if (StringUtil.isBlank(query.getAccountPassword())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码不能为空");
         }
     }
