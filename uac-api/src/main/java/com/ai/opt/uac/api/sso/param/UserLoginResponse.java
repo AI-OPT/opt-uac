@@ -1,6 +1,5 @@
 package com.ai.opt.uac.api.sso.param;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 import com.ai.opt.base.vo.BaseResponse;
@@ -12,7 +11,7 @@ import com.ai.opt.base.vo.BaseResponse;
  * 
  * @author zhanglh
  */
-public class userLoginResponse extends BaseResponse {
+public class UserLoginResponse extends BaseResponse {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -24,6 +23,11 @@ public class userLoginResponse extends BaseResponse {
      * 账号名
      */
     private String accountName;
+
+    /**
+     * 密码
+     */
+    private String password;
 
     /**
      * 手机
@@ -54,6 +58,14 @@ public class userLoginResponse extends BaseResponse {
      * 失效时间
      */
     private Timestamp inactiveTime;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getAccountId() {
         return accountId;
