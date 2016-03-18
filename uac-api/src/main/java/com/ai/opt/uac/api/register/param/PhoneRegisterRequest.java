@@ -20,7 +20,7 @@ public class PhoneRegisterRequest implements Serializable {
     /**
      * 密码，必填
      */
-    private String password;
+    private String accountPassword;
 
     /**
      * 手机验证码，必填
@@ -40,12 +40,14 @@ public class PhoneRegisterRequest implements Serializable {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
+   
+
+    public String getAccountPassword() {
+        return accountPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAccountPassword(String accountPassword) {
+        this.accountPassword = accountPassword;
     }
 
     public String getPhoneVerifyCode() {

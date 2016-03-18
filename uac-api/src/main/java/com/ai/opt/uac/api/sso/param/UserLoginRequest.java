@@ -20,7 +20,7 @@ public class UserLoginRequest implements Serializable {
     /**
      * 密码，必填
      */
-    private String password;
+    private String accountPassword;
 
     public String getUsername() {
         return username;
@@ -30,12 +30,12 @@ public class UserLoginRequest implements Serializable {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAccountPassword() {
+        return accountPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAccountPassword(String accountPassword) {
+        this.accountPassword = accountPassword;
     }
 
 }
