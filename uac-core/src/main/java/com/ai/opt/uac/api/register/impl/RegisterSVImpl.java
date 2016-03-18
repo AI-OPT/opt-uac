@@ -30,6 +30,7 @@ public class RegisterSVImpl implements IRegisterSV {
         // 设置默认值
         GnAccount account = new GnAccount();
         BeanUtils.copyProperties(account, request);
+        account.setNickName(AccountConstants.Account.NICK_NAME);
         account.setAccountType(AccountConstants.Account.ACCOUNT_TYPE);
         account.setAccountLevel(AccountConstants.Account.ACCOUNT_LEVEL);
         account.setActiveTime(DateUtil.getSysDate());

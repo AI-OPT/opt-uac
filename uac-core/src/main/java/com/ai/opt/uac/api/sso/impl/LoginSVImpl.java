@@ -30,14 +30,14 @@ public class LoginSVImpl implements ILoginSV {
         boolean isEmial = RegexUtils.checkIsEmail(request.getUsername());
         boolean isPhone = RegexUtils.checkIsPhone(request.getUsername());
         GnAccount account = new GnAccount();
-        if (isEmial == true) {
-            account.setEmail(request.getUsername());
-        }
         if (isPhone == true) {
             account.setPhone(request.getUsername());
+        }else if (isEmial == true) {
+            account.setEmail(request.getUsername());
+        }else{
+            account.setAccountName(request.getUsername()); 
         }
         //account.setPassword(request.getPassword());
-
         GnAccount accountResult = iLoginBusiSV.queryByUserName(account);
         // 组织返回对象
         UserLoginResponse response = new UserLoginResponse();
@@ -47,11 +47,10 @@ public class LoginSVImpl implements ILoginSV {
                     "成功");
             response.setResponseHeader(responseHeaders);
         } else {
-            ResponseHeader responseHeaders = new ResponseHeader(true, ResultCode.FAIL_CODE,
+            ResponseHeader responseHeaders = new ResponseHeader(false, ResultCode.FAIL_CODE,
                     "用户名或密码错误");
             response.setResponseHeader(responseHeaders);
         }
-
         return response;
     }
 

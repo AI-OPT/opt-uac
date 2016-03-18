@@ -25,10 +25,14 @@ public class LoginAtomSVImpl implements ILoginAtomSV {
         if (!StringUtil.isBlank(account.getEmail())) {
             criteria.andEmailEqualTo(account.getEmail());
         }
-        /*if(!StringUtil.isBlank(account.getPassword())){
-            criteria.andPasswordEqualTo(account.getPassword());
-        }*/
-      
+        if (!StringUtil.isBlank(account.getAccountName())) {
+            criteria.andAccountNameEqualTo(account.getAccountName());
+        }
+        /*
+         * if(!StringUtil.isBlank(account.getPassword())){
+         * criteria.andPasswordEqualTo(account.getPassword()); }
+         */
+
         List<GnAccount> list = MapperFactory.getGnAccountlMapper().selectByExample(conditon);
         if (!CollectionUtil.isEmpty(list)) {
             return list.get(0);

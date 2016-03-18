@@ -10,8 +10,10 @@ import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.uac.api.register.interfaces.IRegisterSV;
 import com.ai.opt.uac.api.register.param.PhoneRegisterRequest;
 import com.ai.opt.uac.api.register.param.PhoneRegisterResponse;
-
-import net.sf.json.JSONObject;
+import com.ai.opt.uac.api.sso.interfaces.ILoginSV;
+import com.ai.opt.uac.api.sso.param.UserLoginRequest;
+import com.ai.opt.uac.api.sso.param.UserLoginResponse;
+import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:context/core-context.xml")
@@ -19,17 +21,22 @@ public class TestSSOManageSV {
 
 	@Autowired
 	IRegisterSV iRegisterSV;
-	
+	@Autowired
+	ILoginSV iLoginSV;
 	@Test
-	public void testQueryBaseInfo() throws RPCSystemException{
-		System.out.println("<<<<<<<<<<<<<<Begin testQueryBaseInfo>>>>>>>>>>>>>>");
+	public void testRegister() throws RPCSystemException{
 		PhoneRegisterRequest request = new PhoneRegisterRequest();
 		request.setPassword("123");
-		request.setPhone("13289878898");
-		
-		PhoneRegisterResponse queryBaseInfo = iRegisterSV.registerByPhone(request);
-		JSONObject fromObject = JSONObject.fromObject(queryBaseInfo);
-		System.out.println(fromObject);
-		System.out.println("<<<<<<<<<<<<<<End testQueryBaseInfo>>>>>>>>>>>>>>");
+		request.setPhone("13278678887");
+		PhoneRegisterResponse info = iRegisterSV.registerByPhone(request);
+		System.out.println("result="+JSON.toJSONString(info));
 	}
+	@Test
+    public void testSSO() throws RPCSystemException{
+        UserLoginRequest request = new UserLoginRequest();
+        request.setPassword("123");
+        request.setUsername("uii");
+        UserLoginResponse info = iLoginSV.queryAccountByUserName(request);
+        System.out.println("result="+JSON.toJSONString(info));
+    }
 }

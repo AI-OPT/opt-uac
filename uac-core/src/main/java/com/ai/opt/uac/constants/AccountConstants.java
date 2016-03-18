@@ -46,7 +46,9 @@ public final class AccountConstants {
 
         /** 初始租户ID值 */
         public static final String INIT_TENANT_ID = "0";
-
+        
+        /** 昵称 */
+        public static final String NICK_NAME = "test";
     }
     
     public final static class Tenant {
