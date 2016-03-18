@@ -3,8 +3,7 @@ package com.ai.opt.uac.api.account.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
@@ -30,7 +29,7 @@ public class TenantManageSVImpl implements ITenantManageSV {
 	ITenantBusiSV itenantBusiSV;
 
 	@Override
-	public TenantQueryResponse queryTenantInfo(BaseInfo tenantRequest) throws BusinessException, SystemException {
+	public TenantQueryResponse queryTenantInfo(BaseInfo tenantRequest) throws RPCSystemException {
 		// 检查参数
 		VoValidateUtils.validateQueryTenantInfo(tenantRequest);
 		// 查询数据
@@ -45,7 +44,7 @@ public class TenantManageSVImpl implements ITenantManageSV {
 	}
 
 	@Override
-	public TenantInsertResponse insertTenantInfo(TenantInfoRequest tenantInfoRequest) throws BusinessException, SystemException {
+	public TenantInsertResponse insertTenantInfo(TenantInfoRequest tenantInfoRequest) throws RPCSystemException {
 		// 参数检查
 		VoValidateUtils.validateInsertTenant(tenantInfoRequest);
 		// 设置入参值 默认值
