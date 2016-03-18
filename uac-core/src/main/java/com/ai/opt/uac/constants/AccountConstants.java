@@ -42,7 +42,7 @@ public final class AccountConstants {
         public static final String ACCOUNT_STATE = "1";
 
         /*** 失效时间 */
-        public static final String INACTIVE_DATE = "2099-12-31";
+        public static final String INACTIVE_DATE = "2099-12-31 23:59:59";
 
         /** 初始租户ID值 */
         public static final String INIT_TENANT_ID = "0";

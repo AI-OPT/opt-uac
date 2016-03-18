@@ -34,7 +34,7 @@ public class RegisterSVImpl implements IRegisterSV {
         account.setAccountType(AccountConstants.Account.ACCOUNT_TYPE);
         account.setAccountLevel(AccountConstants.Account.ACCOUNT_LEVEL);
         account.setActiveTime(DateUtil.getSysDate());
-        account.setInactiveTime(DateUtil.getTimestamp(AccountConstants.Account.INACTIVE_DATE));
+        account.setInactiveTime(DateUtil.getTimestamp(AccountConstants.Account.INACTIVE_DATE,DateUtil.DATETIME_FORMAT));
         account.setCreateTime(DateUtil.getSysDate());
         account.setTenantId(AccountConstants.Account.INIT_TENANT_ID);
         long accountId = iRegisterBusiSV.registerByPhone(account);
