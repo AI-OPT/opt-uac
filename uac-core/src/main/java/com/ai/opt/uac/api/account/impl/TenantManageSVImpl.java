@@ -37,7 +37,9 @@ public class TenantManageSVImpl implements ITenantManageSV {
 		GnTenant gnTenant = itenantBusiSV.queryByTenantId(tenantId);
 		// 整理返回对象
 		TenantQueryResponse tenantQueryResponse = new TenantQueryResponse();
-		BeanUtils.copyProperties(tenantQueryResponse, gnTenant);
+		if (gnTenant != null) {
+			BeanUtils.copyProperties(tenantQueryResponse, gnTenant);
+		}
 		ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "成功");
 		tenantQueryResponse.setResponseHeader(responseHeader);
 		return tenantQueryResponse;
@@ -53,11 +55,12 @@ public class TenantManageSVImpl implements ITenantManageSV {
 		String tenantId = UUIDUtil.genId32();
 		gnTenant.setTenantId(tenantId);
 		gnTenant.setState(Tenant.STATE_NOTSIGNED);
-		gnTenant.setCreateAccountId(tenantInfoRequest.getAccountId());
+		gnTenant.setCreateAccountId(tenantInfoRequest.getUpdateAccountId());
 		gnTenant.setCreateTime(DateUtil.getSysDate());
 		GnAccount gnAccount = new GnAccount();
+		gnAccount.setAccountId(tenantInfoRequest.getAccountId());
 		gnAccount.setTenantId(tenantId);
-		gnAccount.setUpdateAccountId(tenantInfoRequest.getAccountId());
+		gnAccount.setUpdateAccountId(tenantInfoRequest.getUpdateAccountId());
 		// 设置返回对象
 		boolean isSuccess = itenantBusiSV.insertTenantAndSyncAccount(gnTenant, gnAccount);
 		ResponseHeader responseHeader = new ResponseHeader();
@@ -65,6 +68,7 @@ public class TenantManageSVImpl implements ITenantManageSV {
 		if (isSuccess) {
 			responseHeader.setIsSuccess(true);
 			responseHeader.setResultCode(ResultCode.SUCCESS_CODE);
+			responseHeader.setResultMessage("数据库操作成功");
 			tenantResponse.setTenantId(tenantId);
 		} else {
 			responseHeader.setIsSuccess(false);

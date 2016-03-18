@@ -66,6 +66,10 @@ public final class VoValidateUtils {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "账号ID（accountId）不能为空");
         }
+        if (tenantInfoRequest.getUpdateAccountId() == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "修改人ID（updateAccountId）不能为空");
+        }
     }
 
     /**
