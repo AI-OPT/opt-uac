@@ -3,8 +3,8 @@ package com.ai.opt.uac.api.sso.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.uac.api.sso.param.userLoginRequest;
-import com.ai.opt.uac.api.sso.param.userLoginResponse;
+import com.ai.opt.uac.api.sso.param.UserLoginRequest;
+import com.ai.opt.uac.api.sso.param.UserLoginResponse;
 
 /**
  * 登录服务<br>
@@ -25,7 +25,7 @@ public interface ILoginSV {
      * @ApiCode UAC_0002
      * 
      */
-    userLoginResponse queryAccountByUserName(userLoginRequest request)
+    UserLoginResponse queryAccountByUserName(UserLoginRequest request)
             throws BusinessException, SystemException;
 
 }

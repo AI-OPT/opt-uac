@@ -2,8 +2,8 @@ package com.ai.opt.uac.api.register.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
-import com.ai.opt.uac.api.register.param.phoneRegisterRequest;
-import com.ai.opt.uac.api.register.param.phoneRegisterResponse;
+import com.ai.opt.uac.api.register.param.PhoneRegisterRequest;
+import com.ai.opt.uac.api.register.param.PhoneRegisterResponse;
 
 /**
  * 注册服务<br>
@@ -24,7 +24,7 @@ public interface IRegisterSV {
      * @author zhanglh
      * @ApiCode UAC_0001
      */
-    phoneRegisterResponse registerByPhone(phoneRegisterRequest request)
+    PhoneRegisterResponse registerByPhone(PhoneRegisterRequest request)
             throws BusinessException, SystemException;
 
 }

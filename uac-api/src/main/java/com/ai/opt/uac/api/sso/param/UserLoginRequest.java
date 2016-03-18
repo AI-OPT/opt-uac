@@ -9,7 +9,7 @@ import java.io.Serializable;
  * 
  * @author zhanglh
  */
-public class userLoginRequest implements Serializable {
+public class UserLoginRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**

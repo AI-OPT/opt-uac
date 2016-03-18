@@ -9,7 +9,7 @@ import com.ai.opt.base.vo.BaseResponse;
  * 
  * @author zhanglh
  */
-public class phoneRegisterResponse extends BaseResponse {
+public class PhoneRegisterResponse extends BaseResponse {
     private static final long serialVersionUID = 1L;
 
     /**
