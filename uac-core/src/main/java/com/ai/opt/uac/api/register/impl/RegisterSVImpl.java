@@ -3,8 +3,7 @@ package com.ai.opt.uac.api.register.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
@@ -26,7 +25,7 @@ public class RegisterSVImpl implements IRegisterSV {
 
     @Override
     public PhoneRegisterResponse registerByPhone(PhoneRegisterRequest request)
-            throws BusinessException, SystemException {
+            throws RPCSystemException {
         VoValidateUtils.validateRegister(request);
         // 设置默认值
         GnAccount account = new GnAccount();

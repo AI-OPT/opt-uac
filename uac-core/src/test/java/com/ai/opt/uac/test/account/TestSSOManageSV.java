@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.uac.api.register.interfaces.IRegisterSV;
 import com.ai.opt.uac.api.register.param.PhoneRegisterRequest;
 import com.ai.opt.uac.api.register.param.PhoneRegisterResponse;
@@ -22,7 +21,7 @@ public class TestSSOManageSV {
 	IRegisterSV iRegisterSV;
 	
 	@Test
-	public void testQueryBaseInfo() throws BusinessException, SystemException{
+	public void testQueryBaseInfo() throws RPCSystemException{
 		System.out.println("<<<<<<<<<<<<<<Begin testQueryBaseInfo>>>>>>>>>>>>>>");
 		PhoneRegisterRequest request = new PhoneRegisterRequest();
 		request.setPassword("123");
