@@ -7,7 +7,7 @@ configurations {
 }
 
 dependencies {
-    jaxDoclet 'com.ai.runner.plugin:apicollector:1.3-SNAPSHOT'
+    jaxDoclet 'com.ai.runner.plugin:apicollector:1.4-SNAPSHOT'
     optBaseSource "com.ai.opt:opt-base:1.0-SNAPSHOT:sources"
     
 }

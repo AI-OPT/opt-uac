@@ -1,8 +1,8 @@
 package com.ai.opt.uac.api.sso.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.base.exception.SystemException;
-import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.uac.api.sso.param.UserLoginRequest;
 import com.ai.opt.uac.api.sso.param.UserLoginResponse;
 
@@ -26,6 +26,6 @@ public interface ILoginSV {
      * 
      */
     UserLoginResponse queryAccountByUserName(UserLoginRequest request)
-            throws BusinessException, SystemException;
+            throws RPCSystemException;
 
 }
