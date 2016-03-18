@@ -8,8 +8,8 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.uac.api.sso.interfaces.ILoginSV;
-import com.ai.opt.uac.api.sso.param.userLoginRequest;
-import com.ai.opt.uac.api.sso.param.userLoginResponse;
+import com.ai.opt.uac.api.sso.param.UserLoginRequest;
+import com.ai.opt.uac.api.sso.param.UserLoginResponse;
 import com.ai.opt.uac.constants.AccountConstants.ResultCode;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.busi.interfaces.ILoginBusiSV;
@@ -24,7 +24,7 @@ public class LoginSVImpl implements ILoginSV {
     private ILoginBusiSV iLoginBusiSV;
 
     @Override
-    public userLoginResponse queryAccountByUserName(userLoginRequest request)
+    public UserLoginResponse queryAccountByUserName(UserLoginRequest request)
             throws BusinessException, SystemException {
         VoValidateUtils.validateLogin(request);
         // 判断用户名是手机还是邮箱
@@ -37,11 +37,11 @@ public class LoginSVImpl implements ILoginSV {
         if (isPhone == true) {
             account.setPhone(request.getUsername());
         }
-        account.setPassword(request.getPassword());
+        //account.setPassword(request.getPassword());
 
         GnAccount accountResult = iLoginBusiSV.queryByUserName(account);
         // 组织返回对象
-        userLoginResponse response = new userLoginResponse();
+        UserLoginResponse response = new UserLoginResponse();
         if (accountResult != null) {
             BeanUtils.copyProperties(response, accountResult);
             ResponseHeader responseHeaders = new ResponseHeader(true, ResultCode.SUCCESS_CODE,

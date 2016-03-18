@@ -7,11 +7,11 @@ import com.ai.opt.uac.api.account.param.AccountBaseModifyRequest;
 import com.ai.opt.uac.api.account.param.AccountQueryRequest;
 import com.ai.opt.uac.api.account.param.AccountTenantModifyRequest;
 import com.ai.opt.uac.api.account.param.TenantInfoRequest;
-import com.ai.opt.uac.api.register.param.phoneRegisterRequest;
+import com.ai.opt.uac.api.register.param.PhoneRegisterRequest;
 import com.ai.opt.uac.api.security.param.AccountEmailRequest;
 import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
 import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
-import com.ai.opt.uac.api.sso.param.userLoginRequest;
+import com.ai.opt.uac.api.sso.param.UserLoginRequest;
 import com.ai.opt.uac.constants.AccountExceptCode;
 
 public final class VoValidateUtils {
@@ -19,7 +19,7 @@ public final class VoValidateUtils {
     private VoValidateUtils() {
     }
 
-    public static void validateRegister(phoneRegisterRequest query) throws BusinessException {
+    public static void validateRegister(PhoneRegisterRequest query) throws BusinessException {
         if (query == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
         }
@@ -31,7 +31,7 @@ public final class VoValidateUtils {
         }
     }
 
-    public static void validateLogin(userLoginRequest query) throws BusinessException {
+    public static void validateLogin(UserLoginRequest query) throws BusinessException {
         if (query == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
         }

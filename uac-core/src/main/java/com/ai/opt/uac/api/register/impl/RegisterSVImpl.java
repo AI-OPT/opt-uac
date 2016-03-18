@@ -9,8 +9,8 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.opt.uac.api.register.interfaces.IRegisterSV;
-import com.ai.opt.uac.api.register.param.phoneRegisterRequest;
-import com.ai.opt.uac.api.register.param.phoneRegisterResponse;
+import com.ai.opt.uac.api.register.param.PhoneRegisterRequest;
+import com.ai.opt.uac.api.register.param.PhoneRegisterResponse;
 import com.ai.opt.uac.constants.AccountConstants;
 import com.ai.opt.uac.constants.AccountConstants.ResultCode;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
@@ -25,7 +25,7 @@ public class RegisterSVImpl implements IRegisterSV {
     private IRegisterBusiSV iRegisterBusiSV;
 
     @Override
-    public phoneRegisterResponse registerByPhone(phoneRegisterRequest request)
+    public PhoneRegisterResponse registerByPhone(PhoneRegisterRequest request)
             throws BusinessException, SystemException {
         VoValidateUtils.validateRegister(request);
         // 设置默认值
@@ -37,7 +37,7 @@ public class RegisterSVImpl implements IRegisterSV {
         account.setCreateTime(DateUtil.getSysDate());
         account.setTenantId(AccountConstants.Account.INIT_TENANT_ID);
         long accountId = iRegisterBusiSV.registerByPhone(account);
-        phoneRegisterResponse response = new phoneRegisterResponse();
+        PhoneRegisterResponse response = new PhoneRegisterResponse();
         ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "成功");
         response.setAccountId(accountId);
         response.setResponseHeader(responseHeader);
