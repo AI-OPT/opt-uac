@@ -535,73 +535,73 @@ public class GnAccountCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andPasswordIsNull() {
-            addCriterion("password is null");
+        public Criteria andAccountPasswordIsNull() {
+            addCriterion("account_password is null");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordIsNotNull() {
-            addCriterion("password is not null");
+        public Criteria andAccountPasswordIsNotNull() {
+            addCriterion("account_password is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordEqualTo(String value) {
-            addCriterion("password =", value, "password");
+        public Criteria andAccountPasswordEqualTo(String value) {
+            addCriterion("account_password =", value, "accountPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordNotEqualTo(String value) {
-            addCriterion("password <>", value, "password");
+        public Criteria andAccountPasswordNotEqualTo(String value) {
+            addCriterion("account_password <>", value, "accountPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordGreaterThan(String value) {
-            addCriterion("password >", value, "password");
+        public Criteria andAccountPasswordGreaterThan(String value) {
+            addCriterion("account_password >", value, "accountPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordGreaterThanOrEqualTo(String value) {
-            addCriterion("password >=", value, "password");
+        public Criteria andAccountPasswordGreaterThanOrEqualTo(String value) {
+            addCriterion("account_password >=", value, "accountPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordLessThan(String value) {
-            addCriterion("password <", value, "password");
+        public Criteria andAccountPasswordLessThan(String value) {
+            addCriterion("account_password <", value, "accountPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordLessThanOrEqualTo(String value) {
-            addCriterion("password <=", value, "password");
+        public Criteria andAccountPasswordLessThanOrEqualTo(String value) {
+            addCriterion("account_password <=", value, "accountPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordLike(String value) {
-            addCriterion("password like", value, "password");
+        public Criteria andAccountPasswordLike(String value) {
+            addCriterion("account_password like", value, "accountPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordNotLike(String value) {
-            addCriterion("password not like", value, "password");
+        public Criteria andAccountPasswordNotLike(String value) {
+            addCriterion("account_password not like", value, "accountPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordIn(List<String> values) {
-            addCriterion("password in", values, "password");
+        public Criteria andAccountPasswordIn(List<String> values) {
+            addCriterion("account_password in", values, "accountPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordNotIn(List<String> values) {
-            addCriterion("password not in", values, "password");
+        public Criteria andAccountPasswordNotIn(List<String> values) {
+            addCriterion("account_password not in", values, "accountPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordBetween(String value1, String value2) {
-            addCriterion("password between", value1, value2, "password");
+        public Criteria andAccountPasswordBetween(String value1, String value2) {
+            addCriterion("account_password between", value1, value2, "accountPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordNotBetween(String value1, String value2) {
-            addCriterion("password not between", value1, value2, "password");
+        public Criteria andAccountPasswordNotBetween(String value1, String value2) {
+            addCriterion("account_password not between", value1, value2, "accountPassword");
             return (Criteria) this;
         }
 
@@ -1115,63 +1115,63 @@ public class GnAccountCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdIsNull() {
-            addCriterion("update_accountr_id is null");
+        public Criteria andUpdateAccountIdIsNull() {
+            addCriterion("update_account_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdIsNotNull() {
-            addCriterion("update_accountr_id is not null");
+        public Criteria andUpdateAccountIdIsNotNull() {
+            addCriterion("update_account_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdEqualTo(Long value) {
-            addCriterion("update_accountr_id =", value, "updateAccountrId");
+        public Criteria andUpdateAccountIdEqualTo(Long value) {
+            addCriterion("update_account_id =", value, "updateAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdNotEqualTo(Long value) {
-            addCriterion("update_accountr_id <>", value, "updateAccountrId");
+        public Criteria andUpdateAccountIdNotEqualTo(Long value) {
+            addCriterion("update_account_id <>", value, "updateAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdGreaterThan(Long value) {
-            addCriterion("update_accountr_id >", value, "updateAccountrId");
+        public Criteria andUpdateAccountIdGreaterThan(Long value) {
+            addCriterion("update_account_id >", value, "updateAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("update_accountr_id >=", value, "updateAccountrId");
+        public Criteria andUpdateAccountIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("update_account_id >=", value, "updateAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdLessThan(Long value) {
-            addCriterion("update_accountr_id <", value, "updateAccountrId");
+        public Criteria andUpdateAccountIdLessThan(Long value) {
+            addCriterion("update_account_id <", value, "updateAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdLessThanOrEqualTo(Long value) {
-            addCriterion("update_accountr_id <=", value, "updateAccountrId");
+        public Criteria andUpdateAccountIdLessThanOrEqualTo(Long value) {
+            addCriterion("update_account_id <=", value, "updateAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdIn(List<Long> values) {
-            addCriterion("update_accountr_id in", values, "updateAccountrId");
+        public Criteria andUpdateAccountIdIn(List<Long> values) {
+            addCriterion("update_account_id in", values, "updateAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdNotIn(List<Long> values) {
-            addCriterion("update_accountr_id not in", values, "updateAccountrId");
+        public Criteria andUpdateAccountIdNotIn(List<Long> values) {
+            addCriterion("update_account_id not in", values, "updateAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdBetween(Long value1, Long value2) {
-            addCriterion("update_accountr_id between", value1, value2, "updateAccountrId");
+        public Criteria andUpdateAccountIdBetween(Long value1, Long value2) {
+            addCriterion("update_account_id between", value1, value2, "updateAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateAccountrIdNotBetween(Long value1, Long value2) {
-            addCriterion("update_accountr_id not between", value1, value2, "updateAccountrId");
+        public Criteria andUpdateAccountIdNotBetween(Long value1, Long value2) {
+            addCriterion("update_account_id not between", value1, value2, "updateAccountId");
             return (Criteria) this;
         }
 

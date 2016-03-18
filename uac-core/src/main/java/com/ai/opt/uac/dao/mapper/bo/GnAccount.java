@@ -15,7 +15,7 @@ public class GnAccount {
 
     private String email;
 
-    private String password;
+    private String accountPassword;
 
     private String accountType;
 
@@ -33,7 +33,7 @@ public class GnAccount {
 
     private Long createAccountId;
 
-    private Long updateAccountrId;
+    private Long updateAccountId;
 
     private String weixin;
 
@@ -93,12 +93,12 @@ public class GnAccount {
         this.email = email == null ? null : email.trim();
     }
 
-    public String getPassword() {
-        return password;
+    public String getAccountPassword() {
+        return accountPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+    public void setAccountPassword(String accountPassword) {
+        this.accountPassword = accountPassword == null ? null : accountPassword.trim();
     }
 
     public String getAccountType() {
@@ -165,12 +165,12 @@ public class GnAccount {
         this.createAccountId = createAccountId;
     }
 
-    public Long getUpdateAccountrId() {
-        return updateAccountrId;
+    public Long getUpdateAccountId() {
+        return updateAccountId;
     }
 
-    public void setUpdateAccountrId(Long updateAccountrId) {
-        this.updateAccountrId = updateAccountrId;
+    public void setUpdateAccountId(Long updateAccountId) {
+        this.updateAccountId = updateAccountId;
     }
 
     public String getWeixin() {
