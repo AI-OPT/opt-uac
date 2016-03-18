@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.atom.interfaces.IRegisterAtomSV;
 import com.ai.opt.uac.service.busi.interfaces.IRegisterBusiSV;
@@ -16,12 +17,10 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
     IRegisterAtomSV iRegisterAtomSV;
 
     @Override
-    public long registerByPhone(GnAccount account) {
+    public long registerByPhone(GnAccount account) throws SystemException{
         // 生成账号ID
         long accountId = AccountSeqUtil.createAccountId();
         account.setAccountId(accountId);
-        // 对密码加密
-        // account.setPassword(Md5Util.stringMD5(account.getPassword()));
         iRegisterAtomSV.registerByPhone(account);
         return accountId;
     }
