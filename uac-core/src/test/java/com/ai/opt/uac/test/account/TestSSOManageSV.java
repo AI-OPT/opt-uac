@@ -27,7 +27,7 @@ public class TestSSOManageSV {
 	public void testRegister() throws RPCSystemException{
 		PhoneRegisterRequest request = new PhoneRegisterRequest();
 		request.setAccountPassword("123456");
-		request.setPhone("18690983776");
+		request.setPhone("13489878889");
 		PhoneRegisterResponse info = iRegisterSV.registerByPhone(request);
 		System.out.println("result="+JSON.toJSONString(info));
 	}
@@ -35,7 +35,7 @@ public class TestSSOManageSV {
     public void testSSO() throws RPCSystemException{
         UserLoginRequest request = new UserLoginRequest();
         request.setAccountPassword("123");
-        request.setUsername("11389894394");
+        request.setUsername("18690983776");
         UserLoginResponse info = iLoginSV.queryAccountByUserName(request);
         System.out.println("result="+JSON.toJSONString(info));
     }
