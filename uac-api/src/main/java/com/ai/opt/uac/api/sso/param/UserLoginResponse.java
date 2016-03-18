@@ -27,7 +27,7 @@ public class UserLoginResponse extends BaseResponse {
     /**
      * 密码
      */
-    private String password;
+    private String accountPassword;
 
     /**
      * 手机
@@ -59,12 +59,12 @@ public class UserLoginResponse extends BaseResponse {
      */
     private Timestamp inactiveTime;
 
-    public String getPassword() {
-        return password;
+    public String getAccountPassword() {
+        return accountPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAccountPassword(String accountPassword) {
+        this.accountPassword = accountPassword;
     }
 
     public long getAccountId() {
