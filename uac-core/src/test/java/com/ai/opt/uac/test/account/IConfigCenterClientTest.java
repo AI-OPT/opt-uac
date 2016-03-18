@@ -7,6 +7,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.ai.opt.sdk.configcenter.client.IConfigCenterClient;
+import com.ai.opt.sdk.configcenter.factory.ConfigCenterFactory;
 import com.ai.opt.sdk.constants.SDKConstants;
 
 public class IConfigCenterClientTest {
