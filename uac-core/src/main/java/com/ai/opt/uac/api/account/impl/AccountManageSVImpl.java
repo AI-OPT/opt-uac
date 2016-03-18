@@ -37,7 +37,7 @@ public class AccountManageSVImpl implements IAccountManageSV {
 		if (gnAccount != null) {
 			BeanUtils.copyProperties(accountQueryResponse, gnAccount);
 		}
-		ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, null);
+		ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "数据查询成功");
 		accountQueryResponse.setResponseHeader(responseHeader);
 		return accountQueryResponse;
 	}
