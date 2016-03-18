@@ -17,7 +17,7 @@ public class UserLoginResponse extends BaseResponse {
     /**
      * 账号ID
      */
-    private String accountId;
+    private long accountId;
 
     /**
      * 账号名
@@ -67,11 +67,11 @@ public class UserLoginResponse extends BaseResponse {
         this.password = password;
     }
 
-    public String getAccountId() {
+    public long getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(String accountId) {
+    public void setAccountId(long accountId) {
         this.accountId = accountId;
     }
 
