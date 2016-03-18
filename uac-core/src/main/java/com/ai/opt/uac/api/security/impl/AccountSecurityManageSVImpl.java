@@ -3,7 +3,7 @@ package com.ai.opt.uac.api.security.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
@@ -27,7 +27,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 	IAccountBusiSV iAccountBusiSV;
 
 	@Override
-	public BaseResponse setEmailData(AccountEmailRequest emailModifyRequest) throws BusinessException, SystemException {
+	public BaseResponse setEmailData(AccountEmailRequest emailModifyRequest) throws RPCSystemException {
 		// 入参检查
 		VoValidateUtils.validateSetAccountEmail(emailModifyRequest);
 		// 整理数据
@@ -37,7 +37,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 	}
 
 	@Override
-	public BaseResponse setPasswordData(AccountPasswordRequest passwordModifyRequest) throws BusinessException, SystemException {
+	public BaseResponse setPasswordData(AccountPasswordRequest passwordModifyRequest) throws RPCSystemException {
 		VoValidateUtils.validateSetAccountPwd(passwordModifyRequest);
 		// 整理数据
 		GnAccount gnAccount = new GnAccount();
@@ -46,7 +46,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 	}
 
 	@Override
-	public BaseResponse setPhoneData(AccountPhoneRequest phoneModifyRequest) throws BusinessException, SystemException {
+	public BaseResponse setPhoneData(AccountPhoneRequest phoneModifyRequest) throws RPCSystemException {
 		VoValidateUtils.validateSetPhoneTenant(phoneModifyRequest);
 		// 整理数据
 		GnAccount gnAccount = new GnAccount();

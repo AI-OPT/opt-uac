@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.uac.api.account.interfaces.IAccountManageSV;
 import com.ai.opt.uac.api.account.param.AccountQueryRequest;
 import com.ai.opt.uac.api.account.param.AccountQueryResponse;
@@ -22,7 +21,7 @@ public class TestAccountManageSV {
 	IAccountManageSV iAccountManageSV;
 	
 	@Test
-	public void testQueryBaseInfo() throws BusinessException, SystemException{
+	public void testQueryBaseInfo() throws RPCSystemException{
 		System.out.println("<<<<<<<<<<<<<<Begin testQueryBaseInfo>>>>>>>>>>>>>>");
 		AccountQueryRequest accountQueryRequest=new AccountQueryRequest();
 		accountQueryRequest.setAccountId(1L);
