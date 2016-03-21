@@ -27,7 +27,7 @@ public class TestSSOManageSV {
 	public void testRegister() throws RPCSystemException{
 		PhoneRegisterRequest request = new PhoneRegisterRequest();
 		request.setAccountPassword("123456");
-		request.setPhone("13489878889");
+		request.setPhone("13489878884");
 		PhoneRegisterResponse info = iRegisterSV.registerByPhone(request);
 		System.out.println("result="+JSON.toJSONString(info));
 	}
