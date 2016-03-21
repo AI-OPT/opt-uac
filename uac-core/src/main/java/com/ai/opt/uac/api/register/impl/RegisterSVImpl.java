@@ -33,6 +33,7 @@ public class RegisterSVImpl implements IRegisterSV {
         BeanUtils.copyProperties(account, request);
         //account.setNickName(AccountConstants.Account.NICK_NAME);
         account.setNickName(AccountSeqUtil.createNickName());
+        account.setState(AccountConstants.Account.ACCOUNT_STATE);
         account.setAccountType(AccountConstants.Account.ACCOUNT_TYPE);
         account.setAccountLevel(AccountConstants.Account.ACCOUNT_LEVEL);
         account.setActiveTime(DateUtil.getSysDate());
