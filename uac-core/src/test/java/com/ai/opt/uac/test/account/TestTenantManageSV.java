@@ -39,7 +39,6 @@ public class TestTenantManageSV {
 		TenantInfoRequest tenantInfoRequest=new TenantInfoRequest();
 		tenantInfoRequest.setAccountId(1L);
 		tenantInfoRequest.setIndustryCode("001");
-		tenantInfoRequest.setTenantId("0001");
 		tenantInfoRequest.setTenantName("测试专业户");
 		tenantInfoRequest.setUpdateAccountId(2L);
 		TenantInsertResponse tenantInfo = iTenantManageSV.insertTenantInfo(tenantInfoRequest);
