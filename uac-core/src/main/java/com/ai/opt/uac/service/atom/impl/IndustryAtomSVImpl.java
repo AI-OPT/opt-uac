@@ -1,5 +1,7 @@
 package com.ai.opt.uac.service.atom.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.SystemException;
@@ -17,4 +19,9 @@ public class IndustryAtomSVImpl implements IIndustryAtomSV {
 		return gnIndustryMapper.selectByPrimaryKey(industryCode);
 	}
 
+	@Override
+	public List<GnIndustry> queryIndustryList() throws SystemException {
+		GnIndustryMapper gnIndustryMapper = MapperFactory.getGnIndustryMapper();
+		return gnIndustryMapper.selectByExample(null);
+	}
 }

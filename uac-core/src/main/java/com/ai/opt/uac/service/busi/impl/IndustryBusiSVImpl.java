@@ -1,5 +1,7 @@
 package com.ai.opt.uac.service.busi.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +21,11 @@ public class IndustryBusiSVImpl implements IIndustryBusiSV {
 	@Override
 	public GnIndustry queryByIndustryCode(String industryCode) throws SystemException {
 		return iIndustryAtomSV.queryByIndustryCode(industryCode);
+	}
+
+	@Override
+	public List<GnIndustry> queryIndustryList() throws SystemException {
+		return iIndustryAtomSV.queryIndustryList();
 	}
 
 }

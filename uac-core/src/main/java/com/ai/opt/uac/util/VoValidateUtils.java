@@ -1,5 +1,8 @@
 package com.ai.opt.uac.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.opt.sdk.util.StringUtil;
@@ -15,9 +18,14 @@ import com.ai.opt.uac.api.sso.param.UserLoginRequest;
 import com.ai.opt.uac.constants.AccountConstants.Account;
 import com.ai.opt.uac.constants.AccountConstants.Tenant;
 import com.ai.opt.uac.constants.AccountExceptCode;
+import com.ai.opt.uac.service.busi.interfaces.IIndustryBusiSV;
 
+@Component
 public final class VoValidateUtils {
 
+	@Autowired
+	IIndustryBusiSV iIndustryBusiSV;
+	
     private VoValidateUtils() {
     }
 
@@ -110,7 +118,6 @@ public final class VoValidateUtils {
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
                     "企业类型（industryCode）长度不能大于"+Tenant.INDUSTRYCODE_MAXSIZE);
 		}
-		
     }
 
     /**
