@@ -170,11 +170,11 @@ public class VoValidateSVImpl implements IVoValidateSV {
                     "修改人ID（updateAccountId）不能为空");
         }
         //判断参数是否符合规则
-        int nameSize = nickName.length();
         if(nickName.contains("\u0020")){
         	throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
                     "昵称（nickName）不能包含空格");
         }
+        int nameSize = nickName.length();
 		if(nameSize<Account.NICKNAME_MINSIZE||nameSize > Account.NICKNAME_MAXSIZE){
         	throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
                     "昵称（nickName）长度在"+ Account.NICKNAME_MAXSIZE+"~"+ Account.NICKNAME_MAXSIZE+"个字符，不能包含空格");
