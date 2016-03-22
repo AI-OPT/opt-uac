@@ -19,6 +19,7 @@ import com.ai.opt.uac.constants.AccountConstants.Account;
 import com.ai.opt.uac.constants.AccountConstants.Tenant;
 import com.ai.opt.uac.constants.AccountExceptCode;
 import com.ai.opt.uac.dao.mapper.bo.GnIndustry;
+import com.ai.opt.uac.service.atom.interfaces.IRegisterAtomSV;
 import com.ai.opt.uac.service.busi.interfaces.IIndustryBusiSV;
 import com.ai.opt.uac.service.busi.interfaces.IVoValidateSV;
 import com.ai.opt.uac.util.RegexUtils;
@@ -28,6 +29,8 @@ public class VoValidateSVImpl implements IVoValidateSV {
 	
 	@Autowired
 	IIndustryBusiSV industryBusiSV;
+	 @Autowired
+	IRegisterAtomSV iRegisterAtomSV;
 
 	@Override
 	public void validateRegister(PhoneRegisterRequest query) throws BusinessException {
@@ -46,7 +49,12 @@ public class VoValidateSVImpl implements IVoValidateSV {
         if (!RegexUtils.checkIsPhone(query.getPhone())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "手机号码格式不正确");
         }
-
+        //判断手机号码是否唯一
+        int count = iRegisterAtomSV.getCountByPhone(query.getPhone());
+        if(count>=1){
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "该手机已经进行过注册，请重新输入");
+        }
         if (StringUtil.isBlank(query.getAccountPassword())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码不能为空");
         }
@@ -233,6 +241,12 @@ public class VoValidateSVImpl implements IVoValidateSV {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "密码（accountPassword）不能为空");
         }
+        if (!RegexUtils.checkPassword(passwordModifyRequest.getAccountPassword())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码格式不正确");
+        }
+        if (!RegexUtils.checkPasswordLength(passwordModifyRequest.getAccountPassword())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码长度不正确");
+        }
 	}
 
 	@Override
@@ -259,6 +273,12 @@ public class VoValidateSVImpl implements IVoValidateSV {
         if (!RegexUtils.checkIsPhone(phoneModifyRequest.getPhone())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
                     "电话（phone）格式错误");
+        }
+     // 判断手机号码是否唯一
+        int count = iRegisterAtomSV.getCountByPhone(phoneModifyRequest.getPhone());
+        if (count >= 1) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "该手机已经进行存在，请重新输入");
         }
 	}
 
