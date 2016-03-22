@@ -13,6 +13,7 @@ import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
 import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
 import com.ai.opt.uac.api.sso.param.UserLoginRequest;
 import com.ai.opt.uac.constants.AccountConstants.Account;
+import com.ai.opt.uac.constants.AccountConstants.Tenant;
 import com.ai.opt.uac.constants.AccountExceptCode;
 
 public final class VoValidateUtils {
@@ -58,14 +59,17 @@ public final class VoValidateUtils {
      */
     public static void validateInsertTenant(TenantInfoRequest tenantInfoRequest)
             throws BusinessException {
+    	//判空
         if (tenantInfoRequest == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
         }
-        if (StringUtil.isBlank(tenantInfoRequest.getTenantName())) {
+        String tenantName = tenantInfoRequest.getTenantName();
+		if (StringUtil.isBlank(tenantName)) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "企业名称（tenantName）不能为空");
         }
-        if (StringUtil.isBlank(tenantInfoRequest.getIndustryCode())) {
+        String industryCode = tenantInfoRequest.getIndustryCode();
+		if (StringUtil.isBlank(industryCode)) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "企业类型（industryCode）不能为空");
         }
@@ -77,6 +81,25 @@ public final class VoValidateUtils {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "修改人ID（updateAccountId）不能为空");
         }
+        //参数是否符合规则
+        if(RegexUtils.checkHasSpecialChar(tenantName)){
+        	throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "企业名称（tenantName）不能含有特殊字符");
+        }
+		if(tenantName.contains("\u0020")){
+			 throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+	                    "企业名称（tenantName）不能包含空格");
+        }
+		int tenantNameSize = tenantName.length();
+		if(tenantNameSize <Tenant.TENANTNAME_MINSIZE || tenantNameSize>Tenant.TENANTNAME_MAXSIZE){
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "企业名称（tenantName）长度为"+Tenant.TENANTNAME_MINSIZE+"~"+Tenant.TENANTNAME_MAXSIZE+"位字符");
+		}
+		if(industryCode.length()>Tenant.INDUSTRYCODE_MAXSIZE){
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "企业类型（industryCode）长度不能大于"+Tenant.INDUSTRYCODE_MAXSIZE);
+		}
+		
     }
 
     /**
@@ -86,12 +109,19 @@ public final class VoValidateUtils {
      * @throws BusinessException
      */
     public static void validateQueryTenantInfo(BaseInfo tenantRequest) throws BusinessException {
-        if (tenantRequest == null) {
+        //判空
+    	if (tenantRequest == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
         }
-        if (StringUtil.isBlank(tenantRequest.getTenantId())) {
+        String tenantId = tenantRequest.getTenantId();
+		if (StringUtil.isBlank(tenantId)) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "租户ID（tenantId）不能为空");
+        }
+        //参数规则检查
+        if(tenantId.length() > Tenant.TENANTID_MAXSIZE){
+        	 throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                     "租户ID（tenantId）长度不能超过" + Tenant.TENANTID_MAXSIZE);
         }
     }
 
@@ -139,8 +169,12 @@ public final class VoValidateUtils {
                     "修改人ID（updateAccountId）不能为空");
         }
         //判断参数是否符合规则
-        int nameLength = nickName.trim().length();
-		if(nameLength<Account.NICKNAME_MINSIZE||nameLength > Account.NICKNAME_MAXSIZE){
+        int nameSize = nickName.length();
+        if(nickName.contains("\u0020")){
+        	throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "昵称（nickName）不能包含空格");
+        }
+		if(nameSize<Account.NICKNAME_MINSIZE||nameSize > Account.NICKNAME_MAXSIZE){
         	throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
                     "昵称（nickName）长度在"+ Account.NICKNAME_MAXSIZE+"~"+ Account.NICKNAME_MAXSIZE+"个字符，不能包含空格");
         }

@@ -70,6 +70,15 @@ public final class AccountConstants {
     	public static final String STATE_EXPIRE = "2";
     	/** * 状态：中断*/
     	public static final String STATE_INTERRUPT = "3";
+    	
+    	/** * tenantId长度*/
+    	public static final int TENANTID_MAXSIZE = 32;
+    	/** * tenantName最大长度*/
+    	public static final int TENANTNAME_MAXSIZE = 40;
+    	/** * tenantName最小长度*/
+    	public static final int TENANTNAME_MINSIZE = 4;
+    	/** * INDUSTRYCODE最大长度*/
+    	public static final int INDUSTRYCODE_MAXSIZE = 50;
     }
 
 }
