@@ -14,8 +14,8 @@ import com.ai.opt.uac.constants.AccountConstants;
 import com.ai.opt.uac.constants.AccountConstants.ResultCode;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.busi.interfaces.IRegisterBusiSV;
+import com.ai.opt.uac.service.busi.interfaces.IVoValidateSV;
 import com.ai.opt.uac.util.AccountSeqUtil;
-import com.ai.opt.uac.util.VoValidateUtils;
 import com.alibaba.dubbo.config.annotation.Service;
 
 @Service
@@ -23,11 +23,13 @@ import com.alibaba.dubbo.config.annotation.Service;
 public class RegisterSVImpl implements IRegisterSV {
     @Autowired
     private IRegisterBusiSV iRegisterBusiSV;
+    @Autowired
+	IVoValidateSV iVoValidateSV;
 
     @Override
     public PhoneRegisterResponse registerByPhone(PhoneRegisterRequest request)
             throws RPCSystemException {
-        VoValidateUtils.validateRegister(request);
+        iVoValidateSV.validateRegister(request);
         // 设置默认值
         GnAccount account = new GnAccount();
         BeanUtils.copyProperties(account, request);

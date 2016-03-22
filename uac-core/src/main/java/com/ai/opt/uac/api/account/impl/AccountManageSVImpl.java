@@ -15,7 +15,7 @@ import com.ai.opt.uac.api.account.param.AccountQueryResponse;
 import com.ai.opt.uac.constants.AccountConstants.ResultCode;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.busi.interfaces.IAccountBusiSV;
-import com.ai.opt.uac.util.VoValidateUtils;
+import com.ai.opt.uac.service.busi.interfaces.IVoValidateSV;
 import com.alibaba.dubbo.config.annotation.Service;
 
 @Service
@@ -24,11 +24,13 @@ public class AccountManageSVImpl implements IAccountManageSV {
 
 	@Autowired
 	IAccountBusiSV iAccountBusiSV;
+	@Autowired
+	IVoValidateSV iVoValidateSV;
 
 	@Override
 	public AccountQueryResponse queryBaseInfo(AccountQueryRequest accountQueryRequest) throws RPCSystemException {
 		// 入参检查
-		VoValidateUtils.validateQueryAccountBaseInfo(accountQueryRequest);
+		iVoValidateSV.validateQueryAccountBaseInfo(accountQueryRequest);
 		// 查询数据
 		Long accountId = accountQueryRequest.getAccountId();
 		GnAccount gnAccount = iAccountBusiSV.queryByAccountId(accountId);
@@ -45,7 +47,7 @@ public class AccountManageSVImpl implements IAccountManageSV {
 	@Override
 	public BaseResponse updateBaseInfo(AccountBaseModifyRequest accountModifyRequest) throws RPCSystemException {
 		// 入参检查
-		VoValidateUtils.validateUpdateAccountInfo(accountModifyRequest);
+		iVoValidateSV.validateUpdateAccountInfo(accountModifyRequest);
 		// 数据库操作
 		GnAccount gnAccount = new GnAccount();
 		BeanUtils.copyProperties(gnAccount, accountModifyRequest);

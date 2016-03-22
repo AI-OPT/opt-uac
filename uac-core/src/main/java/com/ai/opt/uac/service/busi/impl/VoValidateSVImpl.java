@@ -16,6 +16,7 @@ import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
 import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
 import com.ai.opt.uac.api.sso.param.UserLoginRequest;
 import com.ai.opt.uac.constants.AccountExceptCode;
+import com.ai.opt.uac.constants.AccountConstants.Account;
 import com.ai.opt.uac.constants.AccountConstants.Tenant;
 import com.ai.opt.uac.dao.mapper.bo.GnIndustry;
 import com.ai.opt.uac.service.busi.interfaces.IIndustryBusiSV;
@@ -36,14 +37,24 @@ public class VoValidateSVImpl implements IVoValidateSV {
         if (StringUtil.isBlank(query.getPhone())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "手机号码不能为空");
         }
-        if(!RegexUtils.checkIsPhone(query.getPhone())){
+        if (!RegexUtils.checkNumberPhone((query.getPhone()))) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "手机号码格式不正确");
         }
+        if (!RegexUtils.checkPhoneLength(query.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "手机号码长度不正确");
+        }
+        if (!RegexUtils.checkIsPhone(query.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "手机号码格式不正确");
+        }
+
         if (StringUtil.isBlank(query.getAccountPassword())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码不能为空");
         }
         if (!RegexUtils.checkPassword(query.getAccountPassword())) {
-           throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码格式不正确");
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码格式不正确");
+        }
+        if (!RegexUtils.checkPasswordLength(query.getAccountPassword())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码长度不正确");
         }
 	}
 
@@ -111,44 +122,144 @@ public class VoValidateSVImpl implements IVoValidateSV {
 
 	@Override
 	public void validateQueryTenantInfo(BaseInfo tenantRequest) throws BusinessException {
-		// TODO Auto-generated method stub
-
+		//判空
+    	if (tenantRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        String tenantId = tenantRequest.getTenantId();
+		if (StringUtil.isBlank(tenantId)) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "租户ID（tenantId）不能为空");
+        }
+        //参数规则检查
+        if(tenantId.length() > Tenant.TENANTID_MAXSIZE){
+        	 throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                     "租户ID（tenantId）长度不能超过" + Tenant.TENANTID_MAXSIZE);
+        }
 	}
 
 	@Override
 	public void validateQueryAccountBaseInfo(AccountQueryRequest accountQueryRequest) throws BusinessException {
-		// TODO Auto-generated method stub
-
+		if (accountQueryRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        Long accountId = accountQueryRequest.getAccountId();
+        if (accountId == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "账号ID（accountId）不能为空");
+        }
 	}
 
 	@Override
 	public void validateUpdateAccountInfo(AccountBaseModifyRequest accountModifyRequest) throws BusinessException {
-		// TODO Auto-generated method stub
-
+		// 判空
+        if (accountModifyRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        if (accountModifyRequest.getAccountId() == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "账号ID（accountId）不能为空");
+        }
+        String nickName = accountModifyRequest.getNickName();
+        if (StringUtil.isBlank(nickName)) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "昵称（nickName）不能为空");
+        }
+        if (accountModifyRequest.getUpdateAccountId() == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "修改人ID（updateAccountId）不能为空");
+        }
+        //判断参数是否符合规则
+        int nameSize = nickName.length();
+        if(nickName.contains("\u0020")){
+        	throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "昵称（nickName）不能包含空格");
+        }
+		if(nameSize<Account.NICKNAME_MINSIZE||nameSize > Account.NICKNAME_MAXSIZE){
+        	throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "昵称（nickName）长度在"+ Account.NICKNAME_MAXSIZE+"~"+ Account.NICKNAME_MAXSIZE+"个字符，不能包含空格");
+        }
 	}
 
 	@Override
 	public void validateSetAccountTenant(AccountTenantModifyRequest accountModifyRequest) throws BusinessException {
-		// TODO Auto-generated method stub
-
+		if (accountModifyRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        if (accountModifyRequest.getAccountId() == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "账号ID（accountId）不能为空");
+        }
+        if (StringUtil.isBlank(accountModifyRequest.getTenantId())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "租户ID（tenantId）不能为空");
+        }
 	}
 
 	@Override
 	public void validateSetAccountEmail(AccountEmailRequest emailModifyRequest) throws BusinessException {
-		// TODO Auto-generated method stub
+		if (emailModifyRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        if (emailModifyRequest.getAccountId() == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "账号ID（accountId）不能为空");
+        }
 
+        if (StringUtil.isBlank(emailModifyRequest.getEmail())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "邮箱（email）不能为空");
+        }
+        if (!RegexUtils.checkIsEmail(emailModifyRequest.getEmail())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "邮箱（email）格式错误");
+        }
+        if (emailModifyRequest.getUpdateAccountId() == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "修改人账号ID（accountId）不能为空");
+        }
 	}
 
 	@Override
 	public void validateSetAccountPwd(AccountPasswordRequest passwordModifyRequest) throws BusinessException {
-		// TODO Auto-generated method stub
-
+		if (passwordModifyRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        if (passwordModifyRequest.getAccountId() == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "账号ID（accountId）不能为空");
+        }
+        if (StringUtil.isBlank(passwordModifyRequest.getAccountPassword())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "密码（accountPassword）不能为空");
+        }
 	}
 
 	@Override
 	public void validateSetPhoneTenant(AccountPhoneRequest phoneModifyRequest) throws BusinessException {
-		// TODO Auto-generated method stub
-
+		if (phoneModifyRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        if (phoneModifyRequest.getAccountId() == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "账号ID（accountId）不能为空");
+        }
+        if (StringUtil.isBlank(phoneModifyRequest.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "电话（phone）不能为空");
+        }
+        if (!RegexUtils.checkNumberPhone(phoneModifyRequest.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "电话（phone）格式错误");
+        }
+        if (!RegexUtils.checkPhoneLength(phoneModifyRequest.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "电话（phone）长度错误");
+        }
+        if (!RegexUtils.checkIsPhone(phoneModifyRequest.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "电话（phone）格式错误");
+        }
 	}
 
 }

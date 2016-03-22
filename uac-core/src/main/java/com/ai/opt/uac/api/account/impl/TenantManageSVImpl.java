@@ -18,7 +18,7 @@ import com.ai.opt.uac.constants.AccountConstants.Tenant;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.dao.mapper.bo.GnTenant;
 import com.ai.opt.uac.service.busi.interfaces.ITenantBusiSV;
-import com.ai.opt.uac.util.VoValidateUtils;
+import com.ai.opt.uac.service.busi.interfaces.IVoValidateSV;
 import com.alibaba.dubbo.config.annotation.Service;
 
 @Service
@@ -27,11 +27,13 @@ public class TenantManageSVImpl implements ITenantManageSV {
 
 	@Autowired
 	ITenantBusiSV itenantBusiSV;
+	@Autowired
+	IVoValidateSV iVoValidateSV;
 
 	@Override
 	public TenantQueryResponse queryTenantInfo(BaseInfo tenantRequest) throws RPCSystemException {
 		// 检查参数
-		VoValidateUtils.validateQueryTenantInfo(tenantRequest);
+		iVoValidateSV.validateQueryTenantInfo(tenantRequest);
 		// 查询数据
 		String tenantId = tenantRequest.getTenantId();
 		GnTenant gnTenant = itenantBusiSV.queryByTenantId(tenantId);
@@ -48,7 +50,7 @@ public class TenantManageSVImpl implements ITenantManageSV {
 	@Override
 	public TenantInsertResponse insertTenantInfo(TenantInfoRequest tenantInfoRequest) throws RPCSystemException {
 		// 参数检查
-		VoValidateUtils.validateInsertTenant(tenantInfoRequest);
+		iVoValidateSV.validateInsertTenant(tenantInfoRequest);
 		// 设置入参值 默认值
 		GnTenant gnTenant = new GnTenant();
 		BeanUtils.copyProperties(gnTenant, tenantInfoRequest);

@@ -16,7 +16,7 @@ import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
 import com.ai.opt.uac.constants.AccountConstants.ResultCode;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.busi.interfaces.IAccountBusiSV;
-import com.ai.opt.uac.util.VoValidateUtils;
+import com.ai.opt.uac.service.busi.interfaces.IVoValidateSV;
 import com.alibaba.dubbo.config.annotation.Service;
 
 @Service
@@ -25,11 +25,13 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 
 	@Autowired
 	IAccountBusiSV iAccountBusiSV;
+	@Autowired
+	IVoValidateSV iVoValidateSV;
 
 	@Override
 	public BaseResponse setEmailData(AccountEmailRequest emailModifyRequest) throws RPCSystemException {
 		// 入参检查
-		VoValidateUtils.validateSetAccountEmail(emailModifyRequest);
+		iVoValidateSV.validateSetAccountEmail(emailModifyRequest);
 		// 整理数据
 		GnAccount gnAccount = new GnAccount();
 		BeanUtils.copyProperties(gnAccount, emailModifyRequest);
@@ -38,7 +40,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 
 	@Override
 	public BaseResponse setPasswordData(AccountPasswordRequest passwordModifyRequest) throws RPCSystemException {
-		VoValidateUtils.validateSetAccountPwd(passwordModifyRequest);
+		iVoValidateSV.validateSetAccountPwd(passwordModifyRequest);
 		// 整理数据
 		GnAccount gnAccount = new GnAccount();
 		BeanUtils.copyProperties(gnAccount, passwordModifyRequest);
@@ -47,7 +49,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 
 	@Override
 	public BaseResponse setPhoneData(AccountPhoneRequest phoneModifyRequest) throws RPCSystemException {
-		VoValidateUtils.validateSetPhoneTenant(phoneModifyRequest);
+		iVoValidateSV.validateSetPhoneTenant(phoneModifyRequest);
 		// 整理数据
 		GnAccount gnAccount = new GnAccount();
 		BeanUtils.copyProperties(gnAccount, phoneModifyRequest);

@@ -12,8 +12,8 @@ import com.ai.opt.uac.api.sso.param.UserLoginResponse;
 import com.ai.opt.uac.constants.AccountConstants.ResultCode;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.busi.interfaces.ILoginBusiSV;
+import com.ai.opt.uac.service.busi.interfaces.IVoValidateSV;
 import com.ai.opt.uac.util.RegexUtils;
-import com.ai.opt.uac.util.VoValidateUtils;
 import com.alibaba.dubbo.config.annotation.Service;
 
 @Service
@@ -21,11 +21,13 @@ import com.alibaba.dubbo.config.annotation.Service;
 public class LoginSVImpl implements ILoginSV {
     @Autowired
     private ILoginBusiSV iLoginBusiSV;
+    @Autowired
+	IVoValidateSV iVoValidateSV;
 
     @Override
     public UserLoginResponse queryAccountByUserName(UserLoginRequest request)
             throws RPCSystemException {
-        VoValidateUtils.validateLogin(request);
+        iVoValidateSV.validateLogin(request);
         // 判断用户名是手机还是邮箱
         boolean isEmial = RegexUtils.checkIsEmail(request.getUsername());
         boolean isPhone = RegexUtils.checkIsPhone(request.getUsername());
