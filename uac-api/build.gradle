@@ -72,9 +72,9 @@ for(Map<String,String> apiMap:apiList){
         docletClass = 'com.ai.runner.apicollector.doclet.APIDoclet'
         memberLevel = 'private'
         encoding = 'utf-8'
-        belong='opt-uac'
-        ownerType='opt-center'
-        owner = 'opt-uac-center'
+        belong='baas-uac'
+        ownerType='baas'
+        owner = 'baas-uac'
         groupId = 'com.ai.opt.uac'
         artifactId = apiArtifactId
         version = apiVersion
