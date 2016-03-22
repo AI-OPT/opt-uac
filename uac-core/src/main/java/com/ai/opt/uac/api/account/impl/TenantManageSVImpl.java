@@ -42,7 +42,7 @@ public class TenantManageSVImpl implements ITenantManageSV {
 		if (gnTenant != null) {
 			BeanUtils.copyProperties(tenantQueryResponse, gnTenant);
 		}
-		ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "成功");
+		ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "查询成功");
 		tenantQueryResponse.setResponseHeader(responseHeader);
 		return tenantQueryResponse;
 	}

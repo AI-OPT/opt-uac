@@ -4,7 +4,6 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.opt.uac.api.account.param.AccountBaseModifyRequest;
 import com.ai.opt.uac.api.account.param.AccountQueryRequest;
-import com.ai.opt.uac.api.account.param.AccountTenantModifyRequest;
 import com.ai.opt.uac.api.account.param.TenantInfoRequest;
 import com.ai.opt.uac.api.register.param.PhoneRegisterRequest;
 import com.ai.opt.uac.api.security.param.AccountEmailRequest;
@@ -41,11 +40,6 @@ public interface IVoValidateSV {
 	 * 修改账户信息参数检查
 	 */
 	void validateUpdateAccountInfo(AccountBaseModifyRequest accountModifyRequest) throws BusinessException;
-
-	/**
-	 * 设置账户租户数据参数检查
-	 */
-	void validateSetAccountTenant(AccountTenantModifyRequest accountModifyRequest) throws BusinessException;
 
 	/**
 	 * 设置账户邮箱数据参数检查

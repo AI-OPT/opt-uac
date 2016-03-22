@@ -27,4 +27,12 @@ public class RegisterAtomSVImpl implements IRegisterAtomSV {
 
     }
 
+	@Override
+	public int getCountByEmail(String email) throws SystemException {
+		GnAccountCriteria conditon = new GnAccountCriteria();
+        GnAccountCriteria.Criteria criteria = conditon.or();
+        criteria.andEmailEqualTo(email);
+        return MapperFactory.getGnAccountlMapper().countByExample(conditon);
+	}
+
 }

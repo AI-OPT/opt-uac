@@ -44,7 +44,7 @@ public class TestAccountManageSV {
 		System.out.println("<<<<<<<<<<<<<<Begin testUpdateBaseInfo>>>>>>>>>>>>>>");
 		AccountBaseModifyRequest accountModifyRequest=new AccountBaseModifyRequest();
 		accountModifyRequest.setAccountId(1L);
-		accountModifyRequest.setNickName("测试猿在测试");
+		accountModifyRequest.setNickName("测试猿在测试#");
 		accountModifyRequest.setUpdateAccountId(1L);
 		BaseResponse updateBaseInfo = iAccountManageSV.updateBaseInfo(accountModifyRequest);
 		JSONObject fromObject = JSONObject.fromObject(updateBaseInfo);

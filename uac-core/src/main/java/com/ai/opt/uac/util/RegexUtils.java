@@ -9,7 +9,7 @@ public final class RegexUtils {
     private static final String phoneNumberRegex = "^[0-9]*$";
     private static final String emailRegex = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
     private static final String passwordRegex = "^[A-Za-z0-9]+$";
-    private static final String passwordLengthRegex = "^[A-Za-z0-9]{32}$";
+    private static final String passwordLengthRegex = "^[A-Za-z0-9]{6,14}$";
     private static final String phoneLengthRegex = "^[\\d]{11}$";
 	private RegexUtils(){}
 	
@@ -84,16 +84,16 @@ public final class RegexUtils {
         return Pattern.matches(passwordRegex, str);
     }
 
-    /**
-     * 校验密码长度
-     * 
-     * @param str
-     * @return
-     * @author zhanglh
-     * @ApiCode
-     */
-    public static boolean checkPasswordLength(String str) {
-        return Pattern.matches(passwordLengthRegex, str);
-    }
+	/**
+	 * 校验密码长度
+	 *
+	 * @param str
+	 * @return
+	 * @author zhanglh
+	 * @ApiCode
+	 */
+	public static boolean checkPasswordLength(String str) {
+		return Pattern.matches(passwordLengthRegex, str);
+	}
 
 }

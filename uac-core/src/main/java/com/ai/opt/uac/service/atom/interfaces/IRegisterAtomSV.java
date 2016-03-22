@@ -8,4 +8,5 @@ public interface IRegisterAtomSV {
 
     int getCountByPhone(String phone) throws SystemException;
 
+    int getCountByEmail(String email) throws SystemException;
 }

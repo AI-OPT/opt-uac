@@ -35,7 +35,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 		// 整理数据
 		GnAccount gnAccount = new GnAccount();
 		BeanUtils.copyProperties(gnAccount, emailModifyRequest);
-		return updateAccountById(gnAccount);
+		return updateAccountById(gnAccount,"邮箱");
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 		// 整理数据
 		GnAccount gnAccount = new GnAccount();
 		BeanUtils.copyProperties(gnAccount, passwordModifyRequest);
-		return updateAccountById(gnAccount);
+		return updateAccountById(gnAccount,"密码");
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 		// 整理数据
 		GnAccount gnAccount = new GnAccount();
 		BeanUtils.copyProperties(gnAccount, phoneModifyRequest);
-		return updateAccountById(gnAccount);
+		return updateAccountById(gnAccount,"电话");
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 	 * @return
 	 * @throws SystemException
 	 */
-	private BaseResponse updateAccountById(GnAccount gnAccount) throws SystemException {
+	private BaseResponse updateAccountById(GnAccount gnAccount,String message) throws SystemException {
 		gnAccount.setUpdateTime(DateUtil.getSysDate());
 		int updateCount = iAccountBusiSV.updateByAccountId(gnAccount);
 		BaseResponse baseResponse = new BaseResponse();
@@ -71,11 +71,11 @@ public class AccountSecurityManageSVImpl implements IAccountSecurityManageSV {
 		if (updateCount > 0) {
 			responseHeader.setIsSuccess(true);
 			responseHeader.setResultCode(ResultCode.SUCCESS_CODE);
-			responseHeader.setResultMessage("密码更新成功");
+			responseHeader.setResultMessage(message+"更新成功");
 		} else {
 			responseHeader.setIsSuccess(false);
 			responseHeader.setResultCode(ResultCode.FAIL_CODE);
-			responseHeader.setResultMessage("密码更新失败");
+			responseHeader.setResultMessage(message+"更新失败");
 		}
 		baseResponse.setResponseHeader(responseHeader);
 		return baseResponse;
