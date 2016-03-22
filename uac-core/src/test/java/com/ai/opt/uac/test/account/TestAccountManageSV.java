@@ -70,7 +70,7 @@ public class TestAccountManageSV {
 		System.out.println("<<<<<<<<<<<<<<Begin testSetPaswordData>>>>>>>>>>>>>>");
 		AccountPasswordRequest passwordModifyRequest=new AccountPasswordRequest();
 		passwordModifyRequest.setAccountId(1L);
-		passwordModifyRequest.setAccountPassword("11223344");
+		passwordModifyRequest.setAccountPassword("112233441");
 		passwordModifyRequest.setUpdateAccountId(2L);
 		BaseResponse setPWDData = iAccountSecuritySV.setPasswordData(passwordModifyRequest);
 		JSONObject fromObject = JSONObject.fromObject(setPWDData);
