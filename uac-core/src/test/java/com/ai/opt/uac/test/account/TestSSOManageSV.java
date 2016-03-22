@@ -47,28 +47,5 @@ public class TestSSOManageSV {
         UserLoginResponse info = iLoginSV.queryAccountByUserName(request);
         System.out.println("result="+JSON.toJSONString(info));
     }
-	@Test
-    public void testSetPaswordData() throws RPCSystemException {
-        System.out.println("<<<<<<<<<<<<<<Begin testSetPaswordData>>>>>>>>>>>>>>");
-        AccountPasswordRequest passwordModifyRequest=new AccountPasswordRequest();
-        passwordModifyRequest.setAccountId(1L);
-        passwordModifyRequest.setAccountPassword("3432");
-        passwordModifyRequest.setUpdateAccountId(2L);
-        BaseResponse setPWDData = iAccountSecuritySV.setPasswordData(passwordModifyRequest);
-        JSONObject fromObject = JSONObject.fromObject(setPWDData);
-        System.out.println(fromObject);
-        System.out.println("<<<<<<<<<<<<<<End testSetPaswordData>>>>>>>>>>>>>>");
-    }
-	@Test
-    public void testSetPhoneData() throws RPCSystemException {
-        System.out.println("<<<<<<<<<<<<<<Begin testSetPhoneData>>>>>>>>>>>>>>");
-        AccountPhoneRequest phoneModifyRequest=new AccountPhoneRequest();
-        phoneModifyRequest.setAccountId(1L);
-        phoneModifyRequest.setPhone("13290989889");
-        //phoneModifyRequest.setUpdateAccountId(1L);
-        BaseResponse setPWDData = iAccountSecuritySV.setPhoneData(phoneModifyRequest);
-        JSONObject fromObject = JSONObject.fromObject(setPWDData);
-        System.out.println(fromObject);
-        System.out.println("<<<<<<<<<<<<<<End testSetPhoneData>>>>>>>>>>>>>>");
-    }
+	
 }
