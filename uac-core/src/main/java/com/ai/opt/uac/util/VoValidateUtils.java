@@ -28,15 +28,26 @@ public final class VoValidateUtils {
         if (StringUtil.isBlank(query.getPhone())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "手机号码不能为空");
         }
-        if(!RegexUtils.checkIsPhone(query.getPhone())){
+        if (!RegexUtils.checkNumberPhone((query.getPhone()))) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "手机号码格式不正确");
         }
+        if (!RegexUtils.checkPhoneLength(query.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "手机号码长度不正确");
+        }
+        if (!RegexUtils.checkIsPhone(query.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "手机号码格式不正确");
+        }
+
         if (StringUtil.isBlank(query.getAccountPassword())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码不能为空");
         }
         if (!RegexUtils.checkPassword(query.getAccountPassword())) {
-           throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码格式不正确");
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码格式不正确");
         }
+        if (!RegexUtils.checkPasswordLength(query.getAccountPassword())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码长度不正确");
+        }
+
     }
 
     public static void validateLogin(UserLoginRequest query) throws BusinessException {
@@ -137,10 +148,10 @@ public final class VoValidateUtils {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
         }
         Long accountId = accountQueryRequest.getAccountId();
-		if (accountId == null) {
+        if (accountId == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "账号ID（accountId）不能为空");
-        }        
+        }
     }
 
     /**
@@ -151,7 +162,7 @@ public final class VoValidateUtils {
      */
     public static void validateUpdateAccountInfo(AccountBaseModifyRequest accountModifyRequest)
             throws BusinessException {
-    	//判空
+        // 判空
         if (accountModifyRequest == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
         }
@@ -160,7 +171,7 @@ public final class VoValidateUtils {
                     "账号ID（accountId）不能为空");
         }
         String nickName = accountModifyRequest.getNickName();
-		if (StringUtil.isBlank(nickName)) {
+        if (StringUtil.isBlank(nickName)) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "昵称（nickName）不能为空");
         }
@@ -216,9 +227,18 @@ public final class VoValidateUtils {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "账号ID（accountId）不能为空");
         }
+
         if (StringUtil.isBlank(emailModifyRequest.getEmail())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "邮箱（email）不能为空");
+        }
+        if (!RegexUtils.checkIsEmail(emailModifyRequest.getEmail())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "邮箱（email）格式错误");
+        }
+        if (emailModifyRequest.getUpdateAccountId() == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "修改人账号ID（accountId）不能为空");
         }
     }
 
@@ -262,10 +282,18 @@ public final class VoValidateUtils {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "电话（phone）不能为空");
         }
+        if (!RegexUtils.checkNumberPhone(phoneModifyRequest.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "电话（phone）格式错误");
+        }
+        if (!RegexUtils.checkPhoneLength(phoneModifyRequest.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "电话（phone）长度错误");
+        }
+        if (!RegexUtils.checkIsPhone(phoneModifyRequest.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "电话（phone）格式错误");
+        }
     }
-    
-    
-        
-    
 
 }
