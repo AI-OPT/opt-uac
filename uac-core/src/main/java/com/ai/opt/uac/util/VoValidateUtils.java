@@ -26,8 +26,14 @@ public final class VoValidateUtils {
         if (StringUtil.isBlank(query.getPhone())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "手机号码不能为空");
         }
+        if(!RegexUtils.checkIsPhone(query.getPhone())){
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "手机号码格式不正确");
+        }
         if (StringUtil.isBlank(query.getAccountPassword())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码不能为空");
+        }
+        if (!RegexUtils.checkPassword(query.getAccountPassword())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码格式不正确");
         }
     }
 
