@@ -51,6 +51,12 @@ public final class AccountConstants {
         
         /** 昵称 */
         public static final String NICK_NAME = "test";
+        
+        /** 昵称最大长度 */
+        public static final int NICKNAME_MAXSIZE = 20;
+        
+        /** 昵称最小长度 */
+        public static final int NICKNAME_MINSIZE = 4;
     }
     
     public final static class Tenant {
