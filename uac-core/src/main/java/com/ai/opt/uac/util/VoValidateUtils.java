@@ -12,6 +12,7 @@ import com.ai.opt.uac.api.security.param.AccountEmailRequest;
 import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
 import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
 import com.ai.opt.uac.api.sso.param.UserLoginRequest;
+import com.ai.opt.uac.constants.AccountConstants.Account;
 import com.ai.opt.uac.constants.AccountExceptCode;
 
 public final class VoValidateUtils {
@@ -26,9 +27,15 @@ public final class VoValidateUtils {
         if (StringUtil.isBlank(query.getPhone())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "手机号码不能为空");
         }
+        if(!RegexUtils.checkIsPhone(query.getPhone())){
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "手机号码格式不正确");
+        }
         if (StringUtil.isBlank(query.getAccountPassword())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码不能为空");
         }
+//        if (!RegexUtils.checkPassword(query.getAccountPassword())) {
+//            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码格式不正确");
+//        }
     }
 
     public static void validateLogin(UserLoginRequest query) throws BusinessException {
@@ -99,10 +106,11 @@ public final class VoValidateUtils {
         if (accountQueryRequest == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
         }
-        if (accountQueryRequest.getAccountId() == null) {
+        Long accountId = accountQueryRequest.getAccountId();
+		if (accountId == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "账号ID（accountId）不能为空");
-        }
+        }        
     }
 
     /**
@@ -113,6 +121,7 @@ public final class VoValidateUtils {
      */
     public static void validateUpdateAccountInfo(AccountBaseModifyRequest accountModifyRequest)
             throws BusinessException {
+    	//判空
         if (accountModifyRequest == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
         }
@@ -120,13 +129,20 @@ public final class VoValidateUtils {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "账号ID（accountId）不能为空");
         }
-        if (StringUtil.isBlank(accountModifyRequest.getNickName())) {
+        String nickName = accountModifyRequest.getNickName();
+		if (StringUtil.isBlank(nickName)) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "昵称（nickName）不能为空");
         }
         if (accountModifyRequest.getUpdateAccountId() == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "修改人ID（updateAccountId）不能为空");
+        }
+        //判断参数是否符合规则
+        int nameLength = nickName.trim().length();
+		if(nameLength<Account.NICKNAME_MINSIZE||nameLength > Account.NICKNAME_MAXSIZE){
+        	throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "昵称（nickName）长度在"+ Account.NICKNAME_MAXSIZE+"~"+ Account.NICKNAME_MAXSIZE+"个字符，不能包含空格");
         }
     }
 
@@ -187,7 +203,7 @@ public final class VoValidateUtils {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "账号ID（accountId）不能为空");
         }
-        if (StringUtil.isBlank(passwordModifyRequest.getPassword())) {
+        if (StringUtil.isBlank(passwordModifyRequest.getAccountPassword())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "密码（password）不能为空");
         }
