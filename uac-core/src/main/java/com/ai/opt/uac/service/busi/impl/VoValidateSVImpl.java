@@ -247,6 +247,10 @@ public class VoValidateSVImpl implements IVoValidateSV {
         if (!RegexUtils.checkPasswordLength(passwordModifyRequest.getAccountPassword())) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "密码长度不正确");
         }
+        if (passwordModifyRequest.getUpdateAccountId() == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "修改人账号ID（updateAccountId）不能为空");
+        }
 	}
 
 	@Override
@@ -279,6 +283,10 @@ public class VoValidateSVImpl implements IVoValidateSV {
         if (count >= 1) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
                     "该手机已经进行存在，请重新输入");
+        }
+        if (phoneModifyRequest.getUpdateAccountId() == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
+                    "修改人账号ID（updateAccountId）不能为空");
         }
 	}
 
