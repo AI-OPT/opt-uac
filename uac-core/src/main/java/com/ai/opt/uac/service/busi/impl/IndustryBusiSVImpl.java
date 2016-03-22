@@ -3,13 +3,13 @@ package com.ai.opt.uac.service.busi.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.uac.dao.mapper.bo.GnIndustry;
 import com.ai.opt.uac.service.atom.interfaces.IIndustryAtomSV;
 import com.ai.opt.uac.service.busi.interfaces.IIndustryBusiSV;
-import com.alibaba.dubbo.config.annotation.Service;
 
 @Service
 @Transactional
