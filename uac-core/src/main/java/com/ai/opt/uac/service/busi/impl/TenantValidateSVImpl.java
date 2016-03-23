@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.sdk.util.StringUtil;
-import com.ai.opt.uac.constants.AccountConstants.Tenant;
 import com.ai.opt.uac.constants.AccountExceptCode;
 import com.ai.opt.uac.dao.mapper.bo.GnIndustry;
 import com.ai.opt.uac.service.busi.interfaces.IIndustryBusiSV;
@@ -40,7 +39,7 @@ public class TenantValidateSVImpl implements ITenantValidateSV {
 		}
 		int tenantNameSize = tenantName.length();
 		if (tenantNameSize < TENANTNAME_MINSIZE || tenantNameSize > TENANTNAME_MAXSIZE) {
-			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "企业名称（tenantName）长度为" + Tenant.TENANTNAME_MINSIZE + "~" + Tenant.TENANTNAME_MAXSIZE + "位字符");
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "企业名称（tenantName）长度为" + TENANTNAME_MINSIZE + "~" + TENANTNAME_MAXSIZE + "位字符");
 		}
 	}
 
@@ -82,7 +81,7 @@ public class TenantValidateSVImpl implements ITenantValidateSV {
 		}
 		// 参数规则检查
 		if (tenantId.length() > TENANTID_MAXSIZE) {
-			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "租户ID（tenantId）长度不能超过" + Tenant.TENANTID_MAXSIZE);
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "租户ID（tenantId）长度不能超过" + TENANTID_MAXSIZE);
 		}
 	}
 }
