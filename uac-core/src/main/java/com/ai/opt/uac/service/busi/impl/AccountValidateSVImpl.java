@@ -81,7 +81,7 @@ public class AccountValidateSVImpl implements IAccountValidateSV {
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "密码格式不正确");
 		}
 		if (!RegexUtils.checkPasswordLength(accountPassword)) {
-			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "密码长度不正确，应为6-14个字符");
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "密码长度不正确，应为32个字符");
 		}
 	}
 
