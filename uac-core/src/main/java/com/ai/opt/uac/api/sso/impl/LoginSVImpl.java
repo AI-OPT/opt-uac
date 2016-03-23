@@ -49,7 +49,7 @@ public class LoginSVImpl implements ILoginSV {
             response.setResponseHeader(responseHeaders);
         } else {
             ResponseHeader responseHeaders = new ResponseHeader(false, ResultCode.FAIL_CODE,
-                    "用户名错误");
+                    "用户不存在");
             response.setResponseHeader(responseHeaders);
         }
         return response;

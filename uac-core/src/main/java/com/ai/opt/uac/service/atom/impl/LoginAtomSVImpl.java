@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.sdk.util.CollectionUtil;
+import com.ai.opt.sdk.util.DateUtil;
 import com.ai.opt.sdk.util.StringUtil;
+import com.ai.opt.uac.constants.AccountConstants;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.dao.mapper.bo.GnAccountCriteria;
 import com.ai.opt.uac.dao.mapper.factory.MapperFactory;
@@ -29,7 +31,14 @@ public class LoginAtomSVImpl implements ILoginAtomSV {
         if (!StringUtil.isBlank(account.getAccountName())) {
             criteria.andAccountNameEqualTo(account.getAccountName());
         }
-        
+        // 状态
+        criteria.andStateEqualTo(AccountConstants.Account.ACCOUNT_STATE);
+        // 生效时间小于等于当前时间
+
+        criteria.andActiveTimeLessThanOrEqualTo(DateUtil.getSysDate());
+
+        // 失效时间大于当前时间
+        criteria.andInactiveTimeGreaterThan(DateUtil.getSysDate());
 
         List<GnAccount> list = MapperFactory.getGnAccountlMapper().selectByExample(conditon);
         if (!CollectionUtil.isEmpty(list)) {
