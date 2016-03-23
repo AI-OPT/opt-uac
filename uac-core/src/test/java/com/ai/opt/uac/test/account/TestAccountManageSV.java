@@ -69,8 +69,8 @@ public class TestAccountManageSV {
 	public void testSetPaswordData() throws RPCSystemException {
 		System.out.println("<<<<<<<<<<<<<<Begin testSetPaswordData>>>>>>>>>>>>>>");
 		AccountPasswordRequest passwordModifyRequest=new AccountPasswordRequest();
-		passwordModifyRequest.setAccountId(1L);
-		passwordModifyRequest.setAccountPassword("112233441");
+		//passwordModifyRequest.setAccountId(1L);
+		passwordModifyRequest.setAccountPassword("1122334499");
 		passwordModifyRequest.setUpdateAccountId(2L);
 		BaseResponse setPWDData = iAccountSecuritySV.setPasswordData(passwordModifyRequest);
 		JSONObject fromObject = JSONObject.fromObject(setPWDData);
