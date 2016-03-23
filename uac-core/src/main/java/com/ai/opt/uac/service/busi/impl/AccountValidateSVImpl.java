@@ -21,6 +21,9 @@ public class AccountValidateSVImpl implements IAccountValidateSV {
     
     /** 昵称最小长度 */
     public static final int NICKNAME_MINSIZE = 4;
+    
+    /** 邮箱最大长度 */
+    public static final int EMAIL_MAXSIZE = 50;
 
 	@Override
 	public void checkNickName(String nickName) throws BusinessException {
@@ -100,6 +103,10 @@ public class AccountValidateSVImpl implements IAccountValidateSV {
 		}
 		if (!RegexUtils.checkIsEmail(email)) {
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "邮箱（email）格式错误");
+		}
+		int emailSize = StringUtil.getByteLength(email);
+		if(emailSize > EMAIL_MAXSIZE){
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "邮箱（email）长度不应大于"+EMAIL_MAXSIZE+"个字符");
 		}
 		// 判断手机号码是否唯一
 		if (checkOnly) {

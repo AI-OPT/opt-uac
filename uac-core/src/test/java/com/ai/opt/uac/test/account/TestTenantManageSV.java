@@ -51,9 +51,9 @@ public class TestTenantManageSV {
 	@Test
 	public void testRegexUtil(){
 		System.out.println("<<<<<<<<<<<<<<Begin testRegexUtil>>>>>>>>>>>>>>");
-		boolean checkSpecialChar = RegexUtils.checkHasSpecialChar("asdnihao你好(@)");
-		System.out.println(checkSpecialChar);
-		System.out.println("ni hao".contains("\u0020"));
+		String email = "qq_q@qq.c";
+		boolean checkIsEmail = RegexUtils.checkIsEmail(email);
+		System.out.println(checkIsEmail);
 		System.out.println("<<<<<<<<<<<<<<End testRegexUtil>>>>>>>>>>>>>>");
 	}
 }

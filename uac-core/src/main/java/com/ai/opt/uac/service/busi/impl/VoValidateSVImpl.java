@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.opt.uac.api.account.param.AccountBaseModifyRequest;
 import com.ai.opt.uac.api.account.param.AccountQueryRequest;
@@ -60,6 +59,7 @@ public class VoValidateSVImpl implements IVoValidateSV {
         iTenantValidateSV.checkTenantName(tenantInfoRequest.getTenantName());
         iTenantValidateSV.checkIndustryCode(tenantInfoRequest.getIndustryCode());
         iTenantValidateSV.checkAccountId(tenantInfoRequest.getAccountId());
+        iTenantValidateSV.checkUpdateAccountId(tenantInfoRequest.getUpdateAccountId());
     }
 
     @Override
