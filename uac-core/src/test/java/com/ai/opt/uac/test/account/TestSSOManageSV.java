@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:context/core-context.xml")
+//@ContextConfiguration({ "/dubbo/provider/dubbo-provider.xml" })
 public class TestSSOManageSV {
 
 	@Autowired
@@ -38,7 +39,7 @@ public class TestSSOManageSV {
 	}
 	@Test
     public void testSSO() throws RPCSystemException{
-        String name = "13489898871";
+        String name = "14456789123fd";
         UserLoginResponse info = iLoginSV.queryAccountByUserName(name);
         System.out.println("result="+JSON.toJSONString(info));
     }
