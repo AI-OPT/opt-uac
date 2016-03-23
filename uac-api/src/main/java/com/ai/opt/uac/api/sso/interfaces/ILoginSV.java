@@ -1,8 +1,6 @@
 package com.ai.opt.uac.api.sso.interfaces;
 
-import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.RPCSystemException;
-import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.uac.api.sso.param.UserLoginRequest;
 import com.ai.opt.uac.api.sso.param.UserLoginResponse;
 
@@ -15,29 +13,25 @@ import com.ai.opt.uac.api.sso.param.UserLoginResponse;
  */
 public interface ILoginSV {
     /**
-     * bass用户登录
+     * 根据用户名查询
      * 
-     * @param request
-     * @return 登陆账号信息
-     * @throws BusinessException
-     * @throws SystemException
+     * @param username
+     * @return
+     * @throws RPCSystemException
      * @author zhanglh
      * @ApiCode UAC_0002
-     * 
      */
-    UserLoginResponse queryAccountByUserName(String username)
-            throws RPCSystemException;
-    
+    UserLoginResponse queryAccountByUserName(String username) throws RPCSystemException;
+
     /**
      * 校验用户名密码
+     * 
      * @param request
      * @return
      * @throws RPCSystemException
      * @author zhanglh
      * @ApiCode UAC_0010
      */
-    boolean checkAccountByUserName(UserLoginRequest request)
-            throws RPCSystemException;
-    
+    boolean checkAccountByUserName(UserLoginRequest request) throws RPCSystemException;
 
 }
