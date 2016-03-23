@@ -19,7 +19,11 @@ public interface IVoValidateSV {
 	/**
 	 * 登录参数检查
 	 */
-	void validateLogin(UserLoginRequest query) throws BusinessException;
+	void validateLogin(String username) throws BusinessException;
+	/**
+     * 登录校验参数检查
+     */
+	void validateCheckLogin(UserLoginRequest query) throws BusinessException;
 
 	/**
 	 * 新增租户参数检查

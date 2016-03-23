@@ -4,8 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.StringUtil;
+import com.ai.opt.uac.api.sso.param.UserLoginRequest;
 import com.ai.opt.uac.constants.AccountExceptCode;
+import com.ai.opt.uac.dao.mapper.bo.GnAccount;
+import com.ai.opt.uac.service.atom.interfaces.ILoginAtomSV;
 import com.ai.opt.uac.service.atom.interfaces.IRegisterAtomSV;
 import com.ai.opt.uac.service.busi.interfaces.IAccountValidateSV;
 import com.ai.opt.uac.util.RegexUtils;
@@ -14,6 +18,7 @@ import com.ai.opt.uac.util.RegexUtils;
 public class AccountValidateSVImpl implements IAccountValidateSV {
 	@Autowired
 	IRegisterAtomSV iRegisterAtomSV;
+	
 
 	/** 昵称最大长度 */
 	public static final int NICKNAME_MAXSIZE = 20;
@@ -122,5 +127,7 @@ public class AccountValidateSVImpl implements IAccountValidateSV {
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "图片验证码不能为空");
 		}
 	}
+
+   
 
 }

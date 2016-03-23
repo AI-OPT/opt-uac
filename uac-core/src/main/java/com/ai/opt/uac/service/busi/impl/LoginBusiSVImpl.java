@@ -22,4 +22,9 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
 
     }
 
+    @Override
+    public boolean checkByUserName(GnAccount account) throws BusinessException {
+        return iLoginAtomSV.checkByUserName(account);
+    }
+
 }

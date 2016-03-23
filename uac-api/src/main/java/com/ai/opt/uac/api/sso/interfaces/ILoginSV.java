@@ -25,7 +25,19 @@ public interface ILoginSV {
      * @ApiCode UAC_0002
      * 
      */
-    UserLoginResponse queryAccountByUserName(UserLoginRequest request)
+    UserLoginResponse queryAccountByUserName(String username)
             throws RPCSystemException;
+    
+    /**
+     * 校验用户名密码
+     * @param request
+     * @return
+     * @throws RPCSystemException
+     * @author zhanglh
+     * @ApiCode UAC_0010
+     */
+    boolean checkAccountByUserName(UserLoginRequest request)
+            throws RPCSystemException;
+    
 
 }

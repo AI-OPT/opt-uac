@@ -38,11 +38,17 @@ public class TestSSOManageSV {
 	}
 	@Test
     public void testSSO() throws RPCSystemException{
-        UserLoginRequest request = new UserLoginRequest();
-        request.setAccountPassword("202cb962ac59075b964b07152d234b10");
-        request.setUsername("XXXXteXst.com");
-        UserLoginResponse info = iLoginSV.queryAccountByUserName(request);
+        String name = "13489898871";
+        UserLoginResponse info = iLoginSV.queryAccountByUserName(name);
         System.out.println("result="+JSON.toJSONString(info));
     }
-	
+	@Test
+    public void testLoginCheck() throws RPCSystemException{
+        String name = "13489898871";
+        UserLoginRequest request = new UserLoginRequest();
+        request.setUsername("13489898871");
+        request.setAccountPassword("202cb962ac59075b964b07152d234b10");
+        boolean flag = iLoginSV.checkAccountByUserName(request);
+        System.out.println("result="+JSON.toJSONString(flag));
+    }
 }

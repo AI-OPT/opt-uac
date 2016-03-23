@@ -25,9 +25,39 @@ public class LoginSVImpl implements ILoginSV {
 	IVoValidateSV iVoValidateSV;
 
     @Override
-    public UserLoginResponse queryAccountByUserName(UserLoginRequest request)
+    public UserLoginResponse queryAccountByUserName(String username)
             throws RPCSystemException {
-        iVoValidateSV.validateLogin(request);
+        iVoValidateSV.validateLogin(username);
+        // 判断用户名是手机还是邮箱
+        boolean isEmial = RegexUtils.checkIsEmail(username);
+        boolean isPhone = RegexUtils.checkIsPhone(username);
+        GnAccount account = new GnAccount();
+        if (isPhone == true) {
+            account.setPhone(username);
+        }else if (isEmial == true) {
+            account.setEmail(username);
+        }else{
+            account.setAccountName(username); 
+        }
+        GnAccount accountResult = iLoginBusiSV.queryByUserName(account);
+        // 组织返回对象
+        UserLoginResponse response = new UserLoginResponse();
+        if (accountResult != null) {
+            BeanUtils.copyProperties(response, accountResult);
+            ResponseHeader responseHeaders = new ResponseHeader(true, ResultCode.SUCCESS_CODE,
+                    "成功");
+            response.setResponseHeader(responseHeaders);
+        } else {
+            ResponseHeader responseHeaders = new ResponseHeader(false, ResultCode.FAIL_CODE,
+                    "用户名错误");
+            response.setResponseHeader(responseHeaders);
+        }
+        return response;
+    }
+
+    @Override
+    public boolean checkAccountByUserName(UserLoginRequest request) throws RPCSystemException {
+        iVoValidateSV.validateCheckLogin(request);
         // 判断用户名是手机还是邮箱
         boolean isEmial = RegexUtils.checkIsEmail(request.getUsername());
         boolean isPhone = RegexUtils.checkIsPhone(request.getUsername());
@@ -39,21 +69,7 @@ public class LoginSVImpl implements ILoginSV {
         }else{
             account.setAccountName(request.getUsername()); 
         }
-        //account.setPassword(request.getPassword());
-        GnAccount accountResult = iLoginBusiSV.queryByUserName(account);
-        // 组织返回对象
-        UserLoginResponse response = new UserLoginResponse();
-        if (accountResult != null) {
-            BeanUtils.copyProperties(response, accountResult);
-            ResponseHeader responseHeaders = new ResponseHeader(true, ResultCode.SUCCESS_CODE,
-                    "成功");
-            response.setResponseHeader(responseHeaders);
-        } else {
-            ResponseHeader responseHeaders = new ResponseHeader(false, ResultCode.FAIL_CODE,
-                    "用户名或密码错误");
-            response.setResponseHeader(responseHeaders);
-        }
-        return response;
+        return iLoginBusiSV.checkByUserName(account);
     }
 
 }
