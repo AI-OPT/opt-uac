@@ -51,7 +51,7 @@ public class TestTenantManageSV {
 	@Test
 	public void testRegexUtil(){
 		System.out.println("<<<<<<<<<<<<<<Begin testRegexUtil>>>>>>>>>>>>>>");
-		String email = "qq_q@qq.c";
+		String email = "testemail112@qq.cn";
 		boolean checkIsEmail = RegexUtils.checkIsEmail(email);
 		System.out.println(checkIsEmail);
 		System.out.println("<<<<<<<<<<<<<<End testRegexUtil>>>>>>>>>>>>>>");

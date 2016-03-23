@@ -7,7 +7,7 @@ public final class RegexUtils {
 	private static final String commonCharRegex = "[a-z]*[A-Z]*\\d*-*_*\\s*[\u4e00-\u9fa5]*\\(*\\)*";
 	private static final String phoneRegex = "^((13[0-9])|(14[0-9])|(15[^4,\\D])|(18[0,5-9])|(17[0-9]))\\d{8}$";
     private static final String phoneNumberRegex = "^[0-9]*$";
-    private static final String emailRegex = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)+$";
+    private static final String emailRegex = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.(\\w+([-.]\\w+)*){2,}$";
     private static final String passwordRegex = "^[A-Za-z0-9]+$";
     private static final String passwordLengthRegex = "^[A-Za-z0-9]{32}$";
     private static final String phoneLengthRegex = "^[\\d]{11}$";
