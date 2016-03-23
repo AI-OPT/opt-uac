@@ -31,14 +31,16 @@ public class TestSSOManageSV {
 		PhoneRegisterRequest request = new PhoneRegisterRequest();
 		request.setAccountPassword("202cb962ac59075b964b07152d234b10");
 		request.setPhone("13489898871");
+		request.setPhoneVerifyCode("7888");
+		request.setPictureVerifyCode("jhkl");
 		PhoneRegisterResponse info = iRegisterSV.registerByPhone(request);
 		System.out.println("result="+JSON.toJSONString(info));
 	}
 	@Test
     public void testSSO() throws RPCSystemException{
         UserLoginRequest request = new UserLoginRequest();
-        request.setAccountPassword("123");
-        request.setUsername("13489898878");
+        request.setAccountPassword("202cb962ac59075b964b07152d234b10");
+        request.setUsername("XXXXteXst.com");
         UserLoginResponse info = iLoginSV.queryAccountByUserName(request);
         System.out.println("result="+JSON.toJSONString(info));
     }
