@@ -7,7 +7,7 @@ dependencies {
     compile 'org.springframework:spring-tx:4.1.7.RELEASE'
     compile 'org.springframework:spring-jdbc:4.1.7.RELEASE'
 
-    compile 'com.ai.opt.sdk:opt-sdk:1.0-SNAPSHOT'
+    compile 'com.ai.opt.sdk:opt-sdk:1.0.1-SNAPSHOT'
     //compile 'com.ai.runner.util:runner-util:1.0.7-SNAPSHOT'
 
 

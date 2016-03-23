@@ -37,7 +37,7 @@ public class TenantValidateSVImpl implements ITenantValidateSV {
 		if (tenantName.contains("\u0020")) {
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "企业名称（tenantName）不能包含空格");
 		}
-		int tenantNameSize = tenantName.length();
+		int tenantNameSize = StringUtil.getByteLength(tenantName);
 		if (tenantNameSize < TENANTNAME_MINSIZE || tenantNameSize > TENANTNAME_MAXSIZE) {
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "企业名称（tenantName）长度为" + TENANTNAME_MINSIZE + "~" + TENANTNAME_MAXSIZE + "位字符");
 		}
@@ -49,7 +49,8 @@ public class TenantValidateSVImpl implements ITenantValidateSV {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR,
                     "企业类型（industryCode）不能为空");
         }
-		if(industryCode.length()>INDUSTRYCODE_MAXSIZE){
+		int length = StringUtil.getByteLength(industryCode);
+		if(length>INDUSTRYCODE_MAXSIZE){
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
                     "企业类型（industryCode）长度不能大于"+INDUSTRYCODE_MAXSIZE);
 		}
@@ -80,7 +81,8 @@ public class TenantValidateSVImpl implements ITenantValidateSV {
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "租户ID（tenantId）不能为空");
 		}
 		// 参数规则检查
-		if (tenantId.length() > TENANTID_MAXSIZE) {
+		int length = StringUtil.getByteLength(tenantId);
+		if (length > TENANTID_MAXSIZE) {
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "租户ID（tenantId）长度不能超过" + TENANTID_MAXSIZE);
 		}
 	}

@@ -4,12 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.StringUtil;
-import com.ai.opt.uac.api.sso.param.UserLoginRequest;
 import com.ai.opt.uac.constants.AccountExceptCode;
-import com.ai.opt.uac.dao.mapper.bo.GnAccount;
-import com.ai.opt.uac.service.atom.interfaces.ILoginAtomSV;
 import com.ai.opt.uac.service.atom.interfaces.IRegisterAtomSV;
 import com.ai.opt.uac.service.busi.interfaces.IAccountValidateSV;
 import com.ai.opt.uac.util.RegexUtils;
@@ -34,9 +30,9 @@ public class AccountValidateSVImpl implements IAccountValidateSV {
 		if (nickName.contains("\u0020")) {
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "昵称（nickName）不能包含空格");
 		}
-		int nameSize = nickName.length();
+		int nameSize = StringUtil.getByteLength(nickName);
 		if (nameSize < NICKNAME_MINSIZE || nameSize > NICKNAME_MAXSIZE) {
-			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "昵称（nickName）长度在" + NICKNAME_MAXSIZE + "~" + NICKNAME_MAXSIZE + "个字符，不能包含空格");
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "昵称（nickName）长度在" + NICKNAME_MINSIZE + "~" + NICKNAME_MAXSIZE + "个字符，不能包含空格");
 		}
 	}
 
