@@ -18,7 +18,7 @@ import com.ai.opt.uac.service.busi.interfaces.IVoValidateSV;
 import com.ai.opt.uac.util.AccountSeqUtil;
 import com.alibaba.dubbo.config.annotation.Service;
 
-@Service
+@Service(validation="true")
 @Component
 public class RegisterSVImpl implements IRegisterSV {
     @Autowired

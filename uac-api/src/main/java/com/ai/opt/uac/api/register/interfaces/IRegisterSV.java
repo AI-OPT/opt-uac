@@ -1,8 +1,6 @@
 package com.ai.opt.uac.api.register.interfaces;
 
-import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.RPCSystemException;
-import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.uac.api.register.param.PhoneRegisterRequest;
 import com.ai.opt.uac.api.register.param.PhoneRegisterResponse;
 
@@ -16,16 +14,13 @@ import com.ai.opt.uac.api.register.param.PhoneRegisterResponse;
 public interface IRegisterSV {
 
     /**
-     * bass用户注册
+     * 用户注册 Date: 2016年3月25日 <br>
+     * Copyright (c) 2016 asiainfo.com <br>
      * 
-     * @param request
-     * @return 账号ID
-     * @throws BusinessException
-     * @throws SystemException
      * @author zhanglh
      * @ApiCode UAC_0001
      */
-    PhoneRegisterResponse registerByPhone(PhoneRegisterRequest request)
-            throws RPCSystemException;
+    @interface RegisterByPhone {}
+    PhoneRegisterResponse registerByPhone(PhoneRegisterRequest request) throws RPCSystemException;
 
 }
