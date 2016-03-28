@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.opt.base.vo.ResponseHeader;
