@@ -1,6 +1,7 @@
 package com.ai.opt.uac.api.register.interfaces;
 
-import com.ai.opt.base.exception.RPCSystemException;
+import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.uac.api.register.param.PhoneRegisterRequest;
 import com.ai.opt.uac.api.register.param.PhoneRegisterResponse;
 
@@ -21,6 +22,6 @@ public interface IRegisterSV {
      * @ApiCode UAC_0001
      */
     @interface RegisterByPhone {}
-    PhoneRegisterResponse registerByPhone(PhoneRegisterRequest request) throws RPCSystemException;
+    PhoneRegisterResponse registerByPhone(PhoneRegisterRequest request) throws BusinessException,SystemException;
 
 }
