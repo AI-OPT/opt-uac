@@ -18,6 +18,7 @@ import com.ai.opt.uac.api.security.interfaces.IAccountSecurityManageSV;
 import com.ai.opt.uac.api.security.param.AccountEmailRequest;
 import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
 import com.ai.opt.uac.api.seq.interfaces.ICreateSeqSV;
+import com.ai.opt.uac.api.seq.param.PhoneMsgSeqResponse;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:context/core-context.xml")
@@ -125,7 +126,7 @@ public class TestAccountManageSV {
 	
 	@Test
 	public void testSEQ() throws RPCSystemException {
-		String createPhoneMsgSeq = iCreateSeqSV.createPhoneMsgSeq();
-		System.out.println(createPhoneMsgSeq);
+		PhoneMsgSeqResponse createPhoneMsgSeq = iCreateSeqSV.createPhoneMsgSeq();
+		System.out.println(createPhoneMsgSeq.getMsgSeqId());
 	}
 }
