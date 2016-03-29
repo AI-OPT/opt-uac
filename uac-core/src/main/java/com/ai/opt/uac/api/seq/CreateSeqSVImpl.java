@@ -10,7 +10,9 @@ import com.ai.opt.uac.api.seq.interfaces.ICreateSeqSV;
 import com.ai.opt.uac.api.seq.param.PhoneMsgSeqResponse;
 import com.ai.opt.uac.constants.AccountConstants;
 import com.ai.opt.uac.constants.AccountConstants.SEQ;
+import com.alibaba.dubbo.config.annotation.Service;
 
+@Service
 @Component
 public class CreateSeqSVImpl implements ICreateSeqSV {
 
