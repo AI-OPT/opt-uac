@@ -22,7 +22,7 @@ public class PhoneRegisterRequest implements Serializable {
      * 手机号码，必填
      */
     @NotNull(message = "手机号码不能为空", groups = { IRegisterSV.RegisterByPhone.class })
-    @Pattern(regexp = "^1\\d{10}$", message = "手机号码格式不正确", groups = { IRegisterSV.RegisterByPhone.class })
+    @Pattern(regexp = "^1\\d{10}$", message = "手机号码格式不正确1", groups = { IRegisterSV.RegisterByPhone.class })
     @Size(min = 11, max = 11, message = "手机号码长度不是11位", groups = { IRegisterSV.RegisterByPhone.class })
     private String phone;
 
