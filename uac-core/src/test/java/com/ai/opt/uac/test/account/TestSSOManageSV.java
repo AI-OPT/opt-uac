@@ -17,8 +17,8 @@ import com.ai.opt.uac.api.sso.param.UserLoginResponse;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:context/core-context.xml")
-//@ContextConfiguration({ "/dubbo/provider/dubbo-provider.xml" })
+//@ContextConfiguration("classpath:context/core-context.xml")
+@ContextConfiguration({ "/dubbo/provider/dubbo-provider.xml" })
 public class TestSSOManageSV {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class TestSSOManageSV {
 	public void testRegister() throws RPCSystemException{
 		PhoneRegisterRequest request = new PhoneRegisterRequest();
 		request.setAccountPassword("202cb962ac59075b964b07152d234b10");
-		request.setPhone("12345678901");
+		request.setPhone("12045678901");
 		request.setPhoneVerifyCode("7888");
 		request.setPictureVerifyCode("jhkl");
 		PhoneRegisterResponse info = iRegisterSV.registerByPhone(request);

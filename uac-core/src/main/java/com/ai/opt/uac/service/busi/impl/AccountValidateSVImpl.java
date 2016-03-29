@@ -71,7 +71,7 @@ public class AccountValidateSVImpl implements IAccountValidateSV {
 		if (checkOnly) {
 			int count = iRegisterAtomSV.getCountByPhone(phone);
 			if (count >= 1) {
-				throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "该手机已经进行过注册，请重新输入");
+				throw new BusinessException(AccountExceptCode.ErrorCode.PHONE_NOTONE_ERROR, "该手机已经进行过注册，请重新输入");
 			}
 		}
 	}
@@ -112,7 +112,7 @@ public class AccountValidateSVImpl implements IAccountValidateSV {
 		if (checkOnly) {
 			int count = iRegisterAtomSV.getCountByEmail(email);
 			if (count >= 1) {
-				throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "该邮箱已注册，请重新输入");
+				throw new BusinessException(AccountExceptCode.ErrorCode.EMAIL_NOTONE_ERROR, "该邮箱已注册，请重新输入");
 			}
 		}
 	}
