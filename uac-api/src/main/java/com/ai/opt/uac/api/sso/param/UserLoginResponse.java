@@ -40,6 +40,11 @@ public class UserLoginResponse extends BaseResponse {
     private String email;
 
     /**
+     * 昵称
+     */
+    private String nickName;
+
+    /**
      * 租户ID
      */
     private String tenantId;
@@ -129,6 +134,14 @@ public class UserLoginResponse extends BaseResponse {
 
     public void setInactiveTime(Timestamp inactiveTime) {
         this.inactiveTime = (inactiveTime == null ? null : (Timestamp) inactiveTime.clone());
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
 }

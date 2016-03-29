@@ -2,6 +2,12 @@ package com.ai.opt.uac.api.register.param;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.ai.opt.uac.api.register.interfaces.IRegisterSV;
+
 /**
  * 用户注册元素 <br>
  * Date: 2016年3月16日 <br>
@@ -15,21 +21,27 @@ public class PhoneRegisterRequest implements Serializable {
     /**
      * 手机号码，必填
      */
+    @NotNull(message = "手机号码不能为空", groups = { IRegisterSV.RegisterByPhone.class })
+    @Pattern(regexp = "^((13[0-9])|(14[0-9])|(15[^4,\\D])|(18[0,5-9])|(17[0-9]))\\d{8}$", message = "手机号码格式不正确", groups = { IRegisterSV.RegisterByPhone.class })
+    @Size(min = 11, max = 11, message = "手机号码长度不是11位", groups = { IRegisterSV.RegisterByPhone.class })
     private String phone;
 
     /**
      * 密码，必填
      */
+    @NotNull(message = "密码不能为空", groups = { IRegisterSV.RegisterByPhone.class })
     private String accountPassword;
 
     /**
      * 手机验证码，必填
      */
+    @NotNull(message = "手机验证码不能为空", groups = { IRegisterSV.RegisterByPhone.class })
     private String phoneVerifyCode;
 
     /**
      * 图片验证码，必填
      */
+    @NotNull(message = "图片验证码不能为空", groups = { IRegisterSV.RegisterByPhone.class })
     private String pictureVerifyCode;
 
     public String getPhone() {
@@ -39,8 +51,6 @@ public class PhoneRegisterRequest implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-   
 
     public String getAccountPassword() {
         return accountPassword;

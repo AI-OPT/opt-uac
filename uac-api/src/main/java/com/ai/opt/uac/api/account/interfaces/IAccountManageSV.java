@@ -1,7 +1,6 @@
 package com.ai.opt.uac.api.account.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.uac.api.account.param.AccountBaseModifyRequest;
@@ -20,7 +19,7 @@ public interface IAccountManageSV {
      * @ApiDocMethod
      * @ApiCode UAC_0003
 	 */
-	AccountQueryResponse queryBaseInfo(AccountQueryRequest accountQueryRequest) throws RPCSystemException;
+	AccountQueryResponse queryBaseInfo(AccountQueryRequest accountQueryRequest) throws BusinessException,SystemException;
 	
 	/**
 	 * 修改账户中心基础信息
@@ -32,6 +31,6 @@ public interface IAccountManageSV {
      * @ApiDocMethod
      * @ApiCode UAC_0004
 	 */
-	BaseResponse updateBaseInfo(AccountBaseModifyRequest accountModifyRequest) throws RPCSystemException;
+	BaseResponse updateBaseInfo(AccountBaseModifyRequest accountModifyRequest) throws BusinessException,SystemException;
 	
 }

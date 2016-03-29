@@ -1,7 +1,6 @@
 package com.ai.opt.uac.api.security.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.uac.api.security.param.AccountEmailRequest;
@@ -20,7 +19,7 @@ public interface IAccountSecurityManageSV {
      * @ApiDocMethod
      * @ApiCode UAC_0007
 	 */
-	BaseResponse setEmailData(AccountEmailRequest emailModifyRequest) throws RPCSystemException;
+	BaseResponse setEmailData(AccountEmailRequest emailModifyRequest) throws BusinessException,SystemException;
 	
 	/**
 	 * 设置密码
@@ -32,7 +31,7 @@ public interface IAccountSecurityManageSV {
      * @ApiDocMethod
      * @ApiCode UAC_0008
 	 */
-	BaseResponse setPasswordData(AccountPasswordRequest passwordModifyRequest) throws RPCSystemException;
+	BaseResponse setPasswordData(AccountPasswordRequest passwordModifyRequest) throws BusinessException,SystemException;
 	
 	/**
 	 * 设置手机号
@@ -44,5 +43,5 @@ public interface IAccountSecurityManageSV {
      * @ApiDocMethod
      * @ApiCode UAC_0009
 	 */
-	BaseResponse setPhoneData(AccountPhoneRequest phoneModifyRequest) throws RPCSystemException;
+	BaseResponse setPhoneData(AccountPhoneRequest phoneModifyRequest) throws BusinessException,SystemException;
 }

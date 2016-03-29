@@ -1,7 +1,6 @@
 package com.ai.opt.uac.api.account.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.opt.uac.api.account.param.TenantInfoRequest;
@@ -20,7 +19,7 @@ public interface ITenantManageSV {
      * @ApiDocMethod
      * @ApiCode UAC_0005
 	 */
-	TenantQueryResponse queryTenantInfo(BaseInfo tenantRequest) throws RPCSystemException;
+	TenantQueryResponse queryTenantInfo(BaseInfo tenantRequest) throws BusinessException,SystemException;
 	
 	/**
 	 * 设置租户信息(新增)
@@ -32,5 +31,5 @@ public interface ITenantManageSV {
      * @ApiDocMethod
      * @ApiCode UAC_0006
 	 */
-	TenantInsertResponse insertTenantInfo(TenantInfoRequest tenantInfoRequest) throws RPCSystemException;
+	TenantInsertResponse insertTenantInfo(TenantInfoRequest tenantInfoRequest) throws BusinessException,SystemException;
 }

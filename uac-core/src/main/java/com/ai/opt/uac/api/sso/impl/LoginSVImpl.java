@@ -3,7 +3,8 @@ package com.ai.opt.uac.api.sso.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ai.opt.base.exception.RPCSystemException;
+import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.uac.api.sso.interfaces.ILoginSV;
@@ -26,7 +27,7 @@ public class LoginSVImpl implements ILoginSV {
 
     @Override
     public UserLoginResponse queryAccountByUserName(String username)
-            throws RPCSystemException {
+            throws BusinessException,SystemException {
         iVoValidateSV.validateLogin(username);
         // 判断用户名是手机还是邮箱
         boolean isEmial = RegexUtils.checkIsEmail(username);
@@ -56,7 +57,7 @@ public class LoginSVImpl implements ILoginSV {
     }
 
     @Override
-    public boolean checkAccountByUserName(UserLoginRequest request) throws RPCSystemException {
+    public boolean checkAccountByUserName(UserLoginRequest request) throws BusinessException,SystemException {
         iVoValidateSV.validateCheckLogin(request);
         // 判断用户名是手机还是邮箱
         boolean isEmial = RegexUtils.checkIsEmail(request.getUsername());

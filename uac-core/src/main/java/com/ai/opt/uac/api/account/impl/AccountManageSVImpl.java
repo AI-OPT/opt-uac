@@ -3,7 +3,8 @@ package com.ai.opt.uac.api.account.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ai.opt.base.exception.RPCSystemException;
+import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
@@ -28,7 +29,7 @@ public class AccountManageSVImpl implements IAccountManageSV {
 	IVoValidateSV iVoValidateSV;
 
 	@Override
-	public AccountQueryResponse queryBaseInfo(AccountQueryRequest accountQueryRequest) throws RPCSystemException {
+	public AccountQueryResponse queryBaseInfo(AccountQueryRequest accountQueryRequest) throws BusinessException,SystemException {
 		// 入参检查
 		iVoValidateSV.validateQueryAccountBaseInfo(accountQueryRequest);
 		// 查询数据
@@ -45,7 +46,7 @@ public class AccountManageSVImpl implements IAccountManageSV {
 	}
 
 	@Override
-	public BaseResponse updateBaseInfo(AccountBaseModifyRequest accountModifyRequest) throws RPCSystemException {
+	public BaseResponse updateBaseInfo(AccountBaseModifyRequest accountModifyRequest) throws BusinessException,SystemException {
 		// 入参检查
 		iVoValidateSV.validateUpdateAccountInfo(accountModifyRequest);
 		// 数据库操作
