@@ -27,6 +27,8 @@ public final class AccountConstants {
         public static final String ACCOUT_ID_SEQ = "GN_ACCOUNT$ACCOUNT_ID$SEQ";
         
         public static final String NICK_NAME = "GN_TENANT$TENANT_ID$SEQ";
+        
+        public static final String PHONE_MSG_SEQ = "GSM$PHONE$MSGSEQ";
 
     }
 

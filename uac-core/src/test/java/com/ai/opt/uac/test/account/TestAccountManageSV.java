@@ -17,7 +17,7 @@ import com.ai.opt.uac.api.account.param.AccountQueryResponse;
 import com.ai.opt.uac.api.security.interfaces.IAccountSecurityManageSV;
 import com.ai.opt.uac.api.security.param.AccountEmailRequest;
 import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
-import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
+import com.ai.opt.uac.api.seq.interfaces.ICreateSeqSV;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:context/core-context.xml")
@@ -81,13 +81,51 @@ public class TestAccountManageSV {
 	@Test
 	public void testSetPhoneData() throws RPCSystemException {
 		System.out.println("<<<<<<<<<<<<<<Begin testSetPhoneData>>>>>>>>>>>>>>");
-		AccountPhoneRequest phoneModifyRequest=new AccountPhoneRequest();
-		phoneModifyRequest.setAccountId(1L);
-		phoneModifyRequest.setPhone("18011223344");
-		phoneModifyRequest.setUpdateAccountId(1L);
-		BaseResponse setPWDData = iAccountSecuritySV.setPhoneData(phoneModifyRequest);
-		JSONObject fromObject = JSONObject.fromObject(setPWDData);
-		System.out.println(fromObject);
+//		AccountPhoneRequest phoneModifyRequest=new AccountPhoneRequest();
+//		phoneModifyRequest.setAccountId(1L);
+//		phoneModifyRequest.setPhone("18011223344");
+//		phoneModifyRequest.setUpdateAccountId(1L);
+//		BaseResponse setPWDData = iAccountSecuritySV.setPhoneData(phoneModifyRequest);
+//		JSONObject fromObject = JSONObject.fromObject(setPWDData);
+//		System.out.println(fromObject);
+		
+		System.out.println(randomString(6));
+
+		
 		System.out.println("<<<<<<<<<<<<<<End testSetPhoneData>>>>>>>>>>>>>>");
+	}
+	
+	public String randomNum(int length){
+		String str = "";
+		str += (int)(Math.random()*10);
+		for(int i = 0; i < length-1; i++){
+			str += (int)(Math.random()*10);
+		}
+		return str;
+	}
+	
+	public static final String randomString(int length) {
+		char[] charArry = new char[length];
+		int i = 0;
+		while (i < length) {
+			int f = (int) (Math.random() * 3);
+			if (f == 0)
+				charArry[i] = (char) ('A' + Math.random() * 26);
+			else if (f == 1)
+				charArry[i] = (char) ('a' + Math.random() * 26);
+			else
+				charArry[i] = (char) ('0' + Math.random() * 10);
+			i++;
+		}
+		return new String(charArry);
+	}
+	
+	@Autowired
+	ICreateSeqSV iCreateSeqSV;
+	
+	@Test
+	public void testSEQ() throws RPCSystemException {
+		String createPhoneMsgSeq = iCreateSeqSV.createPhoneMsgSeq();
+		System.out.println(createPhoneMsgSeq);
 	}
 }
