@@ -1,5 +1,7 @@
 package com.ai.opt.uac.test.account;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.opt.base.exception.RPCSystemException;
+import com.ai.opt.uac.api.account.interfaces.IIndustryManageSV;
+import com.ai.opt.uac.api.account.param.IndustryQueryResponse;
 import com.ai.opt.uac.api.register.interfaces.IRegisterSV;
 import com.ai.opt.uac.api.register.param.PhoneRegisterRequest;
 import com.ai.opt.uac.api.register.param.PhoneRegisterResponse;
@@ -27,6 +31,9 @@ public class TestSSOManageSV {
 	ILoginSV iLoginSV;
 	@Autowired
     IAccountSecurityManageSV iAccountSecuritySV;
+	@Autowired
+	IIndustryManageSV iIndustryManageSV;
+	
 	@Test
 	public void testRegister() throws RPCSystemException{
 		PhoneRegisterRequest request = new PhoneRegisterRequest();
@@ -51,5 +58,15 @@ public class TestSSOManageSV {
         request.setAccountPassword("202cb962ac59075b964b07152d234b10");
         boolean flag = iLoginSV.checkAccountByUserName(request);
         System.out.println("result="+JSON.toJSONString(flag));
+    }
+	@Test
+    public void testQueyOneIndutry() throws RPCSystemException{
+	    IndustryQueryResponse response= iIndustryManageSV.queryByIndustryCode("05");
+        System.out.println("result="+JSON.toJSONString(response));
+    }
+	@Test
+    public void testQueyOneIndutryList() throws RPCSystemException{
+       List<IndustryQueryResponse> list= iIndustryManageSV.queryIndustryList();
+        System.out.println("result="+JSON.toJSONString(list));
     }
 }

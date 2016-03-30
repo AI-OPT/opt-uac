@@ -156,4 +156,12 @@ public class VoValidateSVImpl implements IVoValidateSV {
 
     }
 
+    @Override
+    public void validateQueyIndustry(String code)throws BusinessException {
+        if (StringUtil.isBlank(code)) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+    }
+    
+    
 }

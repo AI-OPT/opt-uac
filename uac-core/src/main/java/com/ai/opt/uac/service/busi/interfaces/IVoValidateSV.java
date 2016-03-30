@@ -59,4 +59,8 @@ public interface IVoValidateSV {
 	 * 设置账户电话数据参数检查
 	 */
 	void validateSetPhoneTenant(AccountPhoneRequest phoneModifyRequest) throws BusinessException;
+	/**
+     * 查询企业类型参数检查
+     */
+	void validateQueyIndustry(String code) throws BusinessException;
 }
