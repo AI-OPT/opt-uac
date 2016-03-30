@@ -1,6 +1,10 @@
 package com.ai.opt.uac.api.account.param;
 
-public class IndustryQueryResponse {
+import com.ai.opt.base.vo.BaseResponse;
+
+public class IndustryQueryResponse extends BaseResponse{
+    private static final long serialVersionUID = 1L;
+
     /**
      * 行业类型编码
      */
