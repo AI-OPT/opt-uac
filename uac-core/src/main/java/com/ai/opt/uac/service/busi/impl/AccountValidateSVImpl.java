@@ -108,7 +108,7 @@ public class AccountValidateSVImpl implements IAccountValidateSV {
 		if(emailSize > EMAIL_MAXSIZE){
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "邮箱（email）长度不应大于"+EMAIL_MAXSIZE+"个字符");
 		}
-		// 判断手机号码是否唯一
+		// 判断邮箱是否唯一
 		if (checkOnly) {
 			int count = iRegisterAtomSV.getCountByEmail(email);
 			if (count >= 1) {
