@@ -14,6 +14,7 @@ import com.ai.opt.uac.api.security.param.AccountEmailRequest;
 import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
 import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
 import com.ai.opt.uac.api.sso.param.UserLoginRequest;
+import com.ai.opt.uac.api.system.tenant.param.QueryTenantRequest;
 import com.ai.opt.uac.constants.AccountExceptCode;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.atom.interfaces.ILoginAtomSV;
@@ -160,6 +161,39 @@ public class VoValidateSVImpl implements IVoValidateSV {
     public void validateQueyIndustry(String code)throws BusinessException {
         if (StringUtil.isBlank(code)) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+    }
+
+    @Override
+    public void validateQueyTenantPage(QueryTenantRequest request) throws BusinessException {
+        if (request==null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        if (request.getPageInfo()==null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "分页信息为空");
+        }
+        if (request.getPageInfo().getPageSize()==null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "分页信息为空");
+        }
+        if (request.getPageInfo().getPageNo()==null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "分页信息为空");
+        }
+    }
+
+    @Override
+    public void validateQueyTenantDetail(String tenantId) throws BusinessException {
+        if (StringUtil.isBlank(tenantId)) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "租户ID不能为空");
+        }
+    }
+
+    @Override
+    public void validateUpdateTenant(QueryTenantRequest request) throws BusinessException {
+        if (request==null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        if (StringUtil.isBlank(request.getTenantId())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "租户ID不能为空");
         }
     }
     
