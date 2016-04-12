@@ -9,9 +9,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ai.opt.base.exception.RPCSystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.opt.uac.api.system.tenant.interfaces.ISysTenantManageSV;
-import com.ai.opt.uac.api.system.tenant.param.QueryTenantRequest;
-import com.ai.opt.uac.api.system.tenant.param.QueryTenantResponse;
+import com.ai.opt.uac.api.system.systenant.interfaces.ISysTenantManageSV;
+import com.ai.opt.uac.api.system.systenant.param.QueryTenantRequest;
+import com.ai.opt.uac.api.system.systenant.param.QueryTenantResponse;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)

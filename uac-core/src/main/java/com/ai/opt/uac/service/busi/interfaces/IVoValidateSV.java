@@ -10,12 +10,12 @@ import com.ai.opt.uac.api.security.param.AccountEmailRequest;
 import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
 import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
 import com.ai.opt.uac.api.sso.param.UserLoginRequest;
-import com.ai.opt.uac.api.system.tenant.param.QueryTenantRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountDelRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountInfoQueryRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountInsertRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountPageQueryRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountUpdateRequest;
+import com.ai.opt.uac.api.system.systenant.param.QueryTenantRequest;
 
 public interface IVoValidateSV {
     /**

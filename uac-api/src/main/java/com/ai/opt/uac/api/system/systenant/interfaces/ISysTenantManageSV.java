@@ -1,11 +1,11 @@
-package com.ai.opt.uac.api.system.tenant.interfaces;
+package com.ai.opt.uac.api.system.systenant.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.opt.uac.api.system.tenant.param.QueryTenantRequest;
-import com.ai.opt.uac.api.system.tenant.param.QueryTenantResponse;
+import com.ai.opt.uac.api.system.systenant.param.QueryTenantRequest;
+import com.ai.opt.uac.api.system.systenant.param.QueryTenantResponse;
 
 /**
  * 系统管理-租户服务 

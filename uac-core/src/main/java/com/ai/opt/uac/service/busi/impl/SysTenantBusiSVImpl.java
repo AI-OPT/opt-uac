@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.opt.uac.api.system.tenant.param.QueryTenantRequest;
+import com.ai.opt.uac.api.system.systenant.param.QueryTenantRequest;
 import com.ai.opt.uac.dao.mapper.bo.GnTenant;
 import com.ai.opt.uac.service.atom.interfaces.ISysTenantAtomSV;
 import com.ai.opt.uac.service.busi.interfaces.ISysTenantBusiSV;

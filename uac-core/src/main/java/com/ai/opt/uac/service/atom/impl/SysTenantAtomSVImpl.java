@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.opt.uac.api.system.tenant.param.QueryTenantRequest;
+import com.ai.opt.uac.api.system.systenant.param.QueryTenantRequest;
 import com.ai.opt.uac.dao.mapper.bo.GnTenant;
 import com.ai.opt.uac.dao.mapper.bo.GnTenantCriteria;
 import com.ai.opt.uac.dao.mapper.factory.MapperFactory;

@@ -1,4 +1,4 @@
-package com.ai.opt.uac.api.system.tenant.param;
+package com.ai.opt.uac.api.system.systenant.param;
 
 import java.sql.Timestamp;
 

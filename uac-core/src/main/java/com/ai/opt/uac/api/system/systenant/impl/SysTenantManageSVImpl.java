@@ -1,4 +1,4 @@
-package com.ai.opt.uac.api.system.tenant.impl;
+package com.ai.opt.uac.api.system.systenant.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,9 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
-import com.ai.opt.uac.api.system.tenant.interfaces.ISysTenantManageSV;
-import com.ai.opt.uac.api.system.tenant.param.QueryTenantRequest;
-import com.ai.opt.uac.api.system.tenant.param.QueryTenantResponse;
+import com.ai.opt.uac.api.system.systenant.interfaces.ISysTenantManageSV;
+import com.ai.opt.uac.api.system.systenant.param.QueryTenantRequest;
+import com.ai.opt.uac.api.system.systenant.param.QueryTenantResponse;
 import com.ai.opt.uac.constants.AccountConstants.ResultCode;
 import com.ai.opt.uac.dao.mapper.bo.GnTenant;
 import com.ai.opt.uac.service.busi.interfaces.ISysTenantBusiSV;

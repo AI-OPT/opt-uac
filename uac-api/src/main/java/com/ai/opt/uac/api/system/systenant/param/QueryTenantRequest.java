@@ -1,4 +1,4 @@
-package com.ai.opt.uac.api.system.tenant.param;
+package com.ai.opt.uac.api.system.systenant.param;
 
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.opt.base.vo.PageInfo;
