@@ -15,5 +15,5 @@ public interface ISysAccountBusiSV {
 	
 	int updateAccountInfo(GnAccount gnAccount) throws SystemException;
 	
-	int deleteByAccountId(Long accountId) throws SystemException;
+	int deleteByAccountId(GnAccount gnAccount) throws SystemException;
 }

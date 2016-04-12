@@ -260,6 +260,7 @@ public class VoValidateSVImpl implements IVoValidateSV {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
         }
 		iAccountValidateSV.checkAccountId(deleteRequest.getAccountId());
+		iAccountValidateSV.checkUpdateAccountId(deleteRequest.getUpdateAccountId());
 	}
     
     

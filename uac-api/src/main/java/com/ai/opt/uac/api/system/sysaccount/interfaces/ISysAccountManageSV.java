@@ -1,7 +1,6 @@
 package com.ai.opt.uac.api.system.sysaccount.interfaces;
 
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountDelRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountInfoQueryRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountInfoQueryResponse;
@@ -20,7 +19,7 @@ public interface ISysAccountManageSV {
      * @ApiDocMethod
      * @ApiCode UAC_SYS_0004
 	 */
-	PageInfo<AccountPageQueryResponse> queryAccountPageInfo(AccountPageQueryRequest queryRequest);
+	AccountPageQueryResponse queryAccountPageInfo(AccountPageQueryRequest queryRequest);
 	
 	/**
 	 * 账户详情查询

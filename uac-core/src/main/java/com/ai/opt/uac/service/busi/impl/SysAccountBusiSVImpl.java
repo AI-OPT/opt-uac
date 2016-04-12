@@ -24,8 +24,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 public class SysAccountBusiSVImpl implements ISysAccountBusiSV {
 
 	@Autowired
-    IAccountAtomSV iAccountAtomSV;
-	
+	IAccountAtomSV iAccountAtomSV;
+
 	@Override
 	public GnAccount queryByAccountId(Long accountId) throws SystemException {
 		return iAccountAtomSV.queryByAccountId(accountId);
@@ -39,22 +39,22 @@ public class SysAccountBusiSVImpl implements ISysAccountBusiSV {
 		BeanUtils.copyProperties(params, pageQueryRequest);
 		String userName = pageQueryRequest.getUserName();
 		boolean isEmial = RegexUtils.checkIsEmail(userName);
-        boolean isPhone = RegexUtils.checkIsPhone(userName);
-        if (isPhone == true) {
-        	params.setPhone(userName);
-        }else if (isEmial == true) {
-        	params.setEmail(userName);
-        }else{
-        	params.setAccountName(userName); 
-        }
+		boolean isPhone = RegexUtils.checkIsPhone(userName);
+		if (isPhone == true) {
+			params.setPhone(userName);
+		} else if (isEmial == true) {
+			params.setEmail(userName);
+		} else {
+			params.setAccountName(userName);
+		}
 		List<GnAccount> accountList = iAccountAtomSV.queryAccountList((pageNo - 1) * pageSize, pageSize, params);
 		PageInfo<GnAccount> pageInfo = new PageInfo<GnAccount>();
 		pageInfo.setPageNo(pageNo);
 		pageInfo.setPageSize(pageSize);
 		pageInfo.setResult(accountList);
-		if(accountList!= null && accountList.size()>0){
+		if (accountList != null && accountList.size() > 0) {
 			pageInfo.setCount(accountList.size());
-		}else{
+		} else {
 			pageInfo.setCount(0);
 		}
 		return pageInfo;
@@ -63,19 +63,19 @@ public class SysAccountBusiSVImpl implements ISysAccountBusiSV {
 	@Override
 	public Long insertAccountInfo(GnAccount gnAccount) throws SystemException {
 		Timestamp activeTime = gnAccount.getActiveTime();
-		if(activeTime == null){
+		if (activeTime == null) {
 			gnAccount.setActiveTime(DateUtil.getSysDate());
 		}
 		Timestamp inactiveTime = gnAccount.getInactiveTime();
-		if(inactiveTime == null){
-			gnAccount.setInactiveTime(DateUtil.getTimestamp(Account.INACTIVE_DATE,DateUtil.DATETIME_FORMAT));
+		if (inactiveTime == null) {
+			gnAccount.setInactiveTime(DateUtil.getTimestamp(Account.INACTIVE_DATE, DateUtil.DATETIME_FORMAT));
 		}
 		Timestamp createTime = gnAccount.getCreateTime();
-		if(createTime == null){
+		if (createTime == null) {
 			gnAccount.setCreateTime(DateUtil.getSysDate());
 		}
 		String accountPassword = gnAccount.getAccountPassword();
-		if(StringUtil.isBlank(accountPassword)){
+		if (StringUtil.isBlank(accountPassword)) {
 			gnAccount.setAccountPassword(Account.DEFAULT_PASSWORD);
 		}
 		return iAccountAtomSV.insertAccount(gnAccount);
@@ -83,13 +83,23 @@ public class SysAccountBusiSVImpl implements ISysAccountBusiSV {
 
 	@Override
 	public int updateAccountInfo(GnAccount gnAccount) throws SystemException {
+		Timestamp updateTime = gnAccount.getUpdateTime();
+		if (updateTime == null) {
+			gnAccount.setUpdateTime(DateUtil.getSysDate());
+		}
 		return iAccountAtomSV.updateByAccountId(gnAccount);
 	}
 
 	@Override
-	public int deleteByAccountId(Long accountId) throws SystemException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteByAccountId(GnAccount gnAccount) throws SystemException {
+		Timestamp inactiveTime = gnAccount.getInactiveTime();
+		if (inactiveTime == null) {
+			gnAccount.setInactiveTime(DateUtil.getSysDate());
+		}
+		Timestamp updateTime = gnAccount.getUpdateTime();
+		if (updateTime == null) {
+			gnAccount.setUpdateTime(DateUtil.getSysDate());
+		}
+		return iAccountAtomSV.updateByAccountId(gnAccount);
 	}
-
 }

@@ -1,6 +1,6 @@
 package com.ai.opt.uac.api.system.sysaccount.impl;
 
-import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -8,13 +8,13 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
-import com.ai.opt.sdk.util.DateUtil;
 import com.ai.opt.uac.api.system.sysaccount.interfaces.ISysAccountManageSV;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountDelRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountInfoQueryRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountInfoQueryResponse;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountInsertRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountInsertResponse;
+import com.ai.opt.uac.api.system.sysaccount.param.AccountPageQueryData;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountPageQueryRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountPageQueryResponse;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountUpdateRequest;
@@ -22,6 +22,8 @@ import com.ai.opt.uac.constants.AccountConstants.ResultCode;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.busi.interfaces.ISysAccountBusiSV;
 import com.ai.opt.uac.service.busi.interfaces.IVoValidateSV;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class SysAccountManageSVImpl implements ISysAccountManageSV{
 
@@ -32,10 +34,25 @@ public class SysAccountManageSVImpl implements ISysAccountManageSV{
 	ISysAccountBusiSV iSysAccountBusiSV;
 	
 	@Override
-	public PageInfo<AccountPageQueryResponse> queryAccountPageInfo(AccountPageQueryRequest queryRequest) {
+	public AccountPageQueryResponse queryAccountPageInfo(AccountPageQueryRequest queryRequest) {
 		iVoValidateSV.validateSysQueryAccountPageInfo(queryRequest);
-		PageInfo<GnAccount> queryAccountPageInfo = iSysAccountBusiSV.queryAccountPageInfo(queryRequest);
-		return null;
+		PageInfo<GnAccount> accountPageInfo = iSysAccountBusiSV.queryAccountPageInfo(queryRequest);
+		int count = accountPageInfo.getCount();
+		Integer pageNo = accountPageInfo.getPageNo();
+		Integer pageSize = accountPageInfo.getPageSize();
+		List<GnAccount> accountList = accountPageInfo.getResult();
+		AccountPageQueryResponse accountPageQueryResponse = new AccountPageQueryResponse();
+		Gson gson = new Gson();
+		String accountListJson = gson.toJson(accountList);
+		List<AccountPageQueryData> accountPageDatList = gson.fromJson(accountListJson, new TypeToken<List<AccountPageQueryData>>() {  
+		}.getType());
+		PageInfo<AccountPageQueryData> pageInfo = new PageInfo<AccountPageQueryData>();
+		pageInfo.setCount(count);
+		pageInfo.setPageNo(pageNo);
+		pageInfo.setPageSize(pageSize);
+		pageInfo.setResult(accountPageDatList);
+		accountPageQueryResponse.setPageInfo(pageInfo);
+		return accountPageQueryResponse;
 	}
 
 	@Override
@@ -81,14 +98,10 @@ public class SysAccountManageSVImpl implements ISysAccountManageSV{
 		iVoValidateSV.validateSysUpdateAccountInfo(updateRequest);
 		GnAccount gnAccount = new GnAccount();
 		BeanUtils.copyProperties(gnAccount, updateRequest);
-		Timestamp updateTime = gnAccount.getUpdateTime();
-		if(updateTime == null){
-			gnAccount.setUpdateTime(DateUtil.getSysDate());
-		}
 		int count = iSysAccountBusiSV.updateAccountInfo(gnAccount);
 		BaseResponse baseResponse = new BaseResponse();
 		if(count > 0){
-			ResponseHeader responseHeader=new ResponseHeader(false, ResultCode.FAIL_CODE, "更新数据成功");
+			ResponseHeader responseHeader=new ResponseHeader(true, ResultCode.SUCCESS_CODE, "更新数据成功");
 			baseResponse.setResponseHeader(responseHeader);
 		}else{
 			ResponseHeader responseHeader=new ResponseHeader(false, ResultCode.FAIL_CODE, "无更新数据");
@@ -100,8 +113,18 @@ public class SysAccountManageSVImpl implements ISysAccountManageSV{
 	@Override
 	public BaseResponse deletAccountInfo(AccountDelRequest deleteRequest) {
 		iVoValidateSV.validateSysDeletAccountInfo(deleteRequest);
-		// TODO Auto-generated method stub
-		return null;
+		GnAccount gnAccount = new GnAccount();
+		BeanUtils.copyProperties(gnAccount, deleteRequest);
+		int count = iSysAccountBusiSV.deleteByAccountId(gnAccount);
+		BaseResponse baseResponse = new BaseResponse();
+		if(count > 0){
+			ResponseHeader responseHeader=new ResponseHeader(true, ResultCode.SUCCESS_CODE, "删除成功");
+			baseResponse.setResponseHeader(responseHeader);
+		}else{
+			ResponseHeader responseHeader=new ResponseHeader(false, ResultCode.FAIL_CODE, "无删除数据");
+			baseResponse.setResponseHeader(responseHeader);
+		}
+		return baseResponse;
 	}
 
 }
