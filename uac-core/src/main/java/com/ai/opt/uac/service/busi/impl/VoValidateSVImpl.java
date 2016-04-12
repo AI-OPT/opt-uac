@@ -15,6 +15,11 @@ import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
 import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
 import com.ai.opt.uac.api.sso.param.UserLoginRequest;
 import com.ai.opt.uac.api.system.tenant.param.QueryTenantRequest;
+import com.ai.opt.uac.api.system.sysaccount.param.AccountDelRequest;
+import com.ai.opt.uac.api.system.sysaccount.param.AccountInfoQueryRequest;
+import com.ai.opt.uac.api.system.sysaccount.param.AccountInsertRequest;
+import com.ai.opt.uac.api.system.sysaccount.param.AccountPageQueryRequest;
+import com.ai.opt.uac.api.system.sysaccount.param.AccountUpdateRequest;
 import com.ai.opt.uac.constants.AccountExceptCode;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.atom.interfaces.ILoginAtomSV;
@@ -196,6 +201,66 @@ public class VoValidateSVImpl implements IVoValidateSV {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "租户ID不能为空");
         }
     }
+	@Override
+	public void validateSysQueryAccountPageInfo(AccountPageQueryRequest queryRequest) throws BusinessException {
+		if (queryRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+		Integer pageNo = queryRequest.getPageNo();
+		if(pageNo == null){
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "页码（pageNo）不能为空");
+		}
+		Integer pageSize = queryRequest.getPageSize();
+		if(pageSize == null){
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "单页大小（pageSize）不能为空");
+		}
+	}
+
+	@Override
+	public void validateSysQueryAccountInfo(AccountInfoQueryRequest queryRequest) throws BusinessException {
+		if (queryRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+		iAccountValidateSV.checkAccountId(queryRequest.getAccountId());
+	}
+
+	@Override
+	public void validateSysInsertAccountInfo(AccountInsertRequest insertRequest) throws BusinessException {
+		if (insertRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+		String accountLevel = insertRequest.getAccountLevel();
+		String accountType = insertRequest.getAccountType();
+		String email = insertRequest.getEmail();
+		String phone = insertRequest.getPhone();
+		String tenantId = insertRequest.getTenantId();
+		Long createAccountId = insertRequest.getCreateAccountId();
+		iAccountValidateSV.checkTenantId(tenantId);
+		iAccountValidateSV.checkPhone(phone, true);
+		if(!StringUtil.isBlank(email)){
+			iAccountValidateSV.checkEmail(email, true);
+		}
+		iAccountValidateSV.checkAccountLevel(accountLevel);
+		iAccountValidateSV.checkAccountType(accountType);
+		iAccountValidateSV.checkCreateAccountId(createAccountId);
+	}
+
+	@Override
+	public void validateSysUpdateAccountInfo(AccountUpdateRequest updateRequest) throws BusinessException {
+		if (updateRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+		iAccountValidateSV.checkAccountId(updateRequest.getAccountId());
+		iAccountValidateSV.checkUpdateAccountId(updateRequest.getUpdateAccountId());
+	}
+
+	@Override
+	public void validateSysDeletAccountInfo(AccountDelRequest deleteRequest) throws BusinessException {
+		if (deleteRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+		iAccountValidateSV.checkAccountId(deleteRequest.getAccountId());
+	}
     
     
 }
