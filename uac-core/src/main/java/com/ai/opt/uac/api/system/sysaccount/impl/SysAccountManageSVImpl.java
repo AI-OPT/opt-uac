@@ -3,6 +3,7 @@ package com.ai.opt.uac.api.system.sysaccount.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
@@ -22,9 +23,12 @@ import com.ai.opt.uac.constants.AccountConstants.ResultCode;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.busi.interfaces.ISysAccountBusiSV;
 import com.ai.opt.uac.service.busi.interfaces.IVoValidateSV;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+@Service
+@Component
 public class SysAccountManageSVImpl implements ISysAccountManageSV{
 
 	@Autowired
