@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.service.atom.interfaces.IAccountAtomSV;
-import com.ai.opt.uac.service.atom.interfaces.IRegisterAtomSV;
 import com.ai.opt.uac.service.busi.interfaces.IAccountBusiSV;
 
 @Service
@@ -16,9 +15,6 @@ public class AccountBusiSVImpl implements IAccountBusiSV {
 
     @Autowired
     IAccountAtomSV iAccountAtomSV;
-
-    @Autowired
-    IRegisterAtomSV iRegisterAtomSV;
 
     @Override
     public GnAccount queryByAccountId(Long accountId) throws SystemException {

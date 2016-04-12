@@ -131,6 +131,34 @@ public class AccountValidateSVImpl implements IAccountValidateSV {
 		}
 	}
 
+	@Override
+	public void checkAccountLevel(String accountLevel) {
+		if (StringUtil.isBlank(accountLevel)) {
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "账户级别（accountLevel）不能为空");
+		}
+	}
+
+	@Override
+	public void checkAccountType(String accountType) throws BusinessException {
+		if (StringUtil.isBlank(accountType)) {
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "账户类型（accountType）不能为空");
+		}
+	}
+
+	@Override
+	public void checkTenantId(String tenantId) throws BusinessException {
+		if (StringUtil.isBlank(tenantId)) {
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "租户ID（tenantId）不能为空");
+		}
+	}
+
+	@Override
+	public void checkCreateAccountId(Long createAccountId) throws BusinessException {
+		if (createAccountId == null) {
+			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "创建人ID（createAccountId）不能为空");
+		}
+	}
+
    
 
 }

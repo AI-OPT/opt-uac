@@ -1,5 +1,7 @@
 package com.ai.opt.uac.constants;
 
+import com.ai.opt.uac.util.Md5Util;
+
 /**
  * 账户体系常量类 Date: 2016年3月16日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
@@ -51,8 +53,8 @@ public final class AccountConstants {
         /** 初始租户ID值 */
         public static final String INIT_TENANT_ID = "0";
         
-        /** 昵称 */
-        public static final String NICK_NAME = "test";
+        /** 默认密码*/
+        public static final String DEFAULT_PASSWORD = Md5Util.stringMD5("123456");
         
     }
     

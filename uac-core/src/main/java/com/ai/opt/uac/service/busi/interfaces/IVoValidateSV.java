@@ -11,6 +11,11 @@ import com.ai.opt.uac.api.security.param.AccountPasswordRequest;
 import com.ai.opt.uac.api.security.param.AccountPhoneRequest;
 import com.ai.opt.uac.api.sso.param.UserLoginRequest;
 import com.ai.opt.uac.api.system.tenant.param.QueryTenantRequest;
+import com.ai.opt.uac.api.system.sysaccount.param.AccountDelRequest;
+import com.ai.opt.uac.api.system.sysaccount.param.AccountInfoQueryRequest;
+import com.ai.opt.uac.api.system.sysaccount.param.AccountInsertRequest;
+import com.ai.opt.uac.api.system.sysaccount.param.AccountPageQueryRequest;
+import com.ai.opt.uac.api.system.sysaccount.param.AccountUpdateRequest;
 
 public interface IVoValidateSV {
     /**
@@ -85,4 +90,29 @@ public interface IVoValidateSV {
      * 系统管理修改租户参数检查
      */
     void validateUpdateTenant(QueryTenantRequest request) throws BusinessException;
+    
+	/**
+	 * 系统管理-账户分页查询检查
+	 */
+	void validateSysQueryAccountPageInfo(AccountPageQueryRequest queryRequest) throws BusinessException;
+	
+	/**
+	 * 系统管理-账户详情查询检查
+	 */
+	void validateSysQueryAccountInfo(AccountInfoQueryRequest queryRequest) throws BusinessException;
+	
+	/**
+	 * 系统管理-账户新增检查
+	 */
+	void validateSysInsertAccountInfo(AccountInsertRequest insertRequest) throws BusinessException;
+	
+	/**
+	 * 系统管理-账户修改检查
+	 */
+	void validateSysUpdateAccountInfo(AccountUpdateRequest updateRequest) throws BusinessException;
+	
+	/**
+	 * 系统管理-账户删除检查
+	 */
+	void validateSysDeletAccountInfo(AccountDelRequest deleteRequest) throws BusinessException;
 }

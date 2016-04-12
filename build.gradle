@@ -6,7 +6,7 @@ allprojects {
     ext {
         profile=project.hasProperty('profile')? (project['profile']==""?"aic-dev":project['profile']) : "aic-dev"
         moduleVersion = "1.0-SNAPSHOT"
-        optBaseVersion = "1.0-SNAPSHOT"
+        optBaseVersion = "1.0.1-SNAPSHOT"
         builtBy = "gradle 2.2"
         publishUserName = "runnerdev"
         publishUserPassword = "runnerdev"
