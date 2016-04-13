@@ -29,69 +29,73 @@ import com.google.gson.reflect.TypeToken;
 
 @Service
 @Component
-public class SysAccountManageSVImpl implements ISysAccountManageSV{
+public class SysAccountManageSVImpl implements ISysAccountManageSV {
 
 	@Autowired
 	IVoValidateSV iVoValidateSV;
-	
+
 	@Autowired
 	ISysAccountBusiSV iSysAccountBusiSV;
-	
+
 	@Override
 	public AccountPageQueryResponse queryAccountPageInfo(AccountPageQueryRequest queryRequest) {
 		iVoValidateSV.validateSysQueryAccountPageInfo(queryRequest);
 		PageInfo<GnAccount> accountPageInfo = iSysAccountBusiSV.queryAccountPageInfo(queryRequest);
-		int count = accountPageInfo.getCount();
-		Integer pageNo = accountPageInfo.getPageNo();
-		Integer pageSize = accountPageInfo.getPageSize();
-		List<GnAccount> accountList = accountPageInfo.getResult();
 		AccountPageQueryResponse accountPageQueryResponse = new AccountPageQueryResponse();
-		Gson gson = new Gson();
-		String accountListJson = gson.toJson(accountList);
-		List<AccountPageQueryData> accountPageDatList = gson.fromJson(accountListJson, new TypeToken<List<AccountPageQueryData>>() {  
-		}.getType());
 		PageInfo<AccountPageQueryData> pageInfo = new PageInfo<AccountPageQueryData>();
+		int count = accountPageInfo.getCount();
 		pageInfo.setCount(count);
+		Integer pageNo = accountPageInfo.getPageNo();
 		pageInfo.setPageNo(pageNo);
+		Integer pageSize = accountPageInfo.getPageSize();
 		pageInfo.setPageSize(pageSize);
-		pageInfo.setResult(accountPageDatList);
+		List<GnAccount> accountList = accountPageInfo.getResult();
+		if (accountList != null && accountList.size() > 0) {
+			Gson gson = new Gson();
+			String accountListJson = gson.toJson(accountList);
+			List<AccountPageQueryData> accountPageDatList = gson.fromJson(accountListJson, new TypeToken<List<AccountPageQueryData>>() {
+			}.getType());
+			pageInfo.setResult(accountPageDatList);
+		}
 		accountPageQueryResponse.setPageInfo(pageInfo);
+		ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE,"查询成功");
+		accountPageQueryResponse.setResponseHeader(responseHeader );
 		return accountPageQueryResponse;
 	}
 
 	@Override
 	public AccountInfoQueryResponse queryAccountInfo(AccountInfoQueryRequest queryRequest) {
 		iVoValidateSV.validateSysQueryAccountInfo(queryRequest);
-		Long accountId=queryRequest.getAccountId();
+		Long accountId = queryRequest.getAccountId();
 		GnAccount accountInfo = iSysAccountBusiSV.queryByAccountId(accountId);
 		AccountInfoQueryResponse accountInfoQueryResponse = new AccountInfoQueryResponse();
-		if(accountInfo != null){
+		if (accountInfo != null) {
 			BeanUtils.copyProperties(accountInfoQueryResponse, accountInfo);
-			ResponseHeader responseHeader=new ResponseHeader(true, ResultCode.SUCCESS_CODE, "查询成功");
+			ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "查询成功");
 			accountInfoQueryResponse.setResponseHeader(responseHeader);
-			return  accountInfoQueryResponse;
-		}else{
-			ResponseHeader responseHeader=new ResponseHeader(false, ResultCode.FAIL_CODE, "查询失败");
+			return accountInfoQueryResponse;
+		} else {
+			ResponseHeader responseHeader = new ResponseHeader(false, ResultCode.FAIL_CODE, "查询失败");
 			accountInfoQueryResponse.setResponseHeader(responseHeader);
-			return  accountInfoQueryResponse;
+			return accountInfoQueryResponse;
 		}
 	}
 
 	@Override
 	public AccountInsertResponse insertAccountInfo(AccountInsertRequest insertRequest) {
 		iVoValidateSV.validateSysInsertAccountInfo(insertRequest);
-		GnAccount gnAccount=new GnAccount();
+		GnAccount gnAccount = new GnAccount();
 		BeanUtils.copyProperties(gnAccount, insertRequest);
 		Long accountId = iSysAccountBusiSV.insertAccountInfo(gnAccount);
 		AccountInsertResponse accountInsertResponse = new AccountInsertResponse();
-		if(accountId != null){
+		if (accountId != null) {
 			accountInsertResponse.setAccountId(accountId);
-			ResponseHeader responseHeader=new ResponseHeader(true, ResultCode.SUCCESS_CODE, "插入数据成功");
+			ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "插入数据成功");
 			accountInsertResponse.setResponseHeader(responseHeader);
 			return accountInsertResponse;
-		}else{
+		} else {
 			accountInsertResponse.setAccountId(null);
-			ResponseHeader responseHeader=new ResponseHeader(false, ResultCode.FAIL_CODE, "插入数据失败");
+			ResponseHeader responseHeader = new ResponseHeader(false, ResultCode.FAIL_CODE, "插入数据失败");
 			accountInsertResponse.setResponseHeader(responseHeader);
 			return accountInsertResponse;
 		}
@@ -104,11 +108,11 @@ public class SysAccountManageSVImpl implements ISysAccountManageSV{
 		BeanUtils.copyProperties(gnAccount, updateRequest);
 		int count = iSysAccountBusiSV.updateAccountInfo(gnAccount);
 		BaseResponse baseResponse = new BaseResponse();
-		if(count > 0){
-			ResponseHeader responseHeader=new ResponseHeader(true, ResultCode.SUCCESS_CODE, "更新数据成功");
+		if (count > 0) {
+			ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "更新数据成功");
 			baseResponse.setResponseHeader(responseHeader);
-		}else{
-			ResponseHeader responseHeader=new ResponseHeader(false, ResultCode.FAIL_CODE, "无更新数据");
+		} else {
+			ResponseHeader responseHeader = new ResponseHeader(false, ResultCode.FAIL_CODE, "无更新数据");
 			baseResponse.setResponseHeader(responseHeader);
 		}
 		return baseResponse;
@@ -121,11 +125,11 @@ public class SysAccountManageSVImpl implements ISysAccountManageSV{
 		BeanUtils.copyProperties(gnAccount, deleteRequest);
 		int count = iSysAccountBusiSV.deleteByAccountId(gnAccount);
 		BaseResponse baseResponse = new BaseResponse();
-		if(count > 0){
-			ResponseHeader responseHeader=new ResponseHeader(true, ResultCode.SUCCESS_CODE, "删除成功");
+		if (count > 0) {
+			ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "删除成功");
 			baseResponse.setResponseHeader(responseHeader);
-		}else{
-			ResponseHeader responseHeader=new ResponseHeader(false, ResultCode.FAIL_CODE, "无删除数据");
+		} else {
+			ResponseHeader responseHeader = new ResponseHeader(false, ResultCode.FAIL_CODE, "无删除数据");
 			baseResponse.setResponseHeader(responseHeader);
 		}
 		return baseResponse;

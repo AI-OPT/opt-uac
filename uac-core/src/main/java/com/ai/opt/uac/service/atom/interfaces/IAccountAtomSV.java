@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
+import com.ai.opt.uac.dao.mapper.bo.GnAccountCriteria;
 
 public interface IAccountAtomSV {
 	
@@ -11,7 +12,9 @@ public interface IAccountAtomSV {
 	
 	int updateByAccountId(GnAccount gnAccount) throws SystemException;
 	
-	List<GnAccount> queryAccountList(int start, int end, GnAccount params) throws SystemException;
+	List<GnAccount> queryAccountList(GnAccountCriteria example) throws SystemException;
+	
+	int queryAccountCount(GnAccountCriteria example) throws SystemException;
 	
 	Long insertAccount(GnAccount gnAccount) throws SystemException;
 	

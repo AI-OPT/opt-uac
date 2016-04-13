@@ -15,7 +15,8 @@ import com.ai.opt.uac.api.system.sysaccount.param.AccountInfoQueryRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountInsertRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountPageQueryRequest;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountUpdateRequest;
-import com.ai.opt.uac.api.system.systenant.param.QueryTenantRequest;
+import com.ai.opt.uac.api.system.systenant.param.QueryPageTenantRequest;
+import com.ai.opt.uac.api.system.systenant.param.UpdateTenantRequest;
 
 public interface IVoValidateSV {
     /**
@@ -79,17 +80,17 @@ public interface IVoValidateSV {
     /**
      * 系统管理的分页查询租户参数检查
      */
-    void validateQueyTenantPage(QueryTenantRequest request) throws BusinessException;
+    void validateQueyTenantPage(QueryPageTenantRequest request) throws BusinessException;
 
     /**
      * 系统管理查询租户详情参数检查
      */
-    void validateQueyTenantDetail(String tenantId) throws BusinessException;
+    void validateQueyTenantDetail(BaseInfo baseInfo) throws BusinessException;
 
     /**
      * 系统管理修改租户参数检查
      */
-    void validateUpdateTenant(QueryTenantRequest request) throws BusinessException;
+    void validateUpdateTenant(UpdateTenantRequest request) throws BusinessException;
     
 	/**
 	 * 系统管理-账户分页查询检查

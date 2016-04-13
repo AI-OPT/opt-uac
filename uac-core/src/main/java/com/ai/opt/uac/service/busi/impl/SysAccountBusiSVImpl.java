@@ -4,20 +4,22 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.opt.uac.api.system.sysaccount.param.AccountPageQueryRequest;
+import com.ai.opt.uac.constants.AccountConstants;
 import com.ai.opt.uac.constants.AccountConstants.Account;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
+import com.ai.opt.uac.dao.mapper.bo.GnAccountCriteria;
+import com.ai.opt.uac.dao.mapper.bo.GnAccountCriteria.Criteria;
 import com.ai.opt.uac.service.atom.interfaces.IAccountAtomSV;
 import com.ai.opt.uac.service.busi.interfaces.ISysAccountBusiSV;
-import com.ai.opt.uac.util.RegexUtils;
-import com.alibaba.dubbo.config.annotation.Service;
+import com.ai.opt.uac.util.AccountSeqUtil;
 
 @Service
 @Transactional
@@ -33,31 +35,74 @@ public class SysAccountBusiSVImpl implements ISysAccountBusiSV {
 
 	@Override
 	public PageInfo<GnAccount> queryAccountPageInfo(AccountPageQueryRequest pageQueryRequest) throws SystemException {
+		GnAccountCriteria example = new GnAccountCriteria();
+		String userName = pageQueryRequest.getUserName();
+		if (StringUtil.isBlank(userName)) {
+			Criteria criteria = example.or();
+			setQueryPageInfoCriteria(criteria, pageQueryRequest, 0);
+		} else {
+			Criteria criteriaPhone = example.or();
+			setQueryPageInfoCriteria(criteriaPhone, pageQueryRequest, 1);
+			Criteria criteriaEmail = example.or();
+			setQueryPageInfoCriteria(criteriaEmail, pageQueryRequest, 2);
+			Criteria criteriaName = example.or();
+			setQueryPageInfoCriteria(criteriaName, pageQueryRequest, 3);
+		}
+		PageInfo<GnAccount> pageInfo = new PageInfo<GnAccount>();
+		int accountCount = iAccountAtomSV.queryAccountCount(example);
+		pageInfo.setCount(accountCount);
 		Integer pageNo = pageQueryRequest.getPageNo();
 		Integer pageSize = pageQueryRequest.getPageSize();
-		GnAccount params = new GnAccount();
-		BeanUtils.copyProperties(params, pageQueryRequest);
-		String userName = pageQueryRequest.getUserName();
-		boolean isEmial = RegexUtils.checkIsEmail(userName);
-		boolean isPhone = RegexUtils.checkIsPhone(userName);
-		if (isPhone == true) {
-			params.setPhone(userName);
-		} else if (isEmial == true) {
-			params.setEmail(userName);
-		} else {
-			params.setAccountName(userName);
-		}
-		List<GnAccount> accountList = iAccountAtomSV.queryAccountList((pageNo - 1) * pageSize, pageSize, params);
-		PageInfo<GnAccount> pageInfo = new PageInfo<GnAccount>();
+		example.setLimitStart((pageNo - 1) * pageSize);
+		example.setLimitEnd(pageSize);
+		List<GnAccount> accountList = iAccountAtomSV.queryAccountList(example);
 		pageInfo.setPageNo(pageNo);
 		pageInfo.setPageSize(pageSize);
 		pageInfo.setResult(accountList);
-		if (accountList != null && accountList.size() > 0) {
-			pageInfo.setCount(accountList.size());
-		} else {
-			pageInfo.setCount(0);
-		}
 		return pageInfo;
+	}
+
+	/**
+	 * 设置分页查询条件
+	 * 
+	 * @param criteria
+	 * @param pageQueryRequest
+	 * @param type
+	 *            1：手机 2：邮箱 3：账户名
+	 * @return
+	 */
+	private void setQueryPageInfoCriteria(Criteria criteria, AccountPageQueryRequest pageQueryRequest, int type) {
+		String tenantId = pageQueryRequest.getTenantId();
+		if (!StringUtil.isBlank(tenantId)) {
+			criteria.andTenantIdEqualTo(tenantId);
+		}
+		String accountType = pageQueryRequest.getAccountType();
+		if (!StringUtil.isBlank(accountType)) {
+			criteria.andAccountTypeEqualTo(accountType);
+		}
+		String accountLevel = pageQueryRequest.getAccountLevel();
+		if (!StringUtil.isBlank(accountLevel)) {
+			criteria.andAccountLevelEqualTo(accountLevel);
+		}
+		String userName = pageQueryRequest.getUserName();
+		if (!StringUtil.isBlank(userName)) {
+			// boolean isEmial = RegexUtils.checkIsEmail(userName);
+			// boolean isPhone = RegexUtils.checkIsPhone(userName);
+			// if (isPhone == true) {
+			// criteria.andPhoneLike("%" + userName + "%");
+			// } else if (isEmial == true) {
+			// criteria.andEmailLike("%" + userName + "%");
+			// } else {
+			// criteria.andAccountNameLike("%" + userName + "%");
+			// }
+			if (type == 1) {
+				criteria.andPhoneLike("%" + userName + "%");
+			} else if (type == 2) {
+				criteria.andEmailLike("%" + userName + "%");
+			} else if (type == 3) {
+				criteria.andAccountNameLike("%" + userName + "%");
+			}
+		}
 	}
 
 	@Override
@@ -77,6 +122,22 @@ public class SysAccountBusiSVImpl implements ISysAccountBusiSV {
 		String accountPassword = gnAccount.getAccountPassword();
 		if (StringUtil.isBlank(accountPassword)) {
 			gnAccount.setAccountPassword(Account.DEFAULT_PASSWORD);
+		}
+		String state = gnAccount.getState();
+		if (StringUtil.isBlank(state)) {
+			gnAccount.setState(AccountConstants.Account.ACCOUNT_STATE);
+		}
+		String nickName = gnAccount.getNickName();
+		if (StringUtil.isBlank(nickName)) {
+			gnAccount.setNickName(AccountSeqUtil.createNickName());
+		}
+		String accountType = gnAccount.getAccountType();
+		if (StringUtil.isBlank(accountType)) {
+			gnAccount.setAccountType(AccountConstants.Account.ACCOUNT_TYPE);
+		}
+		String accountLevel = gnAccount.getAccountLevel();
+		if(StringUtil.isBlank(accountLevel)){
+			gnAccount.setAccountLevel(AccountConstants.Account.ACCOUNT_LEVEL);
 		}
 		return iAccountAtomSV.insertAccount(gnAccount);
 	}
