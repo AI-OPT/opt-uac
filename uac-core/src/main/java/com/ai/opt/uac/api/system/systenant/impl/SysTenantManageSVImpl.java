@@ -90,9 +90,12 @@ public class SysTenantManageSVImpl implements ISysTenantManageSV {
 		QueryTenantResponse tenantQueryResponse = new QueryTenantResponse();
 		if (gnTenant != null) {
 			BeanUtils.copyProperties(tenantQueryResponse, gnTenant);
+			ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "查询成功");
+			tenantQueryResponse.setResponseHeader(responseHeader);
+		}else{
+			ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.FAIL_CODE, "查询失败，无数据");
+			tenantQueryResponse.setResponseHeader(responseHeader);
 		}
-		ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "查询成功");
-		tenantQueryResponse.setResponseHeader(responseHeader);
 		return tenantQueryResponse;
 	}
 

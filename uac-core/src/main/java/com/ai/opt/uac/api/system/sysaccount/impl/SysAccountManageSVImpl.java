@@ -75,7 +75,7 @@ public class SysAccountManageSVImpl implements ISysAccountManageSV {
 			accountInfoQueryResponse.setResponseHeader(responseHeader);
 			return accountInfoQueryResponse;
 		} else {
-			ResponseHeader responseHeader = new ResponseHeader(false, ResultCode.FAIL_CODE, "查询失败");
+			ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.FAIL_CODE, "查询失败,无数据");
 			accountInfoQueryResponse.setResponseHeader(responseHeader);
 			return accountInfoQueryResponse;
 		}
