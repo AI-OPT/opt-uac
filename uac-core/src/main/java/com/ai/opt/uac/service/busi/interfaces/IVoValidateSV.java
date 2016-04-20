@@ -116,4 +116,12 @@ public interface IVoValidateSV {
 	 * 系统管理-账户删除检查
 	 */
 	void validateSysDeletAccountInfo(AccountDelRequest deleteRequest) throws BusinessException;
+	/**
+     * 账户-账户手机查询
+     */
+    void validateAccountPhone(AccountQueryRequest request) throws BusinessException;
+    /**
+     * 账户-账户email查询
+     */
+    void validateAccountEmail(AccountQueryRequest request) throws BusinessException;
 }

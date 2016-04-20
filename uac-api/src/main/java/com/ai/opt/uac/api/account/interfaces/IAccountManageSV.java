@@ -32,5 +32,26 @@ public interface IAccountManageSV {
      * @ApiCode UAC_0004
 	 */
 	BaseResponse updateBaseInfo(AccountBaseModifyRequest accountModifyRequest) throws BusinessException,SystemException;
+	/**
+	 * 根据手机号码进行查询（不加状态）
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhanglh
+	 * @ApiCode UAC_0014
+	 */
+	AccountQueryResponse queryByPhone(AccountQueryRequest request) throws BusinessException,SystemException;
+	/**
+	 * 根据email进行查询（不加状态）
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhanglh
+	 * @ApiCode UAC_0015
+	 */
+	AccountQueryResponse queryByEmail(AccountQueryRequest request) throws BusinessException,SystemException;
+	
 	
 }

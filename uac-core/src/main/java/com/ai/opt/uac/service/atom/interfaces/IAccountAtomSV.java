@@ -18,4 +18,8 @@ public interface IAccountAtomSV {
 	
 	Long insertAccount(GnAccount gnAccount) throws SystemException;
 	
+	GnAccount queryByPhone(String phone)throws SystemException;
+	
+	GnAccount queryByEmail(String email)throws SystemException;
+	
 }
