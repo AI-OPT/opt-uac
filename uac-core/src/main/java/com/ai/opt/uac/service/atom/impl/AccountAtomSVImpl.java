@@ -65,4 +65,16 @@ public class AccountAtomSVImpl implements IAccountAtomSV {
         return null;
     }
 
+    @Override
+    public GnAccount queryByEmail(String email) throws SystemException {
+        GnAccountCriteria conditon = new GnAccountCriteria();
+        GnAccountCriteria.Criteria criteria = conditon.or();
+        criteria.andEmailEqualTo(email);
+        List<GnAccount> list = MapperFactory.getGnAccountlMapper().selectByExample(conditon);
+        if(!CollectionUtil.isEmpty(list)){
+            return list.get(0);
+        }
+        return null;
+    }
+
 }

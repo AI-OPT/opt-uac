@@ -31,4 +31,9 @@ public class AccountBusiSVImpl implements IAccountBusiSV {
         return iAccountAtomSV.queryByPhone(phone);
     }
 
+    @Override
+    public GnAccount queryByEmail(String email) throws SystemException {
+        return iAccountAtomSV.queryByEmail(email);
+    }
+
 }

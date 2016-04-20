@@ -131,14 +131,24 @@ public class TestAccountManageSV {
 	}
 	
 	
+   @Test
+    public void testQueryByPhone() throws RPCSystemException{
+        System.out.println("<<<<<<<<<<<<<<Begin testQueryBaseInfo>>>>>>>>>>>>>>");
+        AccountQueryRequest accountQueryRequest=new AccountQueryRequest();
+        accountQueryRequest.setPhone("");
+        AccountQueryResponse queryBaseInfo = iAccountManageSV.queryByPhone(accountQueryRequest);
+        JSONObject fromObject = JSONObject.fromObject(queryBaseInfo);
+        System.out.println(fromObject);
+        System.out.println("<<<<<<<<<<<<<<End testQueryBaseInfo>>>>>>>>>>>>>>");
+    }
 	   @Test
-	    public void testQuery() throws RPCSystemException{
-	        System.out.println("<<<<<<<<<<<<<<Begin testQueryBaseInfo>>>>>>>>>>>>>>");
-	        AccountQueryRequest accountQueryRequest=new AccountQueryRequest();
-	        accountQueryRequest.setPhone("");
-	        AccountQueryResponse queryBaseInfo = iAccountManageSV.queryByPhone(accountQueryRequest);
-	        JSONObject fromObject = JSONObject.fromObject(queryBaseInfo);
-	        System.out.println(fromObject);
-	        System.out.println("<<<<<<<<<<<<<<End testQueryBaseInfo>>>>>>>>>>>>>>");
-	    }
+       public void testQueryByEmail() throws RPCSystemException{
+           System.out.println("<<<<<<<<<<<<<<Begin testQueryBaseInfo>>>>>>>>>>>>>>");
+           AccountQueryRequest accountQueryRequest=new AccountQueryRequest();
+           accountQueryRequest.setEmail("1011713883@qq.com");
+           AccountQueryResponse queryBaseInfo = iAccountManageSV.queryByEmail(accountQueryRequest);
+           JSONObject fromObject = JSONObject.fromObject(queryBaseInfo);
+           System.out.println(fromObject);
+           System.out.println("<<<<<<<<<<<<<<End testQueryBaseInfo>>>>>>>>>>>>>>");
+       }
 }

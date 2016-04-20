@@ -20,4 +20,6 @@ public interface IAccountAtomSV {
 	
 	GnAccount queryByPhone(String phone)throws SystemException;
 	
+	GnAccount queryByEmail(String email)throws SystemException;
+	
 }

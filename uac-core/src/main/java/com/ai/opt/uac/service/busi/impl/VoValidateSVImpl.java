@@ -271,6 +271,16 @@ public class VoValidateSVImpl implements IVoValidateSV {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "手机号码不能为空");
         }
     }
+
+    @Override
+    public void validateAccountEmail(AccountQueryRequest request) throws BusinessException {
+        if (request == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        if (StringUtil.isBlank(request.getEmail())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "邮箱不能为空");
+        }
+    }
     
     
 }

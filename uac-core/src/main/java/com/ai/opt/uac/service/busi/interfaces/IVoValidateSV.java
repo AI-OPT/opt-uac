@@ -120,4 +120,8 @@ public interface IVoValidateSV {
      * 账户-账户手机查询
      */
     void validateAccountPhone(AccountQueryRequest request) throws BusinessException;
+    /**
+     * 账户-账户email查询
+     */
+    void validateAccountEmail(AccountQueryRequest request) throws BusinessException;
 }

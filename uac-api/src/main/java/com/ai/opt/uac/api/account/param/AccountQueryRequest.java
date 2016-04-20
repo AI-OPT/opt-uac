@@ -14,6 +14,7 @@ public class AccountQueryRequest implements Serializable{
 	 * 手机号码
 	 */
 	private String phone;
+	private String email;
 
 	public Long getAccountId() {
 		return accountId;
@@ -29,6 +30,14 @@ public class AccountQueryRequest implements Serializable{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

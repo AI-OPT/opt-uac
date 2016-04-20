@@ -10,4 +10,6 @@ public interface IAccountBusiSV {
 	int updateByAccountId(GnAccount gnAccount) throws SystemException;
 	
 	GnAccount queryByPhone(String phone)throws SystemException;
+	
+	GnAccount queryByEmail(String email)throws SystemException;
 }
