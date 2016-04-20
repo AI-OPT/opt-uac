@@ -86,7 +86,7 @@ public class IConfigCenterClientTest {
                     cachesnsConfig);
         }
     }
-    @Ignore
+    //@Ignore
     @Test
     public void readMcsConfig() {
     	
@@ -137,5 +137,11 @@ public class IConfigCenterClientTest {
 
         System.out.println("DBConf config ... end");
     }
+     
+     @Test
+     public void readDbInfo(){
+    	 String s=client.get(SDKConstants.DB_CONF_PATH);
+    	 System.out.println("dbinfo:"+s);
+     }
 
 }
