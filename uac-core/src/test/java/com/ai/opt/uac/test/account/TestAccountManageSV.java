@@ -129,4 +129,16 @@ public class TestAccountManageSV {
 		PhoneMsgSeqResponse createPhoneMsgSeq = iCreateSeqSV.createPhoneMsgSeq();
 		System.out.println(createPhoneMsgSeq.getMsgSeqId());
 	}
+	
+	
+	   @Test
+	    public void testQuery() throws RPCSystemException{
+	        System.out.println("<<<<<<<<<<<<<<Begin testQueryBaseInfo>>>>>>>>>>>>>>");
+	        AccountQueryRequest accountQueryRequest=new AccountQueryRequest();
+	        accountQueryRequest.setPhone("");
+	        AccountQueryResponse queryBaseInfo = iAccountManageSV.queryByPhone(accountQueryRequest);
+	        JSONObject fromObject = JSONObject.fromObject(queryBaseInfo);
+	        System.out.println(fromObject);
+	        System.out.println("<<<<<<<<<<<<<<End testQueryBaseInfo>>>>>>>>>>>>>>");
+	    }
 }

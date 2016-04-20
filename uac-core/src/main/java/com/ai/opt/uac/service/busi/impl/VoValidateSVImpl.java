@@ -261,6 +261,16 @@ public class VoValidateSVImpl implements IVoValidateSV {
 		iAccountValidateSV.checkAccountId(deleteRequest.getAccountId());
 		iAccountValidateSV.checkUpdateAccountId(deleteRequest.getUpdateAccountId());
 	}
+
+    @Override
+    public void validateAccountPhone(AccountQueryRequest request) throws BusinessException {
+        if (request == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        if (StringUtil.isBlank(request.getPhone())) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "手机号码不能为空");
+        }
+    }
     
     
 }

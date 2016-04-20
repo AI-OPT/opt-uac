@@ -69,4 +69,21 @@ public class AccountManageSVImpl implements IAccountManageSV {
 		baseResponse.setResponseHeader(responseHeader);
 		return baseResponse;
 	}
+
+    @Override
+    public AccountQueryResponse queryByPhone(AccountQueryRequest request)
+            throws BusinessException, SystemException {
+        iVoValidateSV.validateAccountPhone(request);
+       GnAccount gnAccount =  iAccountBusiSV.queryByPhone(request.getPhone());
+       AccountQueryResponse response = new AccountQueryResponse();
+       ResponseHeader responseHeader = new ResponseHeader();
+       if (gnAccount != null) {
+           BeanUtils.copyProperties(response, gnAccount);
+           responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "数据查询成功");
+       }else{
+           responseHeader = new ResponseHeader(true, ResultCode.FAIL_CODE, "数据不存在");
+       }
+       response.setResponseHeader(responseHeader);
+       return response;
+    }
 }

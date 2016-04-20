@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.uac.dao.mapper.bo.GnAccount;
 import com.ai.opt.uac.dao.mapper.bo.GnAccountCriteria;
 import com.ai.opt.uac.dao.mapper.factory.MapperFactory;
@@ -51,5 +52,17 @@ public class AccountAtomSVImpl implements IAccountAtomSV {
 		GnAccountMapper gnAccountlMapper = MapperFactory.getGnAccountlMapper();
 		return gnAccountlMapper.countByExample(example);
 	}
+
+    @Override
+    public GnAccount queryByPhone(String phone) throws SystemException {
+        GnAccountCriteria conditon = new GnAccountCriteria();
+        GnAccountCriteria.Criteria criteria = conditon.or();
+        criteria.andPhoneEqualTo(phone);
+        List<GnAccount> list = MapperFactory.getGnAccountlMapper().selectByExample(conditon);
+        if(!CollectionUtil.isEmpty(list)){
+            return list.get(0);
+        }
+        return null;
+    }
 
 }

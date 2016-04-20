@@ -8,4 +8,6 @@ public interface IAccountBusiSV {
 	GnAccount queryByAccountId(Long accountId) throws SystemException;
 	
 	int updateByAccountId(GnAccount gnAccount) throws SystemException;
+	
+	GnAccount queryByPhone(String phone)throws SystemException;
 }
