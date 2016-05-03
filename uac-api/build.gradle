@@ -7,7 +7,7 @@ configurations {
 }
 
 dependencies {
-    jaxDoclet 'com.ai.runner.plugin:apicollector:1.4-SNAPSHOT'
+    jaxDoclet 'com.ai.runner.plugin:apicollector:2.0-SNAPSHOT'
     optBaseSource "com.ai.opt:opt-base:1.0.1-SNAPSHOT:sources"
    	compile "javax.validation:validation-api:1.0.0.GA"
 	compile "org.hibernate:hibernate-validator:4.2.0.Final"
@@ -68,7 +68,8 @@ for(Map<String,String> apiMap:apiList){
 
     def apidocTask=task("${apiArtifactId}APIDoc",type:com.ai.runner.gradle.plugin.APICollectorTask){
     	dependsOn apiJarProcessTask
-        esconfig = "[{ip:10.1.234.160, port:14999}]"
+        //esconfig = "[{ip:10.1.234.160, port:14999}]"
+        esconfig = "{\"clusterName\":\"elasticsearch_for_sol\",\"ip\":\"10.1.234.160\", \"port\":14999}"
         source = fileTree(dir: 'src/main/java', include: 'com/ai/opt/uac/api/'+apiName+'/**/*.java')+fileTree(dir:"$buildDir/opt-base", include:"**/*.java")
         docletpath = configurations.jaxDoclet.files.asType(List)
         docletClass = 'com.ai.runner.apicollector.doclet.APIDoclet'
