@@ -6,17 +6,19 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.ai.opt.sdk.configcenter.client.IConfigCenterClient;
-import com.ai.opt.sdk.configcenter.factory.ConfigCenterFactory;
+import com.ai.opt.sdk.components.ccs.CCSClientFactory;
 import com.ai.opt.sdk.constants.SDKConstants;
+import com.ai.paas.ipaas.ccs.IConfigClient;
+import com.ai.paas.ipaas.ccs.constants.ConfigException;
 
 public class IConfigCenterClientTest {
 
-    private IConfigCenterClient client;
+    private IConfigClient client;
 
     @Before
     public void initData() {
-        this.client = ConfigCenterFactory.getConfigCenterClient();
+        this.client = CCSClientFactory.getDefaultConfigClient();
+        //this.client = CCSClientFactory.getConfigClient("CCS001", "123456");
     }
 
     @Ignore
@@ -27,84 +29,14 @@ public class IConfigCenterClientTest {
         System.out.println("aaaaaa");
     }
 
-    @Ignore
-    @Test
-    public void addMcsConfig() {
-        // 缓存服务主机
-        String redisClusterA = "redisClusterA";
-        String redisClusterB = "redisClusterB";
-        // 缓存空间
-        String cachesnsConfig = "{\"com.ai.opt.test.mcs\":\"" + redisClusterA
-                + "\",\"com.ai.runner.center.common.cache.gncfgproperties\":\"" + redisClusterB
-                + "\",\"com.ai.runner.center.common.cache.gnservicerouteconfig\":\"" + redisClusterA
-                + "\",\"com.ai.runner.center.common.cache.gndepart\":\"" + redisClusterA
-                + "\",\"com.ai.runner.center.common.cache.gnsubject\":\"" + redisClusterA
-                + "\",\"com.ai.runner.center.cache.test\":\"" + redisClusterA + "\"}";
-        
-        StringBuilder bu=new StringBuilder();
-        bu.append("{																				");
-        bu.append("  \"redisClusterA\":                     ");
-        bu.append("  {                                      ");
-        bu.append("		  \"mcsHost\":\"127.0.0.1:6379\",     ");
-        bu.append("	  	\"mcsMaxtotal\":\"200\",            ");
-        bu.append("		  \"mcsMaxIdle\":\"10\",              ");
-        bu.append("		  \"mcsMinIdle\":\"5\",               ");
-        bu.append("		  \"mcsTestOnBorrow\":\"true\",       ");
-        bu.append("		  \"mcsPassword\":\"123456\"          ");
-        bu.append("  },                                     ");
-        bu.append("  \"redisClusterB\":                     ");
-        bu.append("  {                                      ");
-        bu.append("      \"mcsHost\":\"localhost:6379\",    ");
-        bu.append("	  	\"mcsMaxtotal\":\"200\",            ");
-        bu.append("		  \"mcsMaxIdle\":\"10\",              ");
-        bu.append("		  \"mcsMinIdle\":\"5\",               ");
-        bu.append("		  \"mcsTestOnBorrow\":\"true\",       ");
-        bu.append("		  \"mcsPassword\":\"123456\"          ");
-        bu.append("  }                                      ");
-        bu.append("}                                        ");
-        
-        
-        
-        // 缓存服务主机和密码设置
-        if (!client.exists(
-                SDKConstants.PAAS_CACHE_REDIS_CLUSTER_MAPPED_PATH)) {
-            client.add(
-                    SDKConstants.PAAS_CACHE_REDIS_CLUSTER_MAPPED_PATH,
-                    bu.toString());
-        } else {
-            client.modify(
-                    SDKConstants.PAAS_CACHE_REDIS_CLUSTER_MAPPED_PATH,
-                    bu.toString());
-        }
-
-        // 缓存空间配置
-        if (!client.exists(SDKConstants.PAAS_CACHENS_MCS_MAPPED_PATH))
-            client.add(SDKConstants.PAAS_CACHENS_MCS_MAPPED_PATH,
-                    cachesnsConfig);
-        else {
-            client.modify(SDKConstants.PAAS_CACHENS_MCS_MAPPED_PATH,
-                    cachesnsConfig);
-        }
-    }
-    //@Ignore
-    @Test
-    public void readMcsConfig() {
-    	
-    	String cachesns=client.get(SDKConstants.PAAS_CACHENS_MCS_MAPPED_PATH);
-    	String redisconf=client.get(SDKConstants.PAAS_CACHE_REDIS_CLUSTER_MAPPED_PATH);
-    	
-    	System.out.println("cachesns:"+cachesns);
-    	System.out.println("redisconf:"+redisconf);
-    	
-    }
-
-    
+   
 
     /**
      * DBS配置
+     * @throws ConfigException 
      */
      @Test
-    public void addDbConfInfo() {
+    public void addDbConfInfo() throws ConfigException {
         System.out.println("DBConf config ... start");
         StringBuilder sb = new StringBuilder();
 
@@ -139,7 +71,7 @@ public class IConfigCenterClientTest {
     }
      
      @Test
-     public void readDbInfo(){
+     public void readDbInfo() throws ConfigException{
     	 String s=client.get(SDKConstants.DB_CONF_PATH);
     	 System.out.println("dbinfo:"+s);
      }

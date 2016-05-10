@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.opt.sdk.sequence.util.SeqUtil;
+import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.opt.uac.api.seq.interfaces.ICreateSeqSV;
 import com.ai.opt.uac.api.seq.param.PhoneMsgSeqResponse;

@@ -27,7 +27,7 @@
 		 <constructor-arg name="dataSourceName" value="opt-uac-db"/>
 	</bean>
     
-    <bean id="seqDataSourceLoader" class="com.ai.opt.sdk.sequence.datasource.SeqDataSourceLoader" init-method="init">
+    <bean id="seqDataSourceLoader" class="com.ai.opt.sdk.components.sequence.datasource.SeqDataSourceLoader" init-method="init">
 		<property name="ds" ref="dataSource" />
 	</bean>
     
