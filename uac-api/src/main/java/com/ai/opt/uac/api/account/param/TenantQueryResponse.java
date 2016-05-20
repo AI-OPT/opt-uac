@@ -20,6 +20,11 @@ public class TenantQueryResponse extends BaseResponse {
 	 * 公司类型
 	 */
 	private String industryCode;
+	/**
+	 * 狀態
+	 */
+	private String state;
+	
 
     public String getTenantId() {
 		return tenantId;
@@ -48,4 +53,13 @@ public class TenantQueryResponse extends BaseResponse {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+	
 }
