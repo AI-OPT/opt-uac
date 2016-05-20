@@ -38,6 +38,10 @@ public interface IVoValidateSV {
      * 新增租户参数检查
      */
     void validateInsertTenant(TenantInfoRequest tenantInfoRequest) throws BusinessException;
+    /**
+     * 修改租户参数检查
+     */
+    void validateUpdateTenant(TenantInfoRequest tenantInfoRequest) throws BusinessException;
 
     /**
      * 租户详情查询参数检查

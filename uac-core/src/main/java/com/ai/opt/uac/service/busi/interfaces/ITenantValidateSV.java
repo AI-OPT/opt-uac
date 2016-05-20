@@ -13,4 +13,8 @@ public interface ITenantValidateSV {
 	
 	void checkUpdateAccountId(Long updateAccountId) throws BusinessException;
 	
+	void checkCreateAccountId(Long createAccountId) throws BusinessException;
+	
+	void checkTenantIdIsExit(String tenantId) throws BusinessException;
+	
 }

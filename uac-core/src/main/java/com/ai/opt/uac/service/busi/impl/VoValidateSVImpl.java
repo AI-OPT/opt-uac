@@ -63,10 +63,9 @@ public class VoValidateSVImpl implements IVoValidateSV {
         if (tenantInfoRequest == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
         }
-       // iTenantValidateSV.checkTenantName(tenantInfoRequest.getTenantName());
-       // iTenantValidateSV.checkIndustryCode(tenantInfoRequest.getIndustryCode());
-        iTenantValidateSV.checkAccountId(tenantInfoRequest.getAccountId());
-        iTenantValidateSV.checkUpdateAccountId(tenantInfoRequest.getUpdateAccountId());
+       // iTenantValidateSV.checkAccountId(tenantInfoRequest.getAccountId());
+        iTenantValidateSV.checkTenantName(tenantInfoRequest.getTenantName());
+        iTenantValidateSV.checkCreateAccountId(tenantInfoRequest.getCreateAccountId());
     }
 
     @Override
@@ -281,6 +280,15 @@ public class VoValidateSVImpl implements IVoValidateSV {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "邮箱不能为空");
         }
     }
-    
-    
+
+    @Override
+    public void validateUpdateTenant(TenantInfoRequest tenantInfoRequest) throws BusinessException {
+        if (tenantInfoRequest == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
+        }
+        iTenantValidateSV.checkTenantId(tenantInfoRequest.getTenantId());
+        //iTenantValidateSV.checkTenantName(tenantInfoRequest.getTenantName());
+        //iTenantValidateSV.checkIndustryCode(tenantInfoRequest.getIndustryCode());
+        iTenantValidateSV.checkUpdateAccountId(tenantInfoRequest.getUpdateAccountId());
+    }  
 }

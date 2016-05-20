@@ -7,7 +7,9 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.opt.uac.constants.AccountExceptCode;
 import com.ai.opt.uac.dao.mapper.bo.GnIndustry;
+import com.ai.opt.uac.dao.mapper.bo.GnTenant;
 import com.ai.opt.uac.service.busi.interfaces.IIndustryBusiSV;
+import com.ai.opt.uac.service.busi.interfaces.ITenantBusiSV;
 import com.ai.opt.uac.service.busi.interfaces.ITenantValidateSV;
 import com.ai.opt.uac.util.RegexUtils;
 
@@ -16,6 +18,8 @@ public class TenantValidateSVImpl implements ITenantValidateSV {
 	
 	@Autowired
 	IIndustryBusiSV industryBusiSV;
+	@Autowired
+	ITenantBusiSV itenantBusiSV;
 
 	/** * tenantId长度 */
 	public static final int TENANTID_MAXSIZE = 32;
@@ -86,4 +90,20 @@ public class TenantValidateSVImpl implements ITenantValidateSV {
 			throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR, "租户ID（tenantId）长度不能超过" + TENANTID_MAXSIZE);
 		}
 	}
+
+    @Override
+    public void checkCreateAccountId(Long createAccountId) throws BusinessException {
+        if (createAccountId == null) {
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "创建人ID（createAccountId）不能为空");
+        }
+    }
+
+    @Override
+    public void checkTenantIdIsExit(String tenantId) throws BusinessException {
+        GnTenant gnTenant = itenantBusiSV.queryByTenantId(tenantId);
+        if(gnTenant == null){
+            throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_VALUE_ERROR,
+                    "租戶Id不存在");
+        }
+    }
 }
