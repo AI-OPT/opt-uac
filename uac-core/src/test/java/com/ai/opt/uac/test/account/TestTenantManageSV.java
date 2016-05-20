@@ -39,8 +39,8 @@ public class TestTenantManageSV {
 		System.out.println("<<<<<<<<<<<<<<Begin insertTenantInfo>>>>>>>>>>>>>>");
 		TenantInfoRequest tenantInfoRequest=new TenantInfoRequest();
 		tenantInfoRequest.setAccountId(1L);
-		tenantInfoRequest.setIndustryCode("001");
-		tenantInfoRequest.setTenantName("测试专业户@");
+		//tenantInfoRequest.setIndustryCode("001");
+		//tenantInfoRequest.setTenantName("测试专业户@");
 		tenantInfoRequest.setUpdateAccountId(3L);
 		TenantInsertResponse tenantInfo = iTenantManageSV.insertTenantInfo(tenantInfoRequest);
 		JSONObject fromObject = JSONObject.fromObject(tenantInfo);

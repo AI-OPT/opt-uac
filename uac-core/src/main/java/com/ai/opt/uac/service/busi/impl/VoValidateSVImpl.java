@@ -63,8 +63,8 @@ public class VoValidateSVImpl implements IVoValidateSV {
         if (tenantInfoRequest == null) {
             throw new BusinessException(AccountExceptCode.ErrorCode.PARAM_NULL_ERROR, "参数对象为空");
         }
-        iTenantValidateSV.checkTenantName(tenantInfoRequest.getTenantName());
-        iTenantValidateSV.checkIndustryCode(tenantInfoRequest.getIndustryCode());
+       // iTenantValidateSV.checkTenantName(tenantInfoRequest.getTenantName());
+       // iTenantValidateSV.checkIndustryCode(tenantInfoRequest.getIndustryCode());
         iTenantValidateSV.checkAccountId(tenantInfoRequest.getAccountId());
         iTenantValidateSV.checkUpdateAccountId(tenantInfoRequest.getUpdateAccountId());
     }
