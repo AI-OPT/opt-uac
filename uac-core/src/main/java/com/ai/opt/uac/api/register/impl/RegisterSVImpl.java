@@ -26,6 +26,7 @@ public class RegisterSVImpl implements IRegisterSV {
     private IRegisterBusiSV iRegisterBusiSV;
     @Autowired
 	IVoValidateSV iVoValidateSV;
+    
 
     @Override
     public PhoneRegisterResponse registerByPhone(PhoneRegisterRequest request)
@@ -41,7 +42,6 @@ public class RegisterSVImpl implements IRegisterSV {
         account.setActiveTime(DateUtil.getSysDate());
         account.setInactiveTime(DateUtil.getTimestamp(AccountConstants.Account.INACTIVE_DATE,DateUtil.DATETIME_FORMAT));
         account.setCreateTime(DateUtil.getSysDate());
-        account.setTenantId(AccountConstants.Account.INIT_TENANT_ID);
         long accountId = iRegisterBusiSV.registerByPhone(account);
         PhoneRegisterResponse response = new PhoneRegisterResponse();
         ResponseHeader responseHeader = new ResponseHeader(true, ResultCode.SUCCESS_CODE, "成功");
