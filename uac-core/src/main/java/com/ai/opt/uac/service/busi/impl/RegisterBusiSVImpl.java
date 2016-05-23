@@ -30,7 +30,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
         //生成租戶
         TenantInfoRequest tenantrequest = new TenantInfoRequest();
         tenantrequest.setCreateAccountId(accountId);
-        tenantrequest.setTenantName("test");
+        tenantrequest.setTenantName(account.getPhone());
         TenantInsertResponse tenanResponse = iTenantManageSV.insertTenantInfo(tenantrequest);
         if(tenanResponse.getResponseHeader().getResultCode().equals(ResultCode.SUCCESS_CODE)){
             account.setTenantId(tenanResponse.getTenantId());

@@ -28,7 +28,7 @@ public class TestTenantManageSV {
 	public void testQueryBaseInfo() throws RPCSystemException{
 		System.out.println("<<<<<<<<<<<<<<Begin testQueryBaseInfo>>>>>>>>>>>>>>");
 		BaseInfo tenantRequest=new BaseInfo();
-		tenantRequest.setTenantId("0001");
+		tenantRequest.setTenantId("D47EDE71A7BB4F55AB2ACA3C268857FC");
 		TenantQueryResponse tenantInfo = iTenantManageSV.queryTenantInfo(tenantRequest);
 		JSONObject fromObject = JSONObject.fromObject(tenantInfo);
 		System.out.println(fromObject);
